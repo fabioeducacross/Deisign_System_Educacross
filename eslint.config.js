@@ -30,5 +30,12 @@ export default tseslint.config(
         rules: {
             "react-hooks/rules-of-hooks": "off",
         },
+    },
+    // UI library components: disable react-refresh (not an app with HMR)
+    {
+        files: ["packages/ui/src/components/**/*.tsx"],
+        rules: {
+            "react-refresh/only-export-components": "off",
+        },
     }
 );

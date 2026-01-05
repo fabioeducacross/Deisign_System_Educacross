@@ -108,9 +108,13 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
             return [];
         });
 
-        const expandedItems = value !== undefined
-            ? (Array.isArray(value) ? value : [value])
-            : internalValue;
+        // Memoiza expandedItems para evitar recriação em cada render
+        const expandedItems = React.useMemo(
+            () => value !== undefined
+                ? (Array.isArray(value) ? value : [value])
+                : internalValue,
+            [value, internalValue]
+        );
 
         const toggleItem = React.useCallback(
             (itemValue: string) => {
