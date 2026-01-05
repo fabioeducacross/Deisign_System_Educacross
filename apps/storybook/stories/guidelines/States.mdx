@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guidelines/Estados" />
+
+# Estados de Componentes
+
+Todos os componentes interativos do Design System implementam estados completos
+para feedback visual consistente.
+
+## Estados Obrigatórios
+
+| Estado | Descrição | Implementação |
+|--------|-----------|---------------|
+| **Default** | Aparência base | Estilos padrão |
+| **Hover** | Mouse sobre o elemento | `:hover` pseudo-class |
+| **Focus** | Elemento focado (teclado) | `:focus-visible` com ring |
+| **Active** | Elemento pressionado | `:active` pseudo-class |
+| **Disabled** | Não interativo | `disabled` attribute + opacity |
+
+## Estados Condicionais
+
+| Estado | Quando usar | Implementação |
+|--------|-------------|---------------|
+| **Loading** | Ação em progresso | Spinner + disabled |
+| **Error** | Validação falhou | Borda/texto destructive |
+| **Success** | Ação concluída | (futuro) Feedback visual |
+
+## Exemplos Visuais
+
+### Button States
+
+```
+Default  →  Hover  →  Active  →  Focus
+   ↓
+Disabled (não interage)
+   ↓
+Loading (spinner + disabled)
+```
+
+### Input States
+
+```
+Default  →  Focus (ring)  →  Filled
+   ↓
+Disabled (opacity)
+   ↓
+Error (borda vermelha + aria-invalid)
+```
+
+## Regras
+
+1. **Focus sempre visível**: Nunca remova `outline` sem substituir por alternativa visível
+2. **Disabled vs Loading**: Loading mantém contexto visual; disabled é mais sutil
+3. **Hover não é obrigatório em touch**: Estados de hover são bônus em dispositivos touch
+4. **Transições suaves**: Use `transition-colors duration-200` para mudanças de estado
+
+## Tokens de Estado
+
+```css
+/* Focus ring */
+--focus-ring-width: 2px;
+--focus-ring-offset: 2px;
+/* Aplicado via: ring-2 ring-ring ring-offset-2 */
+
+/* Disabled */
+/* Aplicado via: disabled:opacity-50 disabled:pointer-events-none */
+
+/* Error */
+/* Usa --destructive para borda e texto */
+```
+
+## Accessibility
+
+- **Focus-visible**: Usamos `:focus-visible` para mostrar ring apenas em navegação por teclado
+- **aria-disabled**: Sempre acompanha `disabled` para screen readers
+- **aria-busy**: Indica estado de loading
+- **aria-invalid**: Indica campo com erro

@@ -1,0 +1,108 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+# Educacross Design System
+
+Bem-vindo ao **Educacross Design System** — um sistema de design em código construído
+para reduzir inconsistências visuais, acelerar desenvolvimento e aumentar qualidade.
+
+## 🎯 Objetivos
+
+- **Consistência**: Tokens e componentes garantem visual unificado
+- **Velocidade**: Componentes prontos para uso imediato
+- **Qualidade**: Acessibilidade e estados completos por padrão
+- **Documentação**: Storybook como catálogo vivo
+
+## 📦 Instalação
+
+```bash
+pnpm add @educacross/ui
+```
+
+## 🚀 Quick Start
+
+### 1. Configure o Tailwind
+
+```ts
+// tailwind.config.ts
+import { educacrossPreset } from "@educacross/ui/tailwind-preset";
+
+export default {
+  presets: [educacrossPreset],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@educacross/ui/dist/**/*.js",
+  ],
+};
+```
+
+### 2. Importe os estilos
+
+```css
+/* globals.css */
+@import "@educacross/ui/styles.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### 3. Use os componentes
+
+```tsx
+import { Button, Input, Label } from "@educacross/ui";
+
+function App() {
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" type="email" placeholder="you@example.com" />
+      </div>
+      <Button>Enviar</Button>
+    </div>
+  );
+}
+```
+
+## 🧭 Navegação
+
+### Foundations
+Tokens de design: cores, tipografia, espaçamento.
+
+### Components
+Componentes de UI: Button, Input, Label.
+
+### Patterns
+Padrões de composição: Form Field.
+
+### Guidelines
+Boas práticas: Acessibilidade, Estados.
+
+## 🌓 Light / Dark Mode
+
+O Design System suporta temas Light e Dark. Use o seletor de tema
+na toolbar do Storybook para alternar.
+
+Em sua aplicação, adicione a classe `dark` ao `<html>`:
+
+```tsx
+// Toggle
+document.documentElement.classList.toggle("dark");
+```
+
+## ♿ Acessibilidade
+
+Todos os componentes seguem WCAG 2.1 AA:
+
+- ✅ Navegação por teclado
+- ✅ Foco visível
+- ✅ ARIA attributes
+- ✅ Contraste de cores
+
+## 📚 Recursos
+
+- [README](https://github.com/educacross/design-system)
+- [CONTRIBUTING](https://github.com/educacross/design-system/blob/main/CONTRIBUTING.md)
+- [Changelog](https://github.com/educacross/design-system/blob/main/CHANGELOG.md)

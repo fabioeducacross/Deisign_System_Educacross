@@ -1,0 +1,78 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guidelines/Acessibilidade" />
+
+# Acessibilidade
+
+O Educacross Design System segue as diretrizes WCAG 2.1 nível AA para garantir
+que todos os usuários possam interagir com nossos componentes.
+
+## Princípios
+
+### 1. Perceptível
+
+- **Contraste de cores**: Texto tem contraste mínimo de 4.5:1, elementos de UI têm 3:1
+- **Foco visível**: Todo elemento focável tem indicador visual claro
+- **Texto redimensionável**: Interface funciona com zoom até 200%
+
+### 2. Operável
+
+- **Navegação por teclado**: Todos os controles são acessíveis via Tab/Enter/Espaço
+- **Sem armadilhas de foco**: Usuário sempre pode sair de qualquer componente
+- **Motion seguro**: Animações respeitam `prefers-reduced-motion`
+
+### 3. Compreensível
+
+- **Labels claros**: Todos os inputs têm labels descritivos
+- **Mensagens de erro**: Erros são anunciados e explicam como corrigir
+- **Comportamento previsível**: Componentes funcionam como esperado
+
+### 4. Robusto
+
+- **Semântica HTML**: Usamos elementos corretos (`button`, `input`, `label`)
+- **ARIA quando necessário**: Atributos ARIA complementam, não substituem HTML
+- **Testado**: Componentes passam no addon a11y do Storybook
+
+## Checklist por Componente
+
+### Button
+
+- ✅ Navegável por Tab
+- ✅ Ativável por Enter e Espaço
+- ✅ `aria-disabled` quando desabilitado
+- ✅ `aria-busy` quando loading
+- ✅ Foco visível com ring
+
+### Input
+
+- ✅ Label associado via `htmlFor`/`id`
+- ✅ `aria-invalid` quando em erro
+- ✅ `aria-describedby` para mensagens de ajuda/erro
+- ✅ `aria-required` quando obrigatório
+- ✅ Foco visível com ring
+
+### Label
+
+- ✅ Clicável focando o input associado
+- ✅ Indicador de obrigatório com `aria-hidden`
+- ✅ Lido por screen readers
+
+## Testando Acessibilidade
+
+### No Storybook
+
+O addon **@storybook/addon-a11y** roda verificações automáticas em cada story.
+Veja a aba "Accessibility" no painel inferior.
+
+### Manual
+
+1. **Navegação por teclado**: Navegue usando apenas Tab, Enter, Espaço, Setas
+2. **Screen reader**: Teste com NVDA (Windows) ou VoiceOver (Mac)
+3. **Contraste**: Use ferramentas como Colour Contrast Analyser
+4. **Zoom**: Teste com zoom de 200% no browser
+
+## Recursos
+
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [WAI-ARIA Practices](https://www.w3.org/WAI/ARIA/apg/)
+- [Radix UI Accessibility](https://www.radix-ui.com/primitives/docs/overview/accessibility)
