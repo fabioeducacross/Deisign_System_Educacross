@@ -53,7 +53,7 @@ export const Default: Story = {
                     <p>Dialog content goes here.</p>
                 </div>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button>Confirm</Button>
@@ -167,7 +167,7 @@ export const WithForm: Story = {
                     </div>
                 </div>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button>Save Changes</Button>
@@ -196,7 +196,7 @@ export const Confirmation: Story = {
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button variant="destructive">Delete Account</Button>
@@ -234,7 +234,7 @@ export const ScrollableContent: Story = {
                     ))}
                 </div>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Decline</Button>
                     </DialogClose>
                     <Button>Accept</Button>

@@ -1,0 +1,35 @@
+# Source files (only dist is published)
+src/
+*.test.tsx
+*.test.ts
+*.stories.tsx
+*.stories.ts
+
+# Config files
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+.eslintrc*
+eslint.config.*
+
+# Development
+node_modules/
+.turbo/
+coverage/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test files
+__tests__/
+__mocks__/
+test/
+tests/

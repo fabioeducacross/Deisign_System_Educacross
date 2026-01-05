@@ -107,6 +107,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         const Comp = asChild ? Slot : "button";
         const isDisabled = disabled || loading;
 
+        // When using asChild, we need to ensure only a single child is passed to Slot
+        const content = loading ? (
+            <>
+                <LoadingSpinner className="mr-2" />
+                {children}
+            </>
+        ) : (
+            children
+        );
+
         return (
             <Comp
                 className={cn(buttonVariants({ variant, size, className }))}
@@ -116,8 +126,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 aria-busy={loading}
                 {...props}
             >
-                {loading && <LoadingSpinner className="mr-2" />}
-                {children}
+                {content}
             </Comp>
         );
     }

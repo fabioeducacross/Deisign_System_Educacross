@@ -390,14 +390,14 @@ Every pull request description MUST include this checklist:
 
 ---
 
-## 15. Open Questions (TBD)
+## 15. Open Questions
 
 | Topic                      | Status       | Notes                                           |
 | -------------------------- | ------------ | ----------------------------------------------- |
 | Visual regression tool     | TBD          | Chromatic vs Percy vs Playwright snapshots      |
-| Icon library               | TBD          | Lucide vs Heroicons vs custom SVG sprites       |
+| Icon library               | ✅ RESOLVED  | Feather Icons (react-feather)                   |
 | Animation tokens           | TBD          | Framer Motion or CSS keyframes                  |
-| Monorepo task runner       | TBD          | Turborepo / Nx or plain pnpm scripts            |
+| Monorepo task runner       | ✅ RESOLVED  | Turborepo 2.7.2                                 |
 | Package registry           | TBD          | npm public, GitHub Packages, Verdaccio          |
 
 ---

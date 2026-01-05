@@ -39,7 +39,11 @@
         "dev": "tsup --watch",
         "lint": "eslint src --ext .ts,.tsx",
         "typecheck": "tsc --noEmit",
-        "clean": "rimraf dist"
+        "clean": "rimraf dist",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "prepublishOnly": "pnpm build && pnpm typecheck"
     },
     "peerDependencies": {
         "react": "^18.2.0 || ^19.0.0",
@@ -49,19 +53,26 @@
         "@radix-ui/react-slot": "^1.1.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
+        "react-feather": "^2.0.10",
         "tailwind-merge": "^2.6.0"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.1",
+        "@testing-library/user-event": "^14.6.1",
         "@types/react": "^18.3.18",
         "@types/react-dom": "^18.3.5",
+        "@vitejs/plugin-react": "^4.3.4",
         "autoprefixer": "^10.4.20",
+        "jsdom": "^27.4.0",
         "postcss": "^8.4.49",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "rimraf": "^6.0.1",
         "tailwindcss": "^3.4.17",
         "tsup": "^8.3.5",
-        "typescript": "^5.7.2"
+        "typescript": "^5.7.2",
+        "vitest": "^4.0.16"
     },
     "publishConfig": {
         "access": "public"
@@ -71,6 +82,11 @@
         "url": "https://github.com/educacross/design-system.git",
         "directory": "packages/ui"
     },
+    "homepage": "https://github.com/educacross/design-system#readme",
+    "bugs": {
+        "url": "https://github.com/educacross/design-system/issues"
+    },
+    "author": "Educacross <contato@educacross.com.br>",
     "keywords": [
         "design-system",
         "react",

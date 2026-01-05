@@ -79,3 +79,120 @@ export {
     toastVariants,
     type ToastProps,
 } from "./Toast";
+
+// P3 Components
+export {
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsContent,
+    tabsListVariants,
+    tabsTriggerVariants,
+    type TabsProps,
+    type TabsListProps,
+    type TabsTriggerProps,
+    type TabsContentProps,
+} from "./Tabs";
+
+export {
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+    accordionItemVariants,
+    type AccordionProps,
+    type AccordionItemProps,
+    type AccordionTriggerProps,
+    type AccordionContentProps,
+} from "./Accordion";
+
+export {
+    Tooltip,
+    TooltipTrigger,
+    TooltipContent,
+    TooltipProvider,
+    tooltipContentVariants,
+    type TooltipProps,
+    type TooltipTriggerProps,
+    type TooltipContentProps,
+    type TooltipProviderProps,
+} from "./Tooltip";
+
+export {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuLabel,
+    dropdownMenuContentVariants,
+    type DropdownMenuProps,
+    type DropdownMenuTriggerProps,
+    type DropdownMenuContentProps,
+    type DropdownMenuItemProps,
+} from "./DropdownMenu";
+
+export {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverClose,
+    popoverContentVariants,
+    type PopoverProps,
+    type PopoverTriggerProps,
+    type PopoverContentProps,
+} from "./Popover";
+
+export {
+    Table,
+    TableHeader,
+    TableBody,
+    TableFooter,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableCaption,
+    type TableHeadProps,
+    type TableCellProps,
+} from "./Table";
+
+export {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationButton,
+    PaginationPrevious,
+    PaginationNext,
+    PaginationEllipsis,
+    paginationButtonVariants,
+    type PaginationProps,
+    type PaginationLinkProps,
+    type PaginationButtonProps,
+    type PaginationPreviousProps,
+    type PaginationNextProps,
+} from "./Pagination";
+
+export {
+    Skeleton,
+    SkeletonText,
+    SkeletonCircle,
+    SkeletonCard,
+    SkeletonAvatar,
+    SkeletonTable,
+    skeletonVariants,
+    type SkeletonProps,
+    type SkeletonTextProps,
+    type SkeletonCircleProps,
+} from "./Skeleton";
+
+// Icons
+export {
+    Icon,
+    iconVariants,
+    iconNames,
+    iconCategories,
+    type IconProps,
+    type IconName,
+} from "./Icon";
+export * from "./Icon";

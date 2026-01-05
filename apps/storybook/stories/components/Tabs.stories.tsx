@@ -1,0 +1,231 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@educacross/ui";
+
+const meta: Meta<typeof Tabs> = {
+    title: "Components/Tabs",
+    component: Tabs,
+    tags: ["autodocs"],
+    parameters: {
+        docs: {
+            description: {
+                component:
+                    "Tabs organize content into separate views where only one view can be visible at a time.",
+            },
+        },
+    },
+};
+
+export default meta;
+type Story = StoryObj<typeof Tabs>;
+
+/**
+ * Default tabs with uncontrolled state.
+ */
+export const Default: Story = {
+    render: () => (
+        <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList>
+                <TabsTrigger value="account">Account</TabsTrigger>
+                <TabsTrigger value="password">Password</TabsTrigger>
+                <TabsTrigger value="settings">Settings</TabsTrigger>
+            </TabsList>
+            <TabsContent value="account">
+                <div className="p-4 border rounded-md mt-2">
+                    <h3 className="font-semibold">Account Settings</h3>
+                    <p className="text-sm text-muted-foreground mt-2">
+                        Manage your account preferences and personal information.
+                    </p>
+                </div>
+            </TabsContent>
+            <TabsContent value="password">
+                <div className="p-4 border rounded-md mt-2">
+                    <h3 className="font-semibold">Password</h3>
+                    <p className="text-sm text-muted-foreground mt-2">
+                        Change your password and security settings.
+                    </p>
+                </div>
+            </TabsContent>
+            <TabsContent value="settings">
+                <div className="p-4 border rounded-md mt-2">
+                    <h3 className="font-semibold">General Settings</h3>
+                    <p className="text-sm text-muted-foreground mt-2">
+                        Configure application preferences.
+                    </p>
+                </div>
+            </TabsContent>
+        </Tabs>
+    ),
+};
+
+/**
+ * Controlled tabs with external state.
+ */
+export const Controlled: Story = {
+    render: () => {
+        const [value, setValue] = useState("tab1");
+
+        return (
+            <div className="space-y-4">
+                <div className="flex gap-2">
+                    <button
+                        className="px-3 py-1 border rounded text-sm"
+                        onClick={() => setValue("tab1")}
+                    >
+                        Go to Tab 1
+                    </button>
+                    <button
+                        className="px-3 py-1 border rounded text-sm"
+                        onClick={() => setValue("tab2")}
+                    >
+                        Go to Tab 2
+                    </button>
+                </div>
+                <p className="text-sm text-muted-foreground">Active: {value}</p>
+
+                <Tabs value={value} onValueChange={setValue} className="w-[400px]">
+                    <TabsList>
+                        <TabsTrigger value="tab1">First Tab</TabsTrigger>
+                        <TabsTrigger value="tab2">Second Tab</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="tab1">
+                        <div className="p-4 border rounded-md">Content for first tab</div>
+                    </TabsContent>
+                    <TabsContent value="tab2">
+                        <div className="p-4 border rounded-md">Content for second tab</div>
+                    </TabsContent>
+                </Tabs>
+            </div>
+        );
+    },
+};
+
+/**
+ * Outline variant tabs.
+ */
+export const OutlineVariant: Story = {
+    render: () => (
+        <Tabs defaultValue="overview" variant="outline" className="w-[400px]">
+            <TabsList variant="outline">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                <TabsTrigger value="reports">Reports</TabsTrigger>
+            </TabsList>
+            <TabsContent value="overview">
+                <div className="p-4 border-x border-b rounded-b-md">
+                    Overview content with outline variant.
+                </div>
+            </TabsContent>
+            <TabsContent value="analytics">
+                <div className="p-4 border-x border-b rounded-b-md">
+                    Analytics data and charts.
+                </div>
+            </TabsContent>
+            <TabsContent value="reports">
+                <div className="p-4 border-x border-b rounded-b-md">
+                    Generated reports.
+                </div>
+            </TabsContent>
+        </Tabs>
+    ),
+};
+
+/**
+ * Pills variant tabs.
+ */
+export const PillsVariant: Story = {
+    render: () => (
+        <Tabs defaultValue="all" variant="pills" className="w-[400px]">
+            <TabsList variant="pills">
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="active">Active</TabsTrigger>
+                <TabsTrigger value="completed">Completed</TabsTrigger>
+                <TabsTrigger value="archived">Archived</TabsTrigger>
+            </TabsList>
+            <TabsContent value="all">
+                <div className="p-4 mt-2">Showing all items</div>
+            </TabsContent>
+            <TabsContent value="active">
+                <div className="p-4 mt-2">Showing active items only</div>
+            </TabsContent>
+            <TabsContent value="completed">
+                <div className="p-4 mt-2">Showing completed items</div>
+            </TabsContent>
+            <TabsContent value="archived">
+                <div className="p-4 mt-2">Showing archived items</div>
+            </TabsContent>
+        </Tabs>
+    ),
+};
+
+/**
+ * Disabled tab trigger.
+ */
+export const WithDisabled: Story = {
+    render: () => (
+        <Tabs defaultValue="enabled" className="w-[400px]">
+            <TabsList>
+                <TabsTrigger value="enabled">Enabled</TabsTrigger>
+                <TabsTrigger value="premium" disabled>
+                    Premium (Locked)
+                </TabsTrigger>
+                <TabsTrigger value="other">Other</TabsTrigger>
+            </TabsList>
+            <TabsContent value="enabled">
+                <div className="p-4 border rounded-md">Available content</div>
+            </TabsContent>
+            <TabsContent value="other">
+                <div className="p-4 border rounded-md">Other content</div>
+            </TabsContent>
+        </Tabs>
+    ),
+};
+
+/**
+ * Tabs in a card context.
+ */
+export const InCard: Story = {
+    render: () => (
+        <div className="border rounded-lg shadow-sm overflow-hidden w-[450px]">
+            <div className="p-4 border-b bg-muted/50">
+                <h3 className="font-semibold">User Profile</h3>
+            </div>
+            <Tabs defaultValue="profile" className="w-full">
+                <div className="border-b">
+                    <TabsList className="w-full justify-start rounded-none bg-transparent h-auto p-0">
+                        <TabsTrigger
+                            value="profile"
+                            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                        >
+                            Profile
+                        </TabsTrigger>
+                        <TabsTrigger
+                            value="activity"
+                            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                        >
+                            Activity
+                        </TabsTrigger>
+                        <TabsTrigger
+                            value="notifications"
+                            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                        >
+                            Notifications
+                        </TabsTrigger>
+                    </TabsList>
+                </div>
+                <TabsContent value="profile" className="p-4 m-0">
+                    <div className="space-y-2">
+                        <p className="font-medium">John Doe</p>
+                        <p className="text-sm text-muted-foreground">john@example.com</p>
+                    </div>
+                </TabsContent>
+                <TabsContent value="activity" className="p-4 m-0">
+                    <p className="text-sm text-muted-foreground">Recent activity will appear here.</p>
+                </TabsContent>
+                <TabsContent value="notifications" className="p-4 m-0">
+                    <p className="text-sm text-muted-foreground">Notification preferences.</p>
+                </TabsContent>
+            </Tabs>
+        </div>
+    ),
+};
