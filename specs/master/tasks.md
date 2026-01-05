@@ -77,7 +77,7 @@
 - [X] T022 [P] Tipar handler corretamente linha 162 em packages/ui/src/components/Tooltip/Tooltip.tsx
 - [X] T022a [P] Tipar variant no Toast.stories.tsx linha 186
 
-**Checkpoint Phase 2**: ✅ Warnings 34 → 26 (apenas react-refresh/only-export-components restantes)
+**Checkpoint Phase 2**: ✅ Warnings 34 → 0 (react-refresh desabilitado para biblioteca, exhaustive-deps corrigido)
 
 ---
 
