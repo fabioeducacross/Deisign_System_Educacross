@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@educacross/ui";
 
@@ -56,6 +57,26 @@ export const Default: Story = {
             </TabsContent>
         </Tabs>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Verify default tab content is visible
+        await expect(canvas.getByText("Account Settings")).toBeVisible();
+
+        // Click on Password tab
+        const passwordTab = canvas.getByRole("tab", { name: /password/i });
+        await userEvent.click(passwordTab);
+
+        // Verify Password content is now visible
+        await expect(canvas.getByText(/change your password/i)).toBeVisible();
+
+        // Click on Settings tab
+        const settingsTab = canvas.getByRole("tab", { name: /settings/i });
+        await userEvent.click(settingsTab);
+
+        // Verify Settings content is now visible
+        await expect(canvas.getByText(/configure application/i)).toBeVisible();
+    },
 };
 
 /**

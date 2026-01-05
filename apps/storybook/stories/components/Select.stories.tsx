@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 import { Select } from "@educacross/ui";
 import { useState } from "react";
 
@@ -56,6 +57,17 @@ export const Default: Story = {
         placeholder: "Select a fruit",
         options: fruitOptions,
         className: "w-[200px]",
+    },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Verify select is visible with placeholder
+        const select = canvas.getByRole("combobox");
+        await expect(select).toBeVisible();
+
+        // Click to open and select an option
+        await userEvent.selectOptions(select, "apple");
+        await expect(select).toHaveValue("apple");
     },
 };
 

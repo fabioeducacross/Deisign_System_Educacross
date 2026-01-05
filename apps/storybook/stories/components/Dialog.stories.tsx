@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 import {
     Dialog,
     DialogTrigger,
@@ -61,6 +62,24 @@ export const Default: Story = {
             </DialogContent>
         </Dialog>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Find and click the trigger button
+        const triggerButton = canvas.getByRole("button", { name: /open dialog/i });
+        await expect(triggerButton).toBeVisible();
+        await userEvent.click(triggerButton);
+
+        // Wait for dialog to open and verify content
+        const dialog = await canvas.findByRole("dialog");
+        await expect(dialog).toBeVisible();
+        await expect(canvas.getByText("Dialog Title")).toBeVisible();
+        await expect(canvas.getByText(/this is a description/i)).toBeVisible();
+
+        // Close the dialog
+        const cancelButton = canvas.getByRole("button", { name: /cancel/i });
+        await userEvent.click(cancelButton);
+    },
 };
 
 /**

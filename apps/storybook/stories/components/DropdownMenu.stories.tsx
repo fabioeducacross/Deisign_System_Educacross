@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 import {
     DropdownMenu,
@@ -47,6 +48,22 @@ export const Default: Story = {
             </DropdownMenu>
         </div>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Click to open dropdown
+        const triggerButton = canvas.getByRole("button", { name: /open menu/i });
+        await userEvent.click(triggerButton);
+
+        // Verify menu items are visible
+        await expect(canvas.getByRole("menu")).toBeVisible();
+        await expect(canvas.getByRole("menuitem", { name: /profile/i })).toBeVisible();
+        await expect(canvas.getByRole("menuitem", { name: /settings/i })).toBeVisible();
+        await expect(canvas.getByRole("menuitem", { name: /logout/i })).toBeVisible();
+
+        // Close by pressing Escape
+        await userEvent.keyboard("{Escape}");
+    },
 };
 
 /**

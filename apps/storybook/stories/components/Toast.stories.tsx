@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "@storybook/test";
 import {
     Toast,
     ToastTitle,
@@ -50,6 +51,13 @@ export const Default: Story = {
             </ToastDescription>
         </Toast>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Verify toast content is visible
+        await expect(canvas.getByText("Notification")).toBeVisible();
+        await expect(canvas.getByText(/this is a toast notification/i)).toBeVisible();
+    },
 };
 
 /**
@@ -101,6 +109,13 @@ export const WithAction: Story = {
             <ToastAction>Undo</ToastAction>
         </Toast>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Verify toast with action is visible
+        await expect(canvas.getByText("Undo action")).toBeVisible();
+        await expect(canvas.getByRole("button", { name: /undo/i })).toBeVisible();
+    },
 };
 
 /**

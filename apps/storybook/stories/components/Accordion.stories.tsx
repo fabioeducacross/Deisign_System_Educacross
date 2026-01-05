@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 import {
     Accordion,
@@ -50,6 +51,19 @@ export const Default: Story = {
             </AccordionItem>
         </Accordion>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        // Verify default open item content is visible
+        await expect(canvas.getByText(/adheres to the wai-aria/i)).toBeVisible();
+
+        // Click on second trigger to switch
+        const secondTrigger = canvas.getByRole("button", { name: /is it styled/i });
+        await userEvent.click(secondTrigger);
+
+        // Verify second content is now visible
+        await expect(canvas.getByText(/default styles that matches/i)).toBeVisible();
+    },
 };
 
 /**

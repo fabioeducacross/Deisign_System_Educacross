@@ -101,28 +101,28 @@
 
 ### 4.1 Testes Unitários para Componentes (Prioridade Alta)
 
-- [ ] T026 [P] Criar teste para Tabs em packages/ui/src/components/Tabs/Tabs.test.tsx
-- [ ] T027 [P] Criar teste para Accordion em packages/ui/src/components/Accordion/Accordion.test.tsx
-- [ ] T028 [P] Criar teste para Pagination em packages/ui/src/components/Pagination/Pagination.test.tsx
+- [X] T026 [P] Criar teste para Tabs em packages/ui/src/components/Tabs/Tabs.test.tsx
+- [X] T027 [P] Criar teste para Accordion em packages/ui/src/components/Accordion/Accordion.test.tsx
+- [X] T028 [P] Criar teste para Pagination em packages/ui/src/components/Pagination/Pagination.test.tsx
 
 ### 4.2 Testes Unitários para Componentes (Prioridade Média)
 
-- [ ] T029 [P] Criar teste para Avatar em packages/ui/src/components/Avatar/Avatar.test.tsx
-- [ ] T030 [P] Criar teste para Icon em packages/ui/src/components/Icon/Icon.test.tsx
-- [ ] T031 [P] Criar teste para Popover em packages/ui/src/components/Popover/Popover.test.tsx
-- [ ] T032 [P] Criar teste para DropdownMenu em packages/ui/src/components/DropdownMenu/DropdownMenu.test.tsx
-- [ ] T033 [P] Criar teste para Tooltip em packages/ui/src/components/Tooltip/Tooltip.test.tsx
+- [X] T029 [P] Criar teste para Avatar em packages/ui/src/components/Avatar/Avatar.test.tsx
+- [X] T030 [P] Criar teste para Icon em packages/ui/src/components/Icon/Icon.test.tsx
+- [X] T031 [P] Criar teste para Popover em packages/ui/src/components/Popover/Popover.test.tsx
+- [X] T032 [P] Criar teste para DropdownMenu em packages/ui/src/components/DropdownMenu/DropdownMenu.test.tsx
+- [X] T033 [P] Criar teste para Tooltip em packages/ui/src/components/Tooltip/Tooltip.test.tsx
 
 ### 4.3 Play Functions para Stories
 
-- [ ] T034 [P] Adicionar play function em apps/storybook/stories/components/Dialog.stories.tsx
-- [ ] T035 [P] Adicionar play function em apps/storybook/stories/components/Toast.stories.tsx
-- [ ] T036 [P] Adicionar play function em apps/storybook/stories/components/Select.stories.tsx
-- [ ] T037 [P] Adicionar play function em apps/storybook/stories/components/Accordion.stories.tsx
-- [ ] T038 [P] Adicionar play function em apps/storybook/stories/components/Tabs.stories.tsx
-- [ ] T039 [P] Adicionar play function em apps/storybook/stories/components/DropdownMenu.stories.tsx
+- [X] T034 [P] Adicionar play function em apps/storybook/stories/components/Dialog.stories.tsx
+- [X] T035 [P] Adicionar play function em apps/storybook/stories/components/Toast.stories.tsx
+- [X] T036 [P] Adicionar play function em apps/storybook/stories/components/Select.stories.tsx
+- [X] T037 [P] Adicionar play function em apps/storybook/stories/components/Accordion.stories.tsx
+- [X] T038 [P] Adicionar play function em apps/storybook/stories/components/Tabs.stories.tsx
+- [X] T039 [P] Adicionar play function em apps/storybook/stories/components/DropdownMenu.stories.tsx
 
-**Checkpoint Phase 4**: `pnpm test` passa, stories têm play functions
+**Checkpoint Phase 4**: ✅ `pnpm test` passa (380 tests), stories têm play functions
 
 ---
 
