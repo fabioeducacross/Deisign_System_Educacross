@@ -69,7 +69,7 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
             <header
                 ref={ref}
                 className={cn(
-                    "flex items-center justify-between",
+                    "relative flex items-center justify-between",
                     "h-16 px-4 md:px-6",
                     "bg-white border-b border-border",
                     shadow && "shadow-sm",
@@ -89,7 +89,9 @@ export const Header = React.forwardRef<HTMLElement, HeaderProps>(
                 </Button>
 
                 {/* Logo Educacross */}
-                <Logo size="default" />
+                <div className="absolute left-1/2 -translate-x-1/2">
+                    <Logo size="default" />
+                </div>
 
                 {/* User Profile */}
                 <button

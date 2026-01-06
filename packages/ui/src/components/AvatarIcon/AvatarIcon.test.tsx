@@ -30,29 +30,29 @@ describe("AvatarIcon", () => {
         it("deve aplicar tamanho sm", () => {
             render(<AvatarIcon size="sm" />);
             const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-6");
-            expect(icon).toHaveClass("w-6");
+            expect(icon).toHaveClass("h-4");
+            expect(icon).toHaveClass("w-4");
         });
 
         it("deve aplicar tamanho default", () => {
             render(<AvatarIcon size="default" />);
             const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-8");
-            expect(icon).toHaveClass("w-8");
+            expect(icon).toHaveClass("h-6");
+            expect(icon).toHaveClass("w-6");
         });
 
         it("deve aplicar tamanho lg", () => {
             render(<AvatarIcon size="lg" />);
             const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-10");
-            expect(icon).toHaveClass("w-10");
+            expect(icon).toHaveClass("h-8");
+            expect(icon).toHaveClass("w-8");
         });
 
         it("deve usar tamanho default quando nenhum especificado", () => {
             render(<AvatarIcon />);
             const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-8");
-            expect(icon).toHaveClass("w-8");
+            expect(icon).toHaveClass("h-6");
+            expect(icon).toHaveClass("w-6");
         });
 
         it("deve ter object-contain em todos os tamanhos", () => {
@@ -72,14 +72,14 @@ describe("AvatarIcon", () => {
             render(<AvatarIcon className="custom-class" />);
             const icon = screen.getByAltText("Avatar Educacross");
             expect(icon).toHaveClass("custom-class");
-            expect(icon).toHaveClass("h-8"); // mantém classe de tamanho
+            expect(icon).toHaveClass("h-6"); // mantém classe de tamanho
         });
 
         it("deve combinar className customizado com tamanho", () => {
             render(<AvatarIcon size="lg" className="custom-class" />);
             const icon = screen.getByAltText("Avatar Educacross");
             expect(icon).toHaveClass("custom-class");
-            expect(icon).toHaveClass("h-10");
+            expect(icon).toHaveClass("h-8");
         });
     });
 

@@ -12,9 +12,9 @@ export interface AvatarIconProps
 }
 
 const iconSizes = {
-    sm: "h-6 w-6",
-    default: "h-8 w-8",
-    lg: "h-10 w-10",
+    sm: "h-4 w-4",
+    default: "h-6 w-6",
+    lg: "h-8 w-8",
 };
 
 /**
