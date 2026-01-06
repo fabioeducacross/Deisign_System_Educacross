@@ -229,5 +229,22 @@ export {
 } from "./components/Icon";
 export * from "./components/Icon";
 
+// Design Tokens (Primitivas e Variáveis)
+export {
+    spacing,
+    borderRadius,
+    colors,
+    opacityColors,
+    themeVariables,
+    misc,
+    tailwindTokens,
+    type SpacingScale,
+    type BorderRadiusScale,
+    type ColorCategory,
+    type ColorScale,
+    type OpacityScale,
+    type ThemeMode,
+} from "./tokens";
+
 // Utilities
 export { cn } from "./utils";

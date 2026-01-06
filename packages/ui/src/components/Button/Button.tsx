@@ -9,34 +9,38 @@ import { cn } from "../../utils";
  */
 const buttonVariants = cva(
     [
-        // Base styles
-        "inline-flex items-center justify-center gap-2 whitespace-nowrap",
-        "rounded-md text-sm font-medium",
+        // Base styles usando tokens semânticos
+        "inline-flex items-center justify-center whitespace-nowrap",
+        "gap-[var(--gap-2)]",
+        "rounded-[var(--radius-md)] text-sm font-medium",
         "transition-colors duration-200",
-        // Focus styles (a11y)
+        // Focus styles (a11y) - usando action-focus
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        // Disabled styles
-        "disabled:pointer-events-none disabled:opacity-50",
+        // Disabled styles - usando tokens de ação
+        "disabled:pointer-events-none disabled:bg-[var(--action-disabled-bg)] disabled:text-[var(--text-disabled)]",
         // Icon sizing
         "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
     ],
     {
         variants: {
             variant: {
-                default: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80",
+                default: "bg-[var(--color-primary-500)] text-white hover:bg-[var(--color-primary-600)] active:bg-[var(--color-primary-700)]",
                 destructive:
-                    "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80",
+                    "bg-[var(--color-error-500)] text-white hover:bg-[var(--color-error-600)] active:bg-[var(--color-error-700)]",
                 outline:
-                    "border border-input bg-background hover:bg-accent hover:text-accent-foreground active:bg-accent/80",
+                    "border border-[var(--input-border)] bg-transparent text-[var(--text-primary)] hover:bg-[var(--action-hover)] active:bg-[var(--action-selected)]",
                 secondary:
-                    "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70",
-                ghost: "hover:bg-accent hover:text-accent-foreground active:bg-accent/80",
-                link: "text-primary underline-offset-4 hover:underline",
+                    "bg-[var(--color-secondary-500)] text-white hover:bg-[var(--color-secondary-600)] active:bg-[var(--color-secondary-700)]",
+                ghost: "bg-transparent text-[var(--text-primary)] hover:bg-[var(--action-hover)] active:bg-[var(--action-selected)]",
+                link: "text-[var(--color-primary-500)] underline-offset-4 hover:underline",
+                success: "bg-[var(--color-success-500)] text-white hover:bg-[var(--color-success-600)] active:bg-[var(--color-success-700)]",
+                warning: "bg-[var(--color-warning-500)] text-[var(--text-primary)] hover:bg-[var(--color-warning-600)] active:bg-[var(--color-warning-700)]",
+                info: "bg-[var(--color-info-500)] text-white hover:bg-[var(--color-info-600)] active:bg-[var(--color-info-700)]",
             },
             size: {
-                default: "h-10 px-4 py-2",
-                sm: "h-9 rounded-md px-3",
-                lg: "h-11 rounded-md px-8",
+                default: "h-10 px-[var(--padding-4)] py-[var(--padding-2)]",
+                sm: "h-9 rounded-[var(--radius-md)] px-[var(--padding-3)]",
+                lg: "h-11 rounded-[var(--radius-md)] px-[var(--padding-8)]",
                 icon: "h-10 w-10",
             },
         },

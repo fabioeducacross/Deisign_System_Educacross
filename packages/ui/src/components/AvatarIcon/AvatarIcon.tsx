@@ -1,9 +1,8 @@
 import * as React from "react";
 import { cn } from "../../utils";
-import avatarIcon from "../../assets/Icons/Avatar.svg";
+import { avatarDataUrl } from "./avatar-data";
 
-export interface AvatarIconProps
-    extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface AvatarIconProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     /**
      * Tamanho do ícone.
      * @default "default"
@@ -19,6 +18,9 @@ const iconSizes = {
 
 /**
  * AvatarIcon - ícone padrão Educacross para usar em avatares.
+ * 
+ * Usa o ícone SVG original do Figma com a imagem do avatar Educacross
+ * embutida como data URL base64 para garantir renderização correta.
  *
  * @example
  * ```tsx
@@ -32,9 +34,8 @@ export const AvatarIcon = React.forwardRef<HTMLImageElement, AvatarIconProps>(
         return (
             <img
                 ref={ref}
-                src={avatarIcon}
+                src={avatarDataUrl}
                 alt="Avatar Educacross"
-                role="img"
                 className={cn(iconSizes[size], "object-contain", className)}
                 {...props}
             />

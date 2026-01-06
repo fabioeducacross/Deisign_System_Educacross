@@ -13,11 +13,12 @@ const meta: Meta<typeof Button> = {
 O **Button** é o componente principal para ações e interações do usuário.
 
 ## Características
-- ✅ 6 variantes visuais
+- ✅ 9 variantes visuais (default, destructive, outline, secondary, ghost, link, success, warning, info)
 - ✅ 4 tamanhos
 - ✅ Estado de loading com spinner
 - ✅ Suporte a \`asChild\` para composição
 - ✅ Acessível: navegação por teclado, foco visível, aria-attributes
+- ✅ Tokens semânticos do Figma
         `,
             },
         },
@@ -25,7 +26,7 @@ O **Button** é o componente principal para ações e interações do usuário.
     argTypes: {
         variant: {
             control: "select",
-            options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+            options: ["default", "destructive", "outline", "secondary", "ghost", "link", "success", "warning", "info"],
             description: "Visual variant of the button",
         },
         size: {
@@ -127,6 +128,48 @@ export const Link: Story = {
     args: {
         children: "Link Button",
         variant: "link",
+    },
+};
+
+export const Success: Story = {
+    args: {
+        children: "Sucesso",
+        variant: "success",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Use para ações de confirmação ou sucesso.",
+            },
+        },
+    },
+};
+
+export const Warning: Story = {
+    args: {
+        children: "Atenção",
+        variant: "warning",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Use para ações que requerem atenção do usuário.",
+            },
+        },
+    },
+};
+
+export const Info: Story = {
+    args: {
+        children: "Informação",
+        variant: "info",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Use para ações informativas ou neutras.",
+            },
+        },
     },
 };
 

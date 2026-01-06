@@ -64,8 +64,9 @@ describe("Header", () => {
                     userRole="Gestor de Redes"
                 />
             );
-            const avatarIcon = screen.getByAltText("Avatar Educacross");
-            expect(avatarIcon).toBeInTheDocument();
+            // Verifica se o AvatarIcon está presente como img
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toBeInTheDocument();
         });
     });
 
@@ -205,8 +206,9 @@ describe("Header", () => {
                     userRole="Gestor de Redes"
                 />
             );
-            const avatarIcon = screen.getByAltText("Avatar Educacross");
-            expect(avatarIcon).toBeInTheDocument();
+            // Verifica se o AvatarIcon está presente como img
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toBeInTheDocument();
         });
     });
 

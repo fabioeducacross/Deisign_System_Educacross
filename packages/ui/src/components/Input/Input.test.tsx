@@ -26,19 +26,19 @@ describe("Input", () => {
         it("should apply default variant classes", () => {
             render(<Input />);
             const input = screen.getByRole("textbox");
-            expect(input).toHaveClass("border-input");
+            expect(input).toHaveClass("border-[var(--input-border)]");
         });
 
         it("should apply error variant when error prop is true", () => {
             render(<Input error />);
             const input = screen.getByRole("textbox");
-            expect(input).toHaveClass("border-destructive");
+            expect(input).toHaveClass("border-[var(--color-error-500)]");
         });
 
         it("should apply error variant when variant is error", () => {
             render(<Input variant="error" />);
             const input = screen.getByRole("textbox");
-            expect(input).toHaveClass("border-destructive");
+            expect(input).toHaveClass("border-[var(--color-error-500)]");
         });
     });
 
@@ -135,7 +135,7 @@ describe("Input", () => {
         it("should have disabled styling classes", () => {
             render(<Input disabled />);
             const input = screen.getByRole("textbox");
-            expect(input).toHaveClass("disabled:opacity-50");
+            expect(input).toHaveClass("disabled:bg-[var(--action-disabled-bg)]", "disabled:text-[var(--text-disabled)]");
         });
     });
 
@@ -171,7 +171,7 @@ describe("Input", () => {
             render(<Input className="custom-class" />);
             const input = screen.getByRole("textbox");
             expect(input).toHaveClass("custom-class");
-            expect(input).toHaveClass("border-input"); // default variant should still apply
+            expect(input).toHaveClass("border-[var(--input-border)]"); // default variant should still apply
         });
     });
 

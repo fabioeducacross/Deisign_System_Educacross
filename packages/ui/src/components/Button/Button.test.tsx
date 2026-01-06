@@ -25,31 +25,31 @@ describe("Button", () => {
         it("should apply default variant classes", () => {
             render(<Button>Default</Button>);
             const button = screen.getByRole("button");
-            expect(button).toHaveClass("bg-primary");
+            expect(button).toHaveClass("bg-[var(--color-primary-500)]");
         });
 
         it("should apply destructive variant classes", () => {
             render(<Button variant="destructive">Delete</Button>);
             const button = screen.getByRole("button");
-            expect(button).toHaveClass("bg-destructive");
+            expect(button).toHaveClass("bg-[var(--color-error-500)]");
         });
 
         it("should apply outline variant classes", () => {
             render(<Button variant="outline">Outline</Button>);
             const button = screen.getByRole("button");
-            expect(button).toHaveClass("border");
+            expect(button).toHaveClass("border", "border-[var(--input-border)]");
         });
 
         it("should apply secondary variant classes", () => {
             render(<Button variant="secondary">Secondary</Button>);
             const button = screen.getByRole("button");
-            expect(button).toHaveClass("bg-secondary");
+            expect(button).toHaveClass("bg-[var(--color-secondary-500)]");
         });
 
         it("should apply ghost variant classes", () => {
             render(<Button variant="ghost">Ghost</Button>);
             const button = screen.getByRole("button");
-            expect(button).toHaveClass("hover:bg-accent");
+            expect(button).toHaveClass("bg-transparent", "hover:bg-[var(--action-hover)]");
         });
 
         it("should apply link variant classes", () => {
@@ -136,7 +136,7 @@ describe("Button", () => {
         it("should have disabled styling classes", () => {
             render(<Button disabled>Disabled</Button>);
             const button = screen.getByRole("button");
-            expect(button).toHaveClass("disabled:opacity-50");
+            expect(button).toHaveClass("disabled:bg-[var(--action-disabled-bg)]", "disabled:text-[var(--text-disabled)]");
         });
     });
 
@@ -196,7 +196,7 @@ describe("Button", () => {
                 </Button>
             );
             const link = screen.getByRole("link");
-            expect(link).toHaveClass("bg-destructive");
+            expect(link).toHaveClass("bg-[var(--color-error-500)]");
         });
     });
 
@@ -205,7 +205,7 @@ describe("Button", () => {
             render(<Button className="custom-class">Custom</Button>);
             const button = screen.getByRole("button");
             expect(button).toHaveClass("custom-class");
-            expect(button).toHaveClass("bg-primary"); // default variant should still apply
+            expect(button).toHaveClass("bg-[var(--color-primary-500)]"); // default variant should still apply
         });
     });
 

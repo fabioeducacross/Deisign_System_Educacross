@@ -1,0 +1,6 @@
+🔍 Inspeção Rápida do Avatar
+
+
+❌ Erro: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:6006/?path=/story/layout-header--default
+Call log:
+[2m  - navigating to "http://localhost:6006/?path=/story/layout-header--default", waiting until "networkidle"[22m

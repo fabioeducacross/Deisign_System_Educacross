@@ -6,80 +6,73 @@ describe("AvatarIcon", () => {
     describe("Renderização", () => {
         it("deve renderizar corretamente", () => {
             render(<AvatarIcon />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toBeInTheDocument();
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toBeInTheDocument();
         });
 
-        it("deve ter o src correto do ícone", () => {
+        it("deve renderizar como img", () => {
             render(<AvatarIcon />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveAttribute(
-                "src",
-                expect.stringContaining("Avatar")
-            );
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img.tagName).toBe("IMG");
         });
 
-        it("deve ter o atributo role img", () => {
+        it("deve ter src como data URL", () => {
             render(<AvatarIcon />);
-            const icon = screen.getByRole("img");
-            expect(icon).toBeInTheDocument();
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveAttribute("src");
+            expect(img.getAttribute("src")).toContain("data:image/svg+xml;base64,");
         });
     });
 
     describe("Variantes de tamanho", () => {
         it("deve aplicar tamanho sm", () => {
             render(<AvatarIcon size="sm" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-8");
-            expect(icon).toHaveClass("w-8");
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("h-8");
+            expect(img).toHaveClass("w-8");
         });
 
         it("deve aplicar tamanho default", () => {
             render(<AvatarIcon size="default" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-10");
-            expect(icon).toHaveClass("w-10");
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("h-10");
+            expect(img).toHaveClass("w-10");
         });
 
         it("deve aplicar tamanho lg", () => {
             render(<AvatarIcon size="lg" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-12");
-            expect(icon).toHaveClass("w-12");
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("h-12");
+            expect(img).toHaveClass("w-12");
         });
 
         it("deve usar tamanho default quando nenhum especificado", () => {
             render(<AvatarIcon />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-10");
-            expect(icon).toHaveClass("w-10");
-        });
-
-        it("deve ter object-contain em todos os tamanhos", () => {
-            const { rerender } = render(<AvatarIcon size="sm" />);
-            expect(screen.getByAltText("Avatar Educacross")).toHaveClass("object-contain");
-
-            rerender(<AvatarIcon size="default" />);
-            expect(screen.getByAltText("Avatar Educacross")).toHaveClass("object-contain");
-
-            rerender(<AvatarIcon size="lg" />);
-            expect(screen.getByAltText("Avatar Educacross")).toHaveClass("object-contain");
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("h-10");
+            expect(img).toHaveClass("w-10");
         });
     });
 
     describe("Customização", () => {
         it("deve suportar className customizado", () => {
             render(<AvatarIcon className="custom-class" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("custom-class");
-            expect(icon).toHaveClass("h-10"); // mantém classe de tamanho
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("custom-class");
+            expect(img).toHaveClass("h-10");
         });
 
         it("deve combinar className customizado com tamanho", () => {
             render(<AvatarIcon size="lg" className="custom-class" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("custom-class");
-            expect(icon).toHaveClass("h-12");
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("custom-class");
+            expect(img).toHaveClass("h-12");
+        });
+
+        it("deve ter object-contain para manter proporções", () => {
+            render(<AvatarIcon />);
+            const img = screen.getByAltText("Avatar Educacross");
+            expect(img).toHaveClass("object-contain");
         });
     });
 

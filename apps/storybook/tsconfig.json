@@ -13,7 +13,8 @@
     },
     "include": [
         "stories/**/*",
-        ".storybook/**/*"
+        ".storybook/**/*",
+        "../../packages/ui/src/**/*.d.ts"
     ],
     "exclude": [
         "node_modules",

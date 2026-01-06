@@ -13,11 +13,12 @@ const meta: Meta<typeof Input> = {
 O **Input** é o componente para entrada de dados do usuário.
 
 ## Características
-- ✅ Variante padrão e de erro
+- ✅ 3 variantes: default, filled, error
 - ✅ 3 tamanhos
 - ✅ Estados: focus, disabled, error
 - ✅ Suporte a todos os tipos de input HTML
 - ✅ Acessível: foco visível, aria-invalid
+- ✅ Tokens semânticos do Figma
         `,
             },
         },
@@ -25,7 +26,7 @@ O **Input** é o componente para entrada de dados do usuário.
     argTypes: {
         variant: {
             control: "select",
-            options: ["default", "error"],
+            options: ["default", "filled", "error"],
             description: "Visual variant of the input",
         },
         inputSize: {
@@ -186,6 +187,27 @@ export const Large: Story = {
 // =============================================================================
 // STATE STORIES
 // =============================================================================
+
+export const Filled: Story = {
+    args: {
+        variant: "filled",
+        placeholder: "Filled input",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "Variante com background preenchido, ideal para formulários em fundos claros.",
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div className="w-80">
+                <Story />
+            </div>
+        ),
+    ],
+};
 
 export const Disabled: Story = {
     args: {

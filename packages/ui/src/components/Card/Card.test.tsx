@@ -20,7 +20,7 @@ describe("Card", () => {
         it("deve aplicar classes base", () => {
             render(<Card data-testid="card">Content</Card>);
             const card = screen.getByTestId("card");
-            expect(card).toHaveClass("rounded-lg", "border", "bg-card");
+            expect(card).toHaveClass("rounded-[var(--radius-lg)]", "border", "bg-[var(--paper)]");
         });
 
         it("deve suportar ref", () => {
@@ -60,23 +60,23 @@ describe("Card", () => {
     describe("Padding", () => {
         it("deve renderizar padding default (p-6)", () => {
             render(<Card padding="default" data-testid="card">Content</Card>);
-            expect(screen.getByTestId("card")).toHaveClass("p-6");
+            expect(screen.getByTestId("card")).toHaveClass("p-[var(--padding-6)]");
         });
 
         it("deve renderizar padding sm (p-4)", () => {
             render(<Card padding="sm" data-testid="card">Content</Card>);
-            expect(screen.getByTestId("card")).toHaveClass("p-4");
+            expect(screen.getByTestId("card")).toHaveClass("p-[var(--padding-4)]");
         });
 
         it("deve renderizar padding lg (p-8)", () => {
             render(<Card padding="lg" data-testid="card">Content</Card>);
-            expect(screen.getByTestId("card")).toHaveClass("p-8");
+            expect(screen.getByTestId("card")).toHaveClass("p-[var(--padding-8)]");
         });
 
         it("deve renderizar sem padding quando none", () => {
             render(<Card padding="none" data-testid="card">Content</Card>);
             const card = screen.getByTestId("card");
-            expect(card).not.toHaveClass("p-4", "p-6", "p-8");
+            expect(card).not.toHaveClass("p-[var(--padding-4)]", "p-[var(--padding-6)]", "p-[var(--padding-8)]");
         });
     });
 });
@@ -124,7 +124,7 @@ describe("CardDescription", () => {
 
     it("deve aplicar classes de texto muted", () => {
         render(<CardDescription data-testid="desc">Description</CardDescription>);
-        expect(screen.getByTestId("desc")).toHaveClass("text-muted-foreground");
+        expect(screen.getByTestId("desc")).toHaveClass("text-[var(--text-secondary)]");
     });
 
     it("deve suportar ref", () => {
@@ -142,7 +142,7 @@ describe("CardContent", () => {
 
     it("deve aplicar padding", () => {
         render(<CardContent data-testid="content">Content</CardContent>);
-        expect(screen.getByTestId("content")).toHaveClass("p-6", "pt-0");
+        expect(screen.getByTestId("content")).toHaveClass("p-[var(--card-padding)]", "pt-0");
     });
 
     it("deve suportar ref", () => {

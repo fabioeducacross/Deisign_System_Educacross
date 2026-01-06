@@ -57,18 +57,21 @@ export type AvatarImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
 /**
  * AvatarImage - the image displayed in the avatar.
+ * Não renderiza se src estiver vazio/undefined, permitindo que o Fallback apareça.
  */
 const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>(
-    ({ className, alt, ...props }, ref) => {
+    ({ className, alt, src, ...props }, ref) => {
         const [hasError, setHasError] = React.useState(false);
 
-        if (hasError) {
+        // Se não há src ou houve erro, não renderiza (permite fallback aparecer)
+        if (!src || hasError) {
             return null;
         }
 
         return (
             <img
                 ref={ref}
+                src={src}
                 alt={alt}
                 className={cn(
                     "aspect-square h-full w-full object-cover",

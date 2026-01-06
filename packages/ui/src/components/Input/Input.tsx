@@ -8,18 +8,19 @@ import { cn } from "../../utils";
  */
 const inputVariants = cva(
     [
-        // Base styles
-        "flex w-full rounded-md border bg-background px-3 py-2",
-        "text-base text-foreground",
+        // Base styles usando tokens semânticos
+        "flex w-full rounded-[var(--radius-md)] border bg-transparent",
+        "px-[var(--padding-3)] py-[var(--padding-2)]",
+        "text-base text-[var(--text-primary)]",
         "ring-offset-background",
-        // Placeholder
-        "placeholder:text-muted-foreground",
+        // Placeholder - usando texto secundário
+        "placeholder:text-[var(--text-subtitle)]",
         // Focus styles (a11y)
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        // Disabled styles
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2",
+        // Disabled styles - usando tokens de ação
+        "disabled:cursor-not-allowed disabled:bg-[var(--action-disabled-bg)] disabled:text-[var(--text-disabled)]",
         // File input styles
-        "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
+        "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[var(--text-primary)]",
         // Transition
         "transition-colors duration-200",
         // Mobile text size (prevents zoom on iOS)
@@ -28,8 +29,9 @@ const inputVariants = cva(
     {
         variants: {
             variant: {
-                default: "border-input",
-                error: "border-destructive focus-visible:ring-destructive",
+                default: "border-[var(--input-border)] focus-visible:border-[var(--color-primary-500)]",
+                filled: "border-transparent bg-[var(--filled-input-bg)] focus-visible:bg-transparent focus-visible:border-[var(--input-border)]",
+                error: "border-[var(--color-error-500)] focus-visible:ring-[var(--color-error-500)]",
             },
             inputSize: {
                 default: "h-10",
