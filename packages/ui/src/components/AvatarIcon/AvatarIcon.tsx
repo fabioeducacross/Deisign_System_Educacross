@@ -1,9 +1,8 @@
 import * as React from "react";
 import { cn } from "../../utils";
-import educacrossIcon from "../../assets/Icons/educacross-icon.svg";
 
 export interface AvatarIconProps
-    extends React.ImgHTMLAttributes<HTMLImageElement> {
+    extends React.HTMLAttributes<HTMLDivElement> {
     /**
      * Tamanho do ícone.
      * @default "default"
@@ -12,9 +11,9 @@ export interface AvatarIconProps
 }
 
 const iconSizes = {
-    sm: "h-4 w-4",
-    default: "h-6 w-6",
-    lg: "h-8 w-8",
+    sm: "h-8 w-8",
+    default: "h-10 w-10",
+    lg: "h-12 w-12",
 };
 
 /**
@@ -27,20 +26,33 @@ const iconSizes = {
  * </Avatar>
  * ```
  */
-export const AvatarIcon = React.forwardRef<HTMLImageElement, AvatarIconProps>(
+export const AvatarIcon = React.forwardRef<HTMLDivElement, AvatarIconProps>(
     ({ size = "default", className, ...props }, ref) => {
         return (
-            <img
+            <div
                 ref={ref}
-                src={educacrossIcon}
-                alt="Avatar Educacross"
                 className={cn(
                     iconSizes[size],
-                    "object-contain",
+                    "flex items-center justify-center",
                     className
                 )}
                 {...props}
-            />
+            >
+                <svg
+                    viewBox="0 0 42 42"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-full h-full"
+                >
+                    <circle cx="21" cy="21" r="21" fill="#00CFE8"/>
+                    <g transform="translate(10, 11.5)">
+                        <circle cx="11" cy="7" r="3" fill="white"/>
+                        <path d="M11 12C7 12 4 14 4 17H18C18 14 15 12 11 12Z" fill="white"/>
+                        <ellipse cx="8" cy="6.5" rx="1.5" ry="2" fill="#00CFE8"/>
+                        <ellipse cx="14" cy="6.5" rx="1.5" ry="2" fill="#00CFE8"/>
+                    </g>
+                </svg>
+            </div>
         );
     }
 );

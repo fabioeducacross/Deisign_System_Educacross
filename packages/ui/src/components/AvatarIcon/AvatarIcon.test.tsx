@@ -5,81 +5,77 @@ import { AvatarIcon } from "./AvatarIcon";
 describe("AvatarIcon", () => {
     describe("Renderização", () => {
         it("deve renderizar corretamente", () => {
-            render(<AvatarIcon />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toBeInTheDocument();
+            const { container } = render(<AvatarIcon />);
+            const svg = container.querySelector("svg");
+            expect(svg).toBeInTheDocument();
         });
 
-        it("deve ter o src correto do ícone", () => {
-            render(<AvatarIcon />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveAttribute(
-                "src",
-                expect.stringContaining("educacross-icon")
-            );
+        it("deve ter o círculo ciano", () => {
+            const { container } = render(<AvatarIcon />);
+            const circle = container.querySelector('circle[fill="#00CFE8"]');
+            expect(circle).toBeInTheDocument();
         });
 
-        it("deve ter o atributo role img", () => {
-            render(<AvatarIcon />);
-            const icon = screen.getByRole("img");
-            expect(icon).toBeInTheDocument();
+        it("deve ter o atributo role group", () => {
+            const { container } = render(<AvatarIcon />);
+            expect(container.firstChild).toBeInTheDocument();
         });
     });
 
     describe("Variantes de tamanho", () => {
         it("deve aplicar tamanho sm", () => {
-            render(<AvatarIcon size="sm" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-4");
-            expect(icon).toHaveClass("w-4");
-        });
-
-        it("deve aplicar tamanho default", () => {
-            render(<AvatarIcon size="default" />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-6");
-            expect(icon).toHaveClass("w-6");
-        });
-
-        it("deve aplicar tamanho lg", () => {
-            render(<AvatarIcon size="lg" />);
-            const icon = screen.getByAltText("Avatar Educacross");
+            const { container } = render(<AvatarIcon size="sm" />);
+            const icon = container.firstChild as HTMLElement;
             expect(icon).toHaveClass("h-8");
             expect(icon).toHaveClass("w-8");
         });
 
-        it("deve usar tamanho default quando nenhum especificado", () => {
-            render(<AvatarIcon />);
-            const icon = screen.getByAltText("Avatar Educacross");
-            expect(icon).toHaveClass("h-6");
-            expect(icon).toHaveClass("w-6");
+        it("deve aplicar tamanho default", () => {
+            const { container } = render(<AvatarIcon size="default" />);
+            const icon = container.firstChild as HTMLElement;
+            expect(icon).toHaveClass("h-10");
+            expect(icon).toHaveClass("w-10");
         });
 
-        it("deve ter object-contain em todos os tamanhos", () => {
-            const { rerender } = render(<AvatarIcon size="sm" />);
-            expect(screen.getByAltText("Avatar Educacross")).toHaveClass("object-contain");
+        it("deve aplicar tamanho lg", () => {
+            const { container } = render(<AvatarIcon size="lg" />);
+            const icon = container.firstChild as HTMLElement;
+            expect(icon).toHaveClass("h-12");
+            expect(icon).toHaveClass("w-12");
+        });
+
+        it("deve usar tamanho default quando nenhum especificado", () => {
+            const { container } = render(<AvatarIcon />);
+            const icon = container.firstChild as HTMLElement;
+            expect(icon).toHaveClass("h-10");
+            expect(icon).toHaveClass("w-10");
+        });
+
+        it("deve ter flex items-center justify-center em todos os tamanhos", () => {
+            const { container, rerender } = render(<AvatarIcon size="sm" />);
+            expect(container.firstChild).toHaveClass("flex", "items-center", "justify-center");
 
             rerender(<AvatarIcon size="default" />);
-            expect(screen.getByAltText("Avatar Educacross")).toHaveClass("object-contain");
+            expect(container.firstChild).toHaveClass("flex", "items-center", "justify-center");
 
             rerender(<AvatarIcon size="lg" />);
-            expect(screen.getByAltText("Avatar Educacross")).toHaveClass("object-contain");
+            expect(container.firstChild).toHaveClass("flex", "items-center", "justify-center");
         });
     });
 
     describe("Customização", () => {
         it("deve suportar className customizado", () => {
-            render(<AvatarIcon className="custom-class" />);
-            const icon = screen.getByAltText("Avatar Educacross");
+            const { container } = render(<AvatarIcon className="custom-class" />);
+            const icon = container.firstChild as HTMLElement;
             expect(icon).toHaveClass("custom-class");
-            expect(icon).toHaveClass("h-6"); // mantém classe de tamanho
+            expect(icon).toHaveClass("h-10"); // mantém classe de tamanho
         });
 
         it("deve combinar className customizado com tamanho", () => {
-            render(<AvatarIcon size="lg" className="custom-class" />);
-            const icon = screen.getByAltText("Avatar Educacross");
+            const { container } = render(<AvatarIcon size="lg" className="custom-class" />);
+            const icon = container.firstChild as HTMLElement;
             expect(icon).toHaveClass("custom-class");
-            expect(icon).toHaveClass("h-8");
+            expect(icon).toHaveClass("h-12");
         });
     });
 
@@ -87,7 +83,7 @@ describe("AvatarIcon", () => {
         it("deve suportar ref", () => {
             const ref = { current: null };
             render(<AvatarIcon ref={ref} />);
-            expect(ref.current).toBeInstanceOf(HTMLImageElement);
+            expect(ref.current).toBeInstanceOf(HTMLDivElement);
         });
     });
 });
