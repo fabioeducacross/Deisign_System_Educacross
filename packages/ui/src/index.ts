@@ -21,6 +21,9 @@
  * ```
  */
 
+// Layout Components
+export { Header, type HeaderProps } from "./components/Header";
+
 // P1 Components
 export { Button, buttonVariants, type ButtonProps } from "./components/Button";
 export { Input, inputVariants, type InputProps } from "./components/Input";
