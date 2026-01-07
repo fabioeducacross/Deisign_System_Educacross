@@ -14,29 +14,6 @@ describe("Sidebar", () => {
         expect(screen.getByText("Painel")).toBeInTheDocument();
     });
 
-    it("deve renderizar a logo quando showLogo é true", () => {
-        const { container } = render(
-            <Sidebar showLogo>
-                <SidebarItem icon="Grid" label="Painel" />
-            </Sidebar>
-        );
-
-        const logo = container.querySelector("svg");
-        expect(logo).toBeInTheDocument();
-    });
-
-    it("não deve renderizar a logo quando showLogo é false", () => {
-        const { container } = render(
-            <Sidebar showLogo={false}>
-                <SidebarItem icon="Grid" label="Painel" />
-            </Sidebar>
-        );
-
-        const svgs = container.querySelectorAll("svg");
-        // Deve ter SVGs de ícones, mas não da logo
-        expect(svgs.length).toBeGreaterThan(0);
-    });
-
     it("deve aplicar classe collapsed quando collapsed é true", () => {
         const { container } = render(
             <Sidebar collapsed>

@@ -7,16 +7,16 @@ import { cn } from "../../utils";
  */
 const tabsListVariants = cva(
     [
-        "inline-flex h-10 items-center justify-center rounded-md",
+        "inline-flex h-10 items-center rounded-md",
         "bg-muted p-1 text-muted-foreground",
     ],
     {
         variants: {
             variant: {
-                default: "bg-muted",
-                outline: "bg-transparent border",
-                pills: "bg-transparent gap-1",
-                rounded: "bg-transparent p-0 h-auto relative",
+                default: "bg-muted justify-center",
+                outline: "bg-transparent border justify-center",
+                pills: "bg-transparent gap-1 justify-center",
+                rounded: "bg-transparent p-0 h-auto relative justify-start",
             },
         },
         defaultVariants: {
@@ -31,8 +31,8 @@ const tabsListVariants = cva(
 const tabsTriggerVariants = cva(
     [
         "inline-flex items-center justify-center whitespace-nowrap",
-        "px-6 py-3 text-sm font-medium ring-offset-background",
-        "transition-all duration-200",
+        "font-medium ring-offset-background",
+        "transition-all duration-200 cursor-pointer relative",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         "disabled:pointer-events-none disabled:opacity-50",
     ],
@@ -40,13 +40,13 @@ const tabsTriggerVariants = cva(
         variants: {
             variant: {
                 default:
-                    "rounded-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+                    "rounded-sm px-3 py-1.5 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
                 outline:
-                    "data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-foreground rounded-none",
+                    "px-3 py-1.5 text-sm data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-foreground rounded-none",
                 pills:
-                    "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full",
+                    "px-3 py-1.5 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-full",
                 rounded:
-                    "rounded-t-md bg-white text-[#6e6b7b] shadow-[0_0_16px_rgba(0,0,0,0.16)] data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-[0_0_24px_rgba(0,0,0,0.24)]",
+                    "bg-white text-[#6e6b7b] rounded-t-[15px] shadow-[0_0_8px_rgba(0,0,0,0.14)] text-sm leading-[20.3px] tracking-[0.14px] px-6 pt-[14px] pb-[10px] gap-[3.5px] data-[state=active]:bg-[#6E63E8] data-[state=active]:text-white data-[state=active]:shadow-[0_0_8px_rgba(0,0,0,0.14)] data-[state=active]:z-[3]",
             },
         },
         defaultVariants: {

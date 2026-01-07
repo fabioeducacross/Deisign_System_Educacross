@@ -206,8 +206,19 @@ export {
     TableRow,
     TableCell,
     TableCaption,
+    TableToolbar,
+    TableSortHeader,
+    TableActions,
+    TableActionButton,
+    TablePagination,
     type TableHeadProps,
     type TableCellProps,
+    type TableToolbarProps,
+    type TableSortHeaderProps,
+    type TableActionsProps,
+    type TableActionButtonProps,
+    type TablePaginationProps,
+    type SortDirection,
 } from "./components/Table";
 
 export {

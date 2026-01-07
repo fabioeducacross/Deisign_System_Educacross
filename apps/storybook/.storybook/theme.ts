@@ -4,7 +4,8 @@ export default create({
     base: "light",
     brandTitle: "Educacross Design System",
     brandUrl: "https://educacross.com",
-    // brandImage: "/logo.svg", // Add logo when available
+    brandImage: "/logo-educacross.svg",
+    brandTarget: "_self",
 
     // UI
     appBg: "#ffffff",

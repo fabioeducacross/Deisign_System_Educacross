@@ -17,15 +17,15 @@ const dialogOverlayVariants = cva([
 const dialogContentVariants = cva(
     [
         "fixed left-[50%] top-[50%] z-50",
-        "grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%]",
-        "gap-4 border bg-background p-6 shadow-lg",
+        "grid w-[600px] translate-x-[-50%] translate-y-[-50%]",
+        "gap-0 border-0 bg-background shadow-[0px_4px_18px_rgba(47,43,61,0.16)]",
         "duration-200",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
         "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
-        "sm:rounded-lg",
+        "rounded-lg",
     ],
     {
         variants: {
@@ -49,7 +49,7 @@ const dialogContentVariants = cva(
 function CloseIcon({ className }: { className?: string }) {
     return (
         <svg
-            className={cn("h-4 w-4", className)}
+            className={cn("h-5 w-5", className)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -291,9 +291,11 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
                     <button
                         type="button"
                         className={cn(
-                            "absolute right-4 top-4 rounded-sm opacity-70",
-                            "ring-offset-background transition-opacity",
-                            "hover:opacity-100",
+                            "absolute -right-[10px] -top-[10px] rounded w-[30px] h-[30px]",
+                            "shadow-[0px_1px_6px_rgba(47,43,61,0.1)] bg-background border border-border",
+                            "flex items-center justify-center",
+                            "text-foreground transition-colors",
+                            "hover:bg-muted hover:text-foreground",
                             "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                             "disabled:pointer-events-none"
                         )}
@@ -318,7 +320,7 @@ const DialogHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
         className={cn(
-            "flex flex-col space-y-1.5 text-center sm:text-left",
+            "flex flex-col p-6",
             className
         )}
         {...props}
@@ -335,7 +337,8 @@ const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
         className={cn(
-            "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+            "flex flex-row justify-end gap-4 px-6 py-4",
+            "border-t border-border bg-muted/30",
             className
         )}
         {...props}
@@ -364,7 +367,7 @@ const DialogTitle = React.forwardRef<
             ref={ref}
             id={id}
             className={cn(
-                "text-lg font-semibold leading-none tracking-tight",
+                "text-lg leading-[28px] font-medium text-foreground",
                 className
             )}
             {...props}
@@ -393,7 +396,7 @@ const DialogDescription = React.forwardRef<
         <p
             ref={ref}
             id={id}
-            className={cn("text-sm text-muted-foreground", className)}
+            className={cn("text-[15px] leading-[22px] text-muted-foreground mt-2", className)}
             {...props}
         />
     );

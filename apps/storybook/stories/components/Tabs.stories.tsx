@@ -256,27 +256,27 @@ export const InCard: Story = {
  */
 export const Rounded: Story = {
     render: () => (
-        <div className="w-full">
-            <div className="relative bg-white rounded-md">
+        <div className="w-full" style={{ fontFamily: 'Montserrat, Helvetica, Arial, sans-serif' }}>
+            <div className="relative bg-white">
                 {/* Container principal */}
-                <div className="flex items-center justify-between px-6 py-3">
-                    {/* Tabs */}
-                    <Tabs defaultValue="redes" variant="rounded" className="w-auto">
-                        <TabsList variant="rounded" className="gap-0">
-                            <TabsTrigger value="redes" variant="rounded" className="relative z-10 min-w-[132px]">
+                <div className="flex items-end justify-between">
+                    {/* Tabs - totalmente à esquerda */}
+                    <Tabs defaultValue="redes" variant="rounded">
+                        <TabsList variant="rounded" className="gap-0 flex">
+                            <TabsTrigger value="redes" variant="rounded">
                                 Redes
                             </TabsTrigger>
-                            <TabsTrigger value="escolas" variant="rounded" className="relative z-10 min-w-[132px] -ml-3">
+                            <TabsTrigger value="escolas" variant="rounded">
                                 Escolas
                             </TabsTrigger>
-                            <TabsTrigger value="professores" variant="rounded" className="relative z-10 min-w-[132px] -ml-3">
+                            <TabsTrigger value="professores" variant="rounded">
                                 Professores
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
                     
                     {/* Nome da escola */}
-                    <div className="flex items-center gap-2 text-primary">
+                    <div className="flex items-center gap-[5px] pb-3 pr-6 text-[#6E63E8] whitespace-nowrap">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -292,15 +292,33 @@ export const Rounded: Story = {
                             <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                             <path d="M6 12v5c3 3 9 3 12 0v-5" />
                         </svg>
-                        <span className="text-sm font-bold uppercase">COLÉGIO FLORESTA ENCANTADA</span>
+                        <span className="text-sm font-bold uppercase leading-[20.3px] tracking-[0.14px]">COLÉGIO FLORESTA ENCANTADA</span>
                     </div>
                 </div>
                 
                 {/* Linha inferior roxa */}
-                <div className="w-full h-0.5 bg-primary" />
+                <div className="w-full h-[2px] bg-[#6E63E8]" />
             </div>
         </div>
     ),
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+        
+        // Verificar que a tab "Redes" está visível e ativa
+        const redesTab = canvas.getByRole("tab", { name: /redes/i });
+        await expect(redesTab).toBeVisible();
+        await expect(redesTab).toHaveAttribute("data-state", "active");
+        
+        // Clicar na tab "Escolas"
+        const escolasTab = canvas.getByRole("tab", { name: /escolas/i });
+        await userEvent.click(escolasTab);
+        await expect(escolasTab).toHaveAttribute("data-state", "active");
+        
+        // Clicar na tab "Professores"
+        const professoresTab = canvas.getByRole("tab", { name: /professores/i });
+        await userEvent.click(professoresTab);
+        await expect(professoresTab).toHaveAttribute("data-state", "active");
+    },
 };
 
 /**
@@ -308,25 +326,24 @@ export const Rounded: Story = {
  */
 export const RoundedSimple: Story = {
     render: () => (
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-3xl" style={{ fontFamily: 'Montserrat, Helvetica, Arial, sans-serif' }}>
             <div className="relative bg-white rounded-md shadow-sm">
                 <Tabs defaultValue="tab1" variant="rounded">
-                    <div className="px-6 py-3">
-                        <TabsList variant="rounded" className="gap-0">
-                            <TabsTrigger value="tab1" variant="rounded" className="relative z-10 min-w-[132px]">
-                                Primeira Tab
-                            </TabsTrigger>
-                            <TabsTrigger value="tab2" variant="rounded" className="relative z-10 min-w-[132px] -ml-3">
-                                Segunda Tab
-                            </TabsTrigger>
-                            <TabsTrigger value="tab3" variant="rounded" className="relative z-10 min-w-[132px] -ml-3">
-                                Terceira Tab
-                            </TabsTrigger>
-                        </TabsList>
-                    </div>
+                    {/* Tabs container */}
+                    <TabsList variant="rounded" className="gap-0 flex px-6">
+                        <TabsTrigger value="tab1" variant="rounded">
+                            Primeira Tab
+                        </TabsTrigger>
+                        <TabsTrigger value="tab2" variant="rounded">
+                            Segunda Tab
+                        </TabsTrigger>
+                        <TabsTrigger value="tab3" variant="rounded">
+                            Terceira Tab
+                        </TabsTrigger>
+                    </TabsList>
                     
                     {/* Linha inferior roxa */}
-                    <div className="w-full h-0.5 bg-primary" />
+                    <div className="w-full h-[2px] bg-[#6E63E8]" />
                     
                     <TabsContent value="tab1" className="p-6">
                         <div className="space-y-2">

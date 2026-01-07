@@ -8,30 +8,23 @@ import { cn } from "../../utils";
  */
 const inputVariants = cva(
     [
-        // Base styles usando tokens semânticos
-        "flex w-full rounded-[var(--radius-md)] border bg-transparent",
-        "px-[var(--padding-3)] py-[var(--padding-2)]",
-        "text-base text-[var(--text-primary)]",
+        "flex w-full rounded-md border bg-transparent",
+        "px-3 py-2",
+        "text-base text-foreground",
         "ring-offset-background",
-        // Placeholder - usando texto secundário
-        "placeholder:text-[var(--text-subtitle)]",
-        // Focus styles (a11y)
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-500)] focus-visible:ring-offset-2",
-        // Disabled styles - usando tokens de ação
-        "disabled:cursor-not-allowed disabled:bg-[var(--action-disabled-bg)] disabled:text-[var(--text-disabled)]",
-        // File input styles
-        "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[var(--text-primary)]",
-        // Transition
+        "placeholder:text-muted-foreground",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E63E8] focus-visible:ring-offset-2",
+        "disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:opacity-50",
+        "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
         "transition-colors duration-200",
-        // Mobile text size (prevents zoom on iOS)
         "md:text-sm",
     ],
     {
         variants: {
             variant: {
-                default: "border-[var(--input-border)] focus-visible:border-[var(--color-primary-500)]",
-                filled: "border-transparent bg-[var(--filled-input-bg)] focus-visible:bg-transparent focus-visible:border-[var(--input-border)]",
-                error: "border-[var(--color-error-500)] focus-visible:ring-[var(--color-error-500)]",
+                default: "border-border focus-visible:border-[#6E63E8]",
+                filled: "border-transparent bg-muted focus-visible:bg-transparent focus-visible:border-border",
+                error: "border-[#EA5455] focus-visible:ring-[#EA5455]",
             },
             inputSize: {
                 default: "h-10",

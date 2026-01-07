@@ -24,6 +24,13 @@ const meta: Meta<typeof Badge> = {
                 "outline",
                 "success",
                 "warning",
+                "info",
+                "softPrimary",
+                "softSecondary",
+                "softDestructive",
+                "softSuccess",
+                "softWarning",
+                "softInfo",
             ],
             description: "The visual style of the badge",
         },
@@ -56,13 +63,29 @@ export const Default: Story = {
  */
 export const Variants: Story = {
     render: () => (
-        <div className="flex flex-wrap gap-2">
-            <Badge variant="default">Default</Badge>
-            <Badge variant="secondary">Secondary</Badge>
-            <Badge variant="destructive">Destructive</Badge>
-            <Badge variant="outline">Outline</Badge>
-            <Badge variant="success">Success</Badge>
-            <Badge variant="warning">Warning</Badge>
+        <div className="flex flex-col gap-4">
+            <div className="space-y-2">
+                <p className="text-sm text-muted-foreground font-semibold">Variantes Sólidas</p>
+                <div className="flex flex-wrap gap-2">
+                    <Badge variant="default">Badge</Badge>
+                    <Badge variant="secondary">Badge</Badge>
+                    <Badge variant="destructive">Badge</Badge>
+                    <Badge variant="warning">Badge</Badge>
+                    <Badge variant="info">Badge</Badge>
+                    <Badge variant="success">Badge</Badge>
+                </div>
+            </div>
+            <div className="space-y-2">
+                <p className="text-sm text-muted-foreground font-semibold">Variantes Suaves (Soft)</p>
+                <div className="flex flex-wrap gap-2">
+                    <Badge variant="softPrimary">Badge</Badge>
+                    <Badge variant="softSecondary">Badge</Badge>
+                    <Badge variant="softDestructive">Badge</Badge>
+                    <Badge variant="softWarning">Badge</Badge>
+                    <Badge variant="softInfo">Badge</Badge>
+                    <Badge variant="softSuccess">Badge</Badge>
+                </div>
+            </div>
         </div>
     ),
 };

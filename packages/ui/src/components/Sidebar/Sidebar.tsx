@@ -2,7 +2,6 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils";
 import { Icon, type IconName } from "../Icon";
-import { Logo } from "../Logo";
 
 /**
  * Variantes do Sidebar.
@@ -192,10 +191,6 @@ export interface SidebarProps extends VariantProps<typeof sidebarVariants> {
      */
     children: React.ReactNode;
     /**
-     * Mostra logo no topo.
-     */
-    showLogo?: boolean;
-    /**
      * Classes CSS adicionais.
      */
     className?: string;
@@ -206,7 +201,7 @@ export interface SidebarProps extends VariantProps<typeof sidebarVariants> {
  *
  * @example
  * ```tsx
- * <Sidebar showLogo>
+ * <Sidebar>
  *   <SidebarItem icon="Dashboard" label="Painel" variant="default" />
  *   <SidebarItem icon="Flag" label="Missões da escola" variant="selected" expandable expanded />
  *   <SidebarSubItem label="Missões arquivadas" />
@@ -218,7 +213,6 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     (
         {
             children,
-            showLogo = true,
             theme,
             collapsed,
             className,
@@ -228,15 +222,8 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     ) => {
         return (
             <div ref={ref} className={cn(sidebarVariants({ theme, collapsed }), className)} {...props}>
-                {/* Logo */}
-                {showLogo && (
-                    <div className="flex items-center justify-center px-[20px] py-[40px]">
-                        {!collapsed && <Logo size="default" />}
-                    </div>
-                )}
-
                 {/* Menu Items */}
-                <nav className="flex flex-col gap-[5px] px-[20px] flex-1 overflow-y-auto">
+                <nav className="flex flex-col gap-[5px] px-[20px] pt-[20px] flex-1 overflow-y-auto">
                     {children}
                 </nav>
             </div>

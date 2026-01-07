@@ -38,7 +38,7 @@ export const Default: Story = {
 
         return (
             <div className="h-screen bg-gray-100">
-                <Sidebar showLogo>
+                <Sidebar>
                     <SidebarItem icon="Grid" label="Painel" variant="default" />
                     
                     <SidebarItem
@@ -112,7 +112,7 @@ export const Default: Story = {
 export const Collapsed: Story = {
     render: () => (
         <div className="h-screen bg-gray-100">
-            <Sidebar collapsed showLogo={false}>
+            <Sidebar collapsed>
                 <SidebarItem icon="Grid" label="Painel" variant="default" />
                 <SidebarItem icon="Flag" label="Missões" variant="selected" />
                 <SidebarItem icon="PlusCircle" label="Criar" variant="active" />
@@ -129,7 +129,7 @@ export const Collapsed: Story = {
 export const ItemStates: Story = {
     render: () => (
         <div className="h-screen bg-gray-100">
-            <Sidebar showLogo={false}>
+            <Sidebar>
                 <SidebarItem icon="Grid" label="Item padrão" variant="default" />
                 <SidebarItem icon="Flag" label="Item ativo" variant="active" />
                 <SidebarItem icon="PlusCircle" label="Item selecionado" variant="selected" />
@@ -159,7 +159,7 @@ export const ItemStates: Story = {
 export const WithButton: Story = {
     render: () => (
         <div className="h-screen bg-gray-100">
-            <Sidebar showLogo>
+            <Sidebar>
                 <SidebarItem icon="Grid" label="Painel" variant="active" />
                 <SidebarItem icon="Flag" label="Missões" variant="default" />
                 <SidebarItem icon="Users" label="Turmas" variant="default" />
@@ -169,15 +169,15 @@ export const WithButton: Story = {
 };
 
 /**
- * Sidebar sem logo.
+ * Sidebar no tema branco.
  */
-export const WithoutLogo: Story = {
+export const WhiteTheme: Story = {
     render: () => (
         <div className="h-screen bg-gray-100">
-            <Sidebar showLogo={false}>
-                <SidebarItem icon="Grid" label="Painel" variant="active" />
-                <SidebarItem icon="Flag" label="Missões" variant="default" />
-                <SidebarItem icon="Users" label="Turmas" variant="default" />
+            <Sidebar theme="white">
+                <SidebarItem icon="Grid" label="Painel" variant="active" theme="white" />
+                <SidebarItem icon="Flag" label="Missões" variant="default" theme="white" />
+                <SidebarItem icon="Users" label="Turmas" variant="default" theme="white" />
             </Sidebar>
         </div>
     ),

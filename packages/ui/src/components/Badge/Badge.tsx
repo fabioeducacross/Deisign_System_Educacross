@@ -16,16 +16,31 @@ const badgeVariants = cva(
         variants: {
             variant: {
                 default:
-                    "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+                    "border-transparent bg-[#6E63E8] text-white hover:bg-[#6E63E8]/80",
                 secondary:
-                    "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+                    "border-transparent bg-[#82868B] text-white hover:bg-[#82868B]/80",
                 destructive:
-                    "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+                    "border-transparent bg-[#EA5455] text-white hover:bg-[#EA5455]/80",
                 outline: "text-foreground",
                 success:
-                    "border-transparent bg-green-500 text-white hover:bg-green-600",
+                    "border-transparent bg-[#28C76F] text-white hover:bg-[#28C76F]/80",
                 warning:
-                    "border-transparent bg-yellow-500 text-white hover:bg-yellow-600",
+                    "border-transparent bg-[#FF9F43] text-white hover:bg-[#FF9F43]/80",
+                info:
+                    "border-transparent bg-[#00CFE8] text-white hover:bg-[#00CFE8]/80",
+                // Variantes "soft" com fundo claro e texto colorido
+                softPrimary:
+                    "border-transparent bg-[#6E63E8]/10 text-[#6E63E8] hover:bg-[#6E63E8]/20",
+                softSecondary:
+                    "border-transparent bg-[#82868B]/10 text-[#82868B] hover:bg-[#82868B]/20",
+                softDestructive:
+                    "border-transparent bg-[#EA5455]/10 text-[#EA5455] hover:bg-[#EA5455]/20",
+                softSuccess:
+                    "border-transparent bg-[#28C76F]/10 text-[#28C76F] hover:bg-[#28C76F]/20",
+                softWarning:
+                    "border-transparent bg-[#FF9F43]/10 text-[#FF9F43] hover:bg-[#FF9F43]/20",
+                softInfo:
+                    "border-transparent bg-[#00CFE8]/10 text-[#00CFE8] hover:bg-[#00CFE8]/20",
             },
             size: {
                 default: "px-2.5 py-0.5 text-xs",

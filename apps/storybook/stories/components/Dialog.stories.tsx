@@ -45,40 +45,69 @@ export const Default: Story = {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Dialog Title</DialogTitle>
-                    <DialogDescription>
-                        This is a description of the dialog content. You can
-                        provide additional context here.
-                    </DialogDescription>
+                    <DialogDescription>Content</DialogDescription>
                 </DialogHeader>
-                <div className="py-4">
-                    <p>Dialog content goes here.</p>
-                </div>
                 <DialogFooter>
-                    <DialogClose>
-                        <Button variant="outline">Cancel</Button>
+                    <DialogClose asChild>
+                        <Button variant="secondary">Close</Button>
                     </DialogClose>
-                    <Button>Confirm</Button>
+                    <Button>Save changes</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
+        const body = within(document.body);
 
-        // Find and click the trigger button
-        const triggerButton = canvas.getByRole("button", { name: /open dialog/i });
-        await expect(triggerButton).toBeVisible();
-        await userEvent.click(triggerButton);
+        await step("Verificar botão de trigger visível", async () => {
+            const triggerButton = canvas.getByRole("button", { name: /open dialog/i });
+            await expect(triggerButton).toBeVisible();
+            await expect(triggerButton).toBeEnabled();
+        });
 
-        // Wait for dialog to open and verify content
-        const dialog = await canvas.findByRole("dialog");
-        await expect(dialog).toBeVisible();
-        await expect(canvas.getByText("Dialog Title")).toBeVisible();
-        await expect(canvas.getByText(/this is a description/i)).toBeVisible();
+        await step("Abrir dialog", async () => {
+            const triggerButton = canvas.getByRole("button", { name: /open dialog/i });
+            await userEvent.click(triggerButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
 
-        // Close the dialog
-        const cancelButton = canvas.getByRole("button", { name: /cancel/i });
-        await userEvent.click(cancelButton);
+        await step("Verificar overlay e dialog visíveis", async () => {
+            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
+            await expect(dialog).toBeVisible();
+            await expect(dialog).toHaveAttribute("aria-modal", "true");
+        });
+
+        await step("Verificar estrutura do dialog", async () => {
+            const title = body.getByText("Dialog Title");
+            await expect(title).toBeVisible();
+            
+            const content = body.getByText("Content");
+            await expect(content).toBeVisible();
+            
+            const closeButton = body.getByRole("button", { name: /^close$/i });
+            await expect(closeButton).toBeVisible();
+            
+            const saveButton = body.getByRole("button", { name: /save changes/i });
+            await expect(saveButton).toBeVisible();
+        });
+
+        await step("Verificar botão de fechar (X) no canto", async () => {
+            const dialog = body.getByRole("dialog");
+            const closeXButton = dialog.querySelector('button[aria-label="Close"]');
+            await expect(closeXButton).toBeInTheDocument();
+        });
+
+        await step("Fechar dialog pelo botão Close", async () => {
+            const closeButton = body.getByRole("button", { name: /^close$/i });
+            await userEvent.click(closeButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog fechado", async () => {
+            const dialog = body.queryByRole("dialog");
+            await expect(dialog).not.toBeInTheDocument();
+        });
     },
 };
 
@@ -107,6 +136,33 @@ export const Controlled: Story = {
             </div>
         );
     },
+    play: async ({ canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const body = within(document.body);
+
+        await step("Abrir dialog controlado", async () => {
+            const openButton = canvas.getByRole("button", { name: /open controlled dialog/i });
+            await userEvent.click(openButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog aberto", async () => {
+            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
+            await expect(dialog).toBeVisible();
+            await expect(body.getByText("Controlled Dialog")).toBeVisible();
+        });
+
+        await step("Fechar dialog programaticamente", async () => {
+            const closeButton = body.getByRole("button", { name: /^close$/i });
+            await userEvent.click(closeButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog fechado", async () => {
+            const dialog = body.queryByRole("dialog");
+            await expect(dialog).not.toBeInTheDocument();
+        });
+    },
 };
 
 /**
@@ -122,8 +178,8 @@ export const Sizes: Story = {
                 <DialogContent size="sm">
                     <DialogHeader>
                         <DialogTitle>Small Dialog</DialogTitle>
+                        <DialogDescription>This is a small dialog.</DialogDescription>
                     </DialogHeader>
-                    <p>This is a small dialog.</p>
                 </DialogContent>
             </Dialog>
 
@@ -134,8 +190,8 @@ export const Sizes: Story = {
                 <DialogContent size="default">
                     <DialogHeader>
                         <DialogTitle>Default Dialog</DialogTitle>
+                        <DialogDescription>This is a default-sized dialog.</DialogDescription>
                     </DialogHeader>
-                    <p>This is a default-sized dialog.</p>
                 </DialogContent>
             </Dialog>
 
@@ -146,12 +202,40 @@ export const Sizes: Story = {
                 <DialogContent size="lg">
                     <DialogHeader>
                         <DialogTitle>Large Dialog</DialogTitle>
+                        <DialogDescription>This is a large dialog with more space for content.</DialogDescription>
                     </DialogHeader>
-                    <p>This is a large dialog with more space for content.</p>
                 </DialogContent>
             </Dialog>
         </div>
     ),
+    play: async ({ canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const body = within(document.body);
+
+        await step("Abrir dialog pequeno", async () => {
+            const smallButton = canvas.getByRole("button", { name: /^small$/i });
+            await userEvent.click(smallButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog pequeno", async () => {
+            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
+            await expect(dialog).toBeVisible();
+            await expect(body.getByText("Small Dialog")).toBeVisible();
+        });
+
+        await step("Fechar dialog pequeno", async () => {
+            const dialog = body.getByRole("dialog");
+            const closeButton = dialog.querySelector('button[aria-label="Close"]');
+            await userEvent.click(closeButton as Element);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog fechado", async () => {
+            const dialog = body.queryByRole("dialog");
+            await expect(dialog).not.toBeInTheDocument();
+        });
+    },
 };
 
 /**
@@ -171,7 +255,7 @@ export const WithForm: Story = {
                         you're done.
                     </DialogDescription>
                 </DialogHeader>
-                <div className="space-y-4 py-4">
+                <div className="space-y-4 px-6 pb-6">
                     <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
                         <Input id="name" defaultValue="John Doe" />
@@ -186,7 +270,7 @@ export const WithForm: Story = {
                     </div>
                 </div>
                 <DialogFooter>
-                    <DialogClose>
+                    <DialogClose asChild>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button>Save Changes</Button>
@@ -194,6 +278,47 @@ export const WithForm: Story = {
             </DialogContent>
         </Dialog>
     ),
+    play: async ({ canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const body = within(document.body);
+
+        await step("Abrir dialog com formulário", async () => {
+            const editButton = canvas.getByRole("button", { name: /edit profile/i });
+            await userEvent.click(editButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar campos do formulário", async () => {
+            const nameInput = await body.findByLabelText(/name/i, {}, { timeout: 2000 });
+            await expect(nameInput).toBeVisible();
+            await expect(nameInput).toHaveValue("John Doe");
+
+            const emailInput = body.getByLabelText(/email/i);
+            await expect(emailInput).toBeVisible();
+            await expect(emailInput).toHaveValue("john@example.com");
+        });
+
+        await step("Interagir com os campos", async () => {
+            const nameInput = body.getByLabelText(/name/i);
+            await userEvent.clear(nameInput);
+            await userEvent.type(nameInput, "Jane Smith");
+            await expect(nameInput).toHaveValue("Jane Smith");
+        });
+
+        await step("Verificar botões do footer", async () => {
+            const cancelButton = body.getByRole("button", { name: /cancel/i });
+            await expect(cancelButton).toBeVisible();
+            
+            const saveButton = body.getByRole("button", { name: /save changes/i });
+            await expect(saveButton).toBeVisible();
+        });
+
+        await step("Fechar dialog", async () => {
+            const cancelButton = body.getByRole("button", { name: /cancel/i });
+            await userEvent.click(cancelButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+    },
 };
 
 /**
@@ -215,7 +340,7 @@ export const Confirmation: Story = {
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose>
+                    <DialogClose asChild>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button variant="destructive">Delete Account</Button>
@@ -223,6 +348,110 @@ export const Confirmation: Story = {
             </DialogContent>
         </Dialog>
     ),
+    play: async ({ canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const body = within(document.body);
+
+        await step("Abrir dialog de confirmação", async () => {
+            const deleteButton = canvas.getByRole("button", { name: /delete account/i });
+            await userEvent.click(deleteButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar mensagem de confirmação", async () => {
+            const title = await body.findByText(/are you sure/i, {}, { timeout: 2000 });
+            await expect(title).toBeVisible();
+            
+            const description = body.getByText(/this action cannot be undone/i);
+            await expect(description).toBeVisible();
+        });
+
+        await step("Verificar botões de ação", async () => {
+            const cancelButton = body.getByRole("button", { name: /cancel/i });
+            await expect(cancelButton).toBeVisible();
+            
+            const deleteButtons = body.getAllByRole("button", { name: /delete account/i });
+            await expect(deleteButtons[1]).toBeVisible();
+        });
+
+        await step("Cancelar ação", async () => {
+            const cancelButton = body.getByRole("button", { name: /cancel/i });
+            await userEvent.click(cancelButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+    },
+};
+
+/**
+ * Test keyboard and overlay interactions.
+ */
+export const KeyboardAndOverlay: Story = {
+    render: () => (
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button>Open Dialog</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Keyboard Test</DialogTitle>
+                </DialogHeader>
+                <DialogDescription>
+                    Test closing with Escape key and clicking outside.
+                </DialogDescription>
+                <DialogFooter>
+                    <Button>Action</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    ),
+    play: async ({ canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const body = within(document.body);
+
+        await step("Abrir dialog", async () => {
+            const openButton = canvas.getByRole("button", { name: /open dialog/i });
+            await userEvent.click(openButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog aberto", async () => {
+            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
+            await expect(dialog).toBeVisible();
+        });
+
+        await step("Fechar com tecla Escape", async () => {
+            await userEvent.keyboard("{Escape}");
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog fechado", async () => {
+            const dialog = body.queryByRole("dialog");
+            await expect(dialog).not.toBeInTheDocument();
+        });
+
+        await step("Reabrir dialog", async () => {
+            const openButton = canvas.getByRole("button", { name: /open dialog/i });
+            await userEvent.click(openButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog reaberto", async () => {
+            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
+            await expect(dialog).toBeVisible();
+        });
+
+        await step("Fechar com botão X", async () => {
+            const dialog = body.getByRole("dialog");
+            const closeButton = dialog.querySelector('button[aria-label="Close"]');
+            await userEvent.click(closeButton as Element);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog fechado novamente", async () => {
+            const dialog = body.queryByRole("dialog");
+            await expect(dialog).not.toBeInTheDocument();
+        });
+    },
 };
 
 /**
@@ -234,14 +463,14 @@ export const ScrollableContent: Story = {
             <DialogTrigger asChild>
                 <Button>Terms of Service</Button>
             </DialogTrigger>
-            <DialogContent className="max-h-[80vh] overflow-y-auto">
+            <DialogContent className="max-h-[80vh]">
                 <DialogHeader>
                     <DialogTitle>Terms of Service</DialogTitle>
                     <DialogDescription>
                         Please read our terms of service carefully.
                     </DialogDescription>
                 </DialogHeader>
-                <div className="space-y-4 py-4">
+                <div className="space-y-4 px-6 pb-6 overflow-y-auto max-h-[50vh]">
                     {Array.from({ length: 10 }).map((_, i) => (
                         <p key={i} className="text-sm text-muted-foreground">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -253,7 +482,7 @@ export const ScrollableContent: Story = {
                     ))}
                 </div>
                 <DialogFooter>
-                    <DialogClose>
+                    <DialogClose asChild>
                         <Button variant="outline">Decline</Button>
                     </DialogClose>
                     <Button>Accept</Button>
@@ -261,4 +490,46 @@ export const ScrollableContent: Story = {
             </DialogContent>
         </Dialog>
     ),
+    play: async ({ canvasElement, step }) => {
+        const canvas = within(canvasElement);
+        const body = within(document.body);
+
+        await step("Abrir dialog com conteúdo rolável", async () => {
+            const termsButton = canvas.getByRole("button", { name: /terms of service/i });
+            await userEvent.click(termsButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar título e descrição", async () => {
+            const title = await body.findByText("Terms of Service", {}, { timeout: 2000 });
+            await expect(title).toBeVisible();
+            
+            const description = body.getByText(/please read our terms/i);
+            await expect(description).toBeVisible();
+        });
+
+        await step("Verificar conteúdo lorem ipsum visível", async () => {
+            const firstParagraph = body.getAllByText(/lorem ipsum/i)[0];
+            await expect(firstParagraph).toBeVisible();
+        });
+
+        await step("Verificar botões do footer", async () => {
+            const declineButton = body.getByRole("button", { name: /decline/i });
+            await expect(declineButton).toBeVisible();
+            
+            const acceptButton = body.getByRole("button", { name: /accept/i });
+            await expect(acceptButton).toBeVisible();
+        });
+
+        await step("Fechar dialog", async () => {
+            const declineButton = body.getByRole("button", { name: /decline/i });
+            await userEvent.click(declineButton);
+            await new Promise(resolve => setTimeout(resolve, 300));
+        });
+
+        await step("Verificar dialog fechado", async () => {
+            const dialog = body.queryByRole("dialog");
+            await expect(dialog).not.toBeInTheDocument();
+        });
+    },
 };

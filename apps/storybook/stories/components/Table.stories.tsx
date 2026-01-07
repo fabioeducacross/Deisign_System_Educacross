@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import {
     Table,
     TableHeader,
@@ -8,9 +9,27 @@ import {
     TableRow,
     TableCell,
     TableCaption,
+    TableToolbar,
+    TableSortHeader,
+    TableActions,
+    TableActionButton,
+    TablePagination,
     Badge,
     Checkbox,
+    Select,
+    Input,
+    Button,
+    Avatar,
+    AvatarFallback,
 } from "@educacross/ui";
+import {
+    TrendingUp,
+    PieChart,
+    Users,
+    MoreVertical,
+    Download,
+    Search,
+} from "react-feather";
 
 const meta: Meta<typeof Table> = {
     title: "Components/Table",
@@ -278,4 +297,438 @@ export const Striped: Story = {
             </TableBody>
         </Table>
     ),
+};
+
+/**
+ * Tabela completa de gestão de turmas com toolbar, ordenação, ações e paginação.
+ * Exemplo baseado no design Educacross.
+ */
+export const StudentManagement: Story = {
+    render: () => {
+        const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
+        const [selectAll, setSelectAll] = useState(false);
+        const [currentPage, setCurrentPage] = useState(1);
+        const [sortColumn, setSortColumn] = useState<string | null>(null);
+        const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
+
+        const studentData = [
+            {
+                id: 1,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 2,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 3,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 4,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 5,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 6,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 7,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 8,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 9,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+            {
+                id: 10,
+                turma: "1º ano tarde",
+                ano: "1º Ano",
+                professores: [
+                    { initials: "AS", color: "bg-green-500" },
+                    { initials: "JL", color: "bg-cyan-500" },
+                    { initials: "ME", color: "bg-purple-500" },
+                ],
+                progresso: { jogos: 10, total: 100, percentual: 10 },
+                desempenho: { emoji: "😊", percentual: 50 },
+            },
+        ];
+
+        const totalItems = 20;
+        const itemsPerPage = 10;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+        const handleSelectAll = () => {
+            if (selectAll) {
+                setSelectedRows(new Set());
+                setSelectAll(false);
+            } else {
+                setSelectedRows(new Set(studentData.map((s) => s.id)));
+                setSelectAll(true);
+            }
+        };
+
+        const handleRowSelect = (id: number) => {
+            const newSelected = new Set(selectedRows);
+            if (newSelected.has(id)) {
+                newSelected.delete(id);
+            } else {
+                newSelected.add(id);
+            }
+            setSelectedRows(newSelected);
+            setSelectAll(newSelected.size === studentData.length);
+        };
+
+        const handleSort = (column: string) => {
+            if (sortColumn === column) {
+                setSortDirection(sortDirection === "asc" ? "desc" : sortDirection === "desc" ? null : "asc");
+                if (sortDirection === "desc") setSortColumn(null);
+            } else {
+                setSortColumn(column);
+                setSortDirection("asc");
+            }
+        };
+
+        return (
+            <div className="space-y-4">
+                {/* Filtros superiores */}
+                <div className="flex items-center gap-4 flex-wrap">
+                    <div className="flex-1 min-w-[200px]">
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                            Filtro 1
+                        </label>
+                        <Select
+                            value="todos"
+                            options={[
+                                { value: "todos", label: "Todos" },
+                                { value: "ativo", label: "Ativo" },
+                                { value: "inativo", label: "Inativo" },
+                            ]}
+                            onChange={() => {}}
+                        />
+                    </div>
+
+                    <div className="flex-1 min-w-[200px]">
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                            Filtro 2
+                        </label>
+                        <Select
+                            value="todos"
+                            options={[
+                                { value: "todos", label: "Todos" },
+                                { value: "opcao1", label: "Opção 1" },
+                                { value: "opcao2", label: "Opção 2" },
+                            ]}
+                            onChange={() => {}}
+                        />
+                    </div>
+
+                    <div className="flex-1 min-w-[250px]">
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                            Filtro de Período
+                        </label>
+                        <Select
+                            value="periodo"
+                            options={[
+                                { value: "periodo", label: "09/08/2023 a 22/08/2023" },
+                                { value: "outro", label: "Outro período" },
+                            ]}
+                            onChange={() => {}}
+                        />
+                    </div>
+
+                    <div className="flex-1 min-w-[200px]">
+                        <label className="block text-sm font-medium mb-2 text-muted-foreground">
+                            &nbsp;
+                        </label>
+                        <Select
+                            value="acoes"
+                            options={[
+                                { value: "acoes", label: "Ações em lote" },
+                                { value: "exportar", label: "Exportar selecionados" },
+                                { value: "deletar", label: "Deletar selecionados" },
+                            ]}
+                            onChange={() => {}}
+                            variant="primary"
+                        />
+                    </div>
+                </div>
+
+                {/* Toolbar */}
+                <TableToolbar
+                    selectedCount={selectedRows.size}
+                    onClearSelection={() => {
+                        setSelectedRows(new Set());
+                        setSelectAll(false);
+                    }}
+                    showClearSelection={selectedRows.size > 0}
+                >
+                    <div className="flex items-center gap-4 w-full">
+                        {/* Mostrar */}
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm text-muted-foreground whitespace-nowrap">Mostrar</span>
+                            <Select
+                                value="10"
+                                options={[
+                                    { value: "10", label: "10" },
+                                    { value: "25", label: "25" },
+                                    { value: "50", label: "50" },
+                                    { value: "100", label: "100" },
+                                ]}
+                                onChange={() => {}}
+                                className="w-20"
+                            />
+                        </div>
+
+                        {/* Pesquisar - preenche todo espaço disponível */}
+                        <div className="flex-1 relative">
+                            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                            <Input
+                                type="search"
+                                placeholder="Pesquisar"
+                                className="pl-10 w-full"
+                            />
+                        </div>
+
+                        {/* Exportar */}
+                        <Button variant="default" size="default" className="whitespace-nowrap">
+                            <Download size={18} />
+                            Exportar em excel
+                        </Button>
+                    </div>
+                </TableToolbar>
+
+                {/* Tabela */}
+                <div className="border rounded-lg">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[50px] pl-6">
+                                    <Checkbox checked={selectAll} onChange={handleSelectAll} />
+                                </TableHead>
+                                <TableSortHeader
+                                    sortDirection={sortColumn === "turma" ? sortDirection : null}
+                                    onSort={() => handleSort("turma")}
+                                >
+                                    Turma
+                                </TableSortHeader>
+                                <TableSortHeader
+                                    sortDirection={sortColumn === "ano" ? sortDirection : null}
+                                    onSort={() => handleSort("ano")}
+                                >
+                                    Ano Escolar
+                                </TableSortHeader>
+                                <TableSortHeader
+                                    sortDirection={sortColumn === "professor" ? sortDirection : null}
+                                    onSort={() => handleSort("professor")}
+                                >
+                                    Professor(es)
+                                </TableSortHeader>
+                                <TableSortHeader
+                                    sortDirection={sortColumn === "progresso" ? sortDirection : null}
+                                    onSort={() => handleSort("progresso")}
+                                    icon={
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <circle cx="12" cy="12" r="10" />
+                                            <circle cx="12" cy="12" r="1" />
+                                        </svg>
+                                    }
+                                >
+                                    Progresso na Missão
+                                </TableSortHeader>
+                                <TableSortHeader
+                                    sortDirection={sortColumn === "desempenho" ? sortDirection : null}
+                                    onSort={() => handleSort("desempenho")}
+                                    icon={
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                            <line x1="9" x2="9.01" y1="9" y2="9" />
+                                            <line x1="15" x2="15.01" y1="9" y2="9" />
+                                        </svg>
+                                    }
+                                >
+                                    Desempenho na Missão
+                                </TableSortHeader>
+                                <TableHead className="text-center">Ações</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {studentData.map((student) => (
+                                <TableRow key={student.id}>
+                                    <TableCell>
+                                        <Checkbox
+                                            checked={selectedRows.has(student.id)}
+                                            onChange={() => handleRowSelect(student.id)}
+                                        />
+                                    </TableCell>
+                                    <TableCell className="font-normal text-foreground">{student.turma}</TableCell>
+                                    <TableCell>
+                                        <Badge variant="softPrimary">{student.ano}</Badge>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="flex -space-x-2">
+                                            {student.professores.map((prof, idx) => (
+                                                <Avatar key={idx} className="w-8 h-8 border-2 border-background">
+                                                    <AvatarFallback className={prof.color}>
+                                                        {prof.initials}
+                                                    </AvatarFallback>
+                                                </Avatar>
+                                            ))}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="space-y-1">
+                                            <div className="text-sm text-muted-foreground">
+                                                {student.progresso.jogos}/{student.progresso.total} jogos
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full bg-red-500"
+                                                        style={{ width: `${student.progresso.percentual}%` }}
+                                                    />
+                                                </div>
+                                                <span className="text-xs font-semibold text-red-500 min-w-[35px]">
+                                                    {student.progresso.percentual}%
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-2xl leading-none">{student.desempenho.emoji}</span>
+                                            <span className="text-sm font-semibold text-foreground">
+                                                {student.desempenho.percentual}%
+                                            </span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="text-center">
+                                        <TableActions>
+                                            <TableActionButton icon={<TrendingUp size={18} />} variant="primary" />
+                                            <TableActionButton icon={<PieChart size={18} />} variant="primary" />
+                                            <TableActionButton icon={<Users size={18} />} variant="primary" />
+                                            <TableActionButton icon={<MoreVertical size={18} />} />
+                                        </TableActions>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+
+                    {/* Paginação */}
+                    <div className="px-6 py-4 border-t">
+                        <TablePagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            startIndex={(currentPage - 1) * itemsPerPage + 1}
+                            endIndex={Math.min(currentPage * itemsPerPage, totalItems)}
+                            totalItems={totalItems}
+                            onPageChange={setCurrentPage}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    },
 };
