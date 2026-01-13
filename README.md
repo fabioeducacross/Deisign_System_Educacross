@@ -30,12 +30,21 @@ Sistema de design em código para reduzir inconsistências visuais, acelerar des
 
 ## Quick Start
 
-### Instalação
+### 📦 Instalação via GitHub
+
+```bash
+# Instalar diretamente do GitHub
+pnpm add github:fabioeducacross/Deisign_System_Educacross#master
+```
+
+**📖 Para instruções completas de instalação em React, Vue e Vanilla, veja [INSTALLATION.md](./INSTALLATION.md)**
+
+### Desenvolvimento Local
 
 ```bash
 # Clone o repositório
-git clone <repo-url>
-cd design-system
+git clone https://github.com/fabioeducacross/Deisign_System_Educacross.git
+cd Deisign_System_Educacross
 
 # Instale dependências
 pnpm install
@@ -44,11 +53,11 @@ pnpm install
 pnpm storybook
 ```
 
-### Usando em um projeto
+### Configuração Básica (React)
 
 ```bash
-# Instale o pacote
-pnpm add @educacross/ui
+# Instale via GitHub
+pnpm add github:fabioeducacross/Deisign_System_Educacross#master
 
 # No tailwind.config.ts
 import { educacrossPreset } from "@educacross/ui/tailwind-preset";
