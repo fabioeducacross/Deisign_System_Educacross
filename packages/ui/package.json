@@ -76,16 +76,17 @@
         "vitest": "^4.0.16"
     },
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "registry": "https://npm.pkg.github.com"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/educacross/design-system.git",
+        "url": "https://github.com/fabioeducacross/Deisign_System_Educacross.git",
         "directory": "packages/ui"
     },
-    "homepage": "https://github.com/educacross/design-system#readme",
+    "homepage": "https://github.com/fabioeducacross/Deisign_System_Educacross#readme",
     "bugs": {
-        "url": "https://github.com/educacross/design-system/issues"
+        "url": "https://github.com/fabioeducacross/Deisign_System_Educacross/issues"
     },
     "author": "Educacross <contato@educacross.com.br>",
     "keywords": [
