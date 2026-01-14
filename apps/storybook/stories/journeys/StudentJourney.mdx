@@ -1,0 +1,343 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Jornadas/Aluno/Matrícula" />
+
+# Jornada de Matrícula do Aluno
+
+## Visão Geral
+
+Esta jornada descreve o processo completo de matrícula de um novo aluno na plataforma Educacross, desde o cadastro inicial até o acesso aos materiais do curso.
+
+**Objetivo**: Aluno conseguir se matricular em um curso e acessar conteúdo.
+
+**Duração média**: 15 minutos
+
+**Taxa de conclusão esperada**: 85%
+
+---
+
+## Fluxo Principal
+
+```mermaid
+flowchart TD
+    A[Início: Aluno acessa site] --> B{Tem conta?}
+    B -->|Não| C[Criar conta]
+    B -->|Sim| D[Fazer login]
+    C --> E[Preencher cadastro]
+    E --> F[Validar email]
+    F --> D
+    D --> G[Navegar catálogo]
+    G --> H[Selecionar curso]
+    H --> I{Pré-requisitos OK?}
+    I -->|Não| J[Mostrar requisitos]
+    J --> G
+    I -->|Sim| K[Visualizar detalhes]
+    K --> L{Decidiu matricular?}
+    L -->|Não| G
+    L -->|Sim| M[Preencher formulário]
+    M --> N{Pagamento necessário?}
+    N -->|Sim| O[Ir para pagamento]
+    O --> P{Pagamento aprovado?}
+    P -->|Não| Q[Mostrar erro]
+    Q --> O
+    P -->|Sim| R[Confirmar matrícula]
+    N -->|Não| R
+    R --> S[Acessar dashboard aluno]
+    S --> T[Visualizar materiais]
+    T --> U[Fim: Aluno matriculado]
+```
+
+---
+
+## Etapas Detalhadas
+
+### 1. Cadastro de Nova Conta
+
+**Objetivo**: Criar credenciais de acesso.
+
+**Dados solicitados**:
+- Nome completo (RN-VAL-005)
+- Email (RN-VAL-002)
+- CPF (RN-VAL-001)
+- Data de nascimento (RN-VAL-006)
+- Telefone (RN-VAL-004)
+- Senha (RN-AUTH-001)
+
+**Validações aplicadas**:
+- Todos os campos são validados em tempo real (RN-VAL-017)
+- CPF e email devem ser únicos
+- Idade mínima de 16 anos (RN-VAL-007)
+
+**Pontos de fricção**:
+- ⚠️ Senha complexa pode frustrar usuários
+- ⚠️ Validação de CPF pode falhar por digitação incorreta
+- ⚠️ Email já cadastrado gera confusão
+
+**Melhorias aplicadas**:
+- ✅ Indicador de força de senha em tempo real
+- ✅ Formatação automática de CPF e telefone
+- ✅ Sugestão de recuperação de senha se email existe
+
+**Tempo médio**: 3 minutos
+
+---
+
+### 2. Validação de Email
+
+**Objetivo**: Confirmar que email é válido e acessível.
+
+**Fluxo**:
+1. Sistema envia email de confirmação
+2. Aluno recebe link único
+3. Aluno clica no link
+4. Sistema valida token
+5. Conta é ativada
+
+**Regras de negócio**:
+- Link expira em 24 horas (RN-VAL-003)
+- Aluno tem acesso limitado até confirmar
+- Sistema permite reenvio de email (máximo 3 vezes por hora)
+
+**Pontos de fricção**:
+- ⚠️ Email pode cair em spam
+- ⚠️ Link pode expirar se aluno demorar
+
+**Melhorias aplicadas**:
+- ✅ Instrução para verificar spam/lixo eletrônico
+- ✅ Botão de reenviar email visível
+- ✅ Notificação clara sobre prazo de 24h
+
+**Tempo médio**: 2 minutos
+
+---
+
+### 3. Exploração do Catálogo
+
+**Objetivo**: Encontrar curso de interesse.
+
+**Recursos disponíveis**:
+- Busca por palavra-chave
+- Filtros por área, modalidade, duração
+- Ordenação por popularidade, data, preço
+- Cards com informações resumidas
+
+**Informações exibidas**:
+- Nome do curso
+- Área de conhecimento
+- Carga horária
+- Valor (se pago)
+- Avaliação (estrelas)
+- Número de alunos
+
+**Pontos de fricção**:
+- ⚠️ Muitas opções podem sobrecarregar
+- ⚠️ Filtros podem não retornar resultados
+
+**Melhorias aplicadas**:
+- ✅ Cursos recomendados baseados em perfil
+- ✅ Mensagem clara quando filtro não retorna resultados
+- ✅ Sugestão de cursos similares
+
+**Tempo médio**: 5 minutos
+
+---
+
+### 4. Visualização de Detalhes do Curso
+
+**Objetivo**: Aluno avaliar se curso atende suas expectativas.
+
+**Informações detalhadas**:
+- Descrição completa
+- Objetivos de aprendizagem
+- Pré-requisitos
+- Estrutura curricular (módulos/disciplinas)
+- Corpo docente
+- Certificação
+- Política de reembolso (se aplicável)
+
+**Regras de negócio**:
+- Sistema verifica pré-requisitos automaticamente
+- Mostra alerta se aluno não atende critérios (RN-VAL-009)
+- Destaca cursos com vagas limitadas
+
+**Pontos de fricção**:
+- ⚠️ Informação pode ser extensa
+- ⚠️ Pré-requisitos podem bloquear matrícula
+
+**Melhorias aplicadas**:
+- ✅ Navegação por abas (Sobre, Conteúdo, Professores)
+- ✅ Indicador visual de pré-requisitos atendidos/não atendidos
+- ✅ Sugestão de cursos preparatórios se não atende pré-requisitos
+
+**Tempo médio**: 3 minutos
+
+---
+
+### 5. Formulário de Matrícula
+
+**Objetivo**: Coletar informações adicionais necessárias.
+
+**Dados solicitados** (além dos já cadastrados):
+- Escolaridade
+- Motivação (opcional)
+- Como conheceu o curso (opcional)
+- Termos e condições (obrigatório)
+
+**Validações**:
+- Termos devem ser aceitos explicitamente
+- Sistema pré-preenche dados já cadastrados
+
+**Pontos de fricção**:
+- ⚠️ Formulário muito longo pode desanimar
+- ⚠️ Termos longos são ignorados
+
+**Melhorias aplicadas**:
+- ✅ Apenas 3 campos obrigatórios
+- ✅ Resumo visual dos termos principais
+- ✅ Link para versão completa dos termos
+
+**Tempo médio**: 2 minutos
+
+---
+
+### 6. Pagamento (se aplicável)
+
+**Objetivo**: Processar pagamento de forma segura.
+
+**Métodos aceitos**:
+- Cartão de crédito
+- PIX
+- Boleto bancário
+
+**Fluxo**:
+1. Aluno escolhe método
+2. Sistema gera cobrança
+3. Aluno realiza pagamento
+4. Sistema aguarda confirmação
+5. Matrícula é confirmada após aprovação
+
+**Regras de negócio**:
+- PIX: confirmação em até 5 minutos
+- Boleto: confirmação em até 3 dias úteis
+- Cartão: confirmação imediata
+
+**Pontos de fricção**:
+- ⚠️ Falha no pagamento frustra usuário
+- ⚠️ Tempo de espera para boleto
+
+**Melhorias aplicadas**:
+- ✅ Acesso antecipado ao conteúdo (bloqueio após 7 dias sem pagamento)
+- ✅ Notificação por email/SMS sobre status
+- ✅ Retry automático para falhas temporárias
+
+**Tempo médio**: 3 minutos (PIX/cartão) ou variável (boleto)
+
+---
+
+### 7. Confirmação e Acesso
+
+**Objetivo**: Aluno acessa materiais do curso.
+
+**Fluxo pós-confirmação**:
+1. Sistema envia email de boas-vindas
+2. Matrícula aparece no dashboard
+3. Aluno pode acessar primeira aula
+4. Calendário de atividades é exibido
+
+**Funcionalidades disponíveis**:
+- Visualizar conteúdo programático
+- Baixar materiais
+- Participar de fóruns
+- Visualizar cronograma
+
+**Regras de negócio**:
+- Conteúdo liberado progressivamente (se configurado)
+- Certificado disponível após conclusão
+
+**Pontos de fricção**:
+- ⚠️ Aluno pode não saber por onde começar
+
+**Melhorias aplicadas**:
+- ✅ Tutorial de boas-vindas (opcional)
+- ✅ Sugestão de próxima ação destacada
+- ✅ Indicador de progresso visível
+
+**Tempo médio**: 1 minuto
+
+---
+
+## Fluxos Alternativos
+
+### Fluxo A: Aluno não Atende Pré-requisitos
+
+```mermaid
+flowchart LR
+    A[Tentar matricular] --> B{Atende pré-requisitos?}
+    B -->|Não| C[Mostrar requisitos faltantes]
+    C --> D[Sugerir cursos preparatórios]
+    D --> E{Aluno aceita sugestão?}
+    E -->|Sim| F[Matricular em curso prep.]
+    E -->|Não| G[Voltar ao catálogo]
+```
+
+### Fluxo B: Falha no Pagamento
+
+```mermaid
+flowchart LR
+    A[Processar pagamento] --> B{Pagamento aprovado?}
+    B -->|Não| C[Identificar motivo]
+    C --> D{Erro temporário?}
+    D -->|Sim| E[Retry automático]
+    D -->|Não| F[Solicitar novo método]
+    E --> B
+    F --> A
+```
+
+---
+
+## Métricas e KPIs
+
+| Métrica | Meta | Atual |
+|---------|------|-------|
+| Taxa de conclusão | ≥ 85% | 82% |
+| Tempo médio total | ≤ 15 min | 14 min |
+| Abandono no pagamento | ≤ 10% | 12% |
+| Emails não confirmados | ≤ 15% | 18% |
+| Matrícula sem suporte | ≥ 90% | 88% |
+
+---
+
+## Pontos de Melhoria Identificados
+
+1. **Email de confirmação em spam** (18% não confirmam)
+   - Ação: Melhorar reputação do domínio de envio
+   - Ação: Adicionar verificação por SMS alternativa
+
+2. **Abandono no pagamento** (12%)
+   - Ação: Implementar opção de salvar dados do cartão
+   - Ação: Adicionar parcelamento sem juros
+
+3. **Dúvidas sobre pré-requisitos** (15% contatam suporte)
+   - Ação: Melhorar descrição de pré-requisitos
+   - Ação: Adicionar quiz de auto-avaliação
+
+---
+
+## Regras de Negócio Relacionadas
+
+- [RN-VAL-001 a RN-VAL-007](../?path=/docs/regras-de-negócio-validações--docs) - Validações de cadastro
+- [RN-AUTH-001](../?path=/docs/regras-de-negócio-autenticação--docs) - Senha
+- [RN-PERM-010](../?path=/docs/regras-de-negócio-permissões--docs) - Papel de aluno
+
+---
+
+## Referências
+
+- **Componentes**: [Input](../?path=/docs/componentes-input--docs), [Button](../?path=/docs/componentes-button--docs), [Card](../?path=/docs/componentes-card--docs)
+- **Casos de Uso**: [UC-002: Cadastrar Aluno](../?path=/docs/casos-de-uso-usuarios--docs)
+
+---
+
+**Última atualização**: 14 de janeiro de 2026  
+**Responsável**: Equipe de Produto  
+**Revisão**: Mensal

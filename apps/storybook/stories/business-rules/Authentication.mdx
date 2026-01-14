@@ -1,0 +1,197 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Regras de Negócio/Autenticação" />
+
+# Regras de Autenticação e Segurança
+
+## Visão Geral
+
+Este documento define as regras de autenticação, autorização e segurança da plataforma Educacross.
+
+---
+
+## 1. Política de Senhas
+
+### 🔒 RN-AUTH-001: Complexidade de Senha
+
+**Descrição**: Toda senha deve atender aos critérios mínimos de segurança.
+
+**Regras**:
+- Mínimo de 8 caracteres
+- Pelo menos 1 letra maiúscula
+- Pelo menos 1 letra minúscula
+- Pelo menos 1 número
+- Pelo menos 1 caractere especial (@, #, $, %, etc.)
+
+**Validação**: Executada no frontend e backend
+
+**Exemplo válido**:
+```
+Educacross@2026
+Senha#Forte123
+```
+
+**Exemplo inválido**:
+```
+senha123        (sem maiúscula, sem especial)
+SENHA           (sem minúscula, sem número, sem especial)
+12345678        (apenas números)
+```
+
+**Exceção**: Senhas temporárias geradas pelo sistema têm validade de 24 horas e forçam troca no primeiro login.
+
+---
+
+### ⚠️ RN-AUTH-002: Expiração de Senha
+
+**Descrição**: Senhas devem ser renovadas periodicamente.
+
+**Regras**:
+- Senha expira após 90 dias para usuários comuns
+- Senha expira após 60 dias para administradores
+- Sistema avisa com 7 dias de antecedência
+- Após expiração, usuário não consegue fazer login até renovar
+
+**Exceção**: Contas de serviço (APIs) não têm expiração automática.
+
+---
+
+### 🔒 RN-AUTH-003: Histórico de Senhas
+
+**Descrição**: Usuário não pode reutilizar senhas antigas.
+
+**Regras**:
+- Sistema armazena hash das últimas 5 senhas
+- Nova senha não pode ser igual a nenhuma das 5 anteriores
+
+---
+
+## 2. Controle de Sessão
+
+### 🔒 RN-AUTH-004: Tempo de Sessão
+
+**Descrição**: Sessões inativas são encerradas automaticamente.
+
+**Regras**:
+- Sessão expira após 30 minutos de inatividade
+- Usuário recebe aviso 2 minutos antes da expiração
+- Múltiplas sessões por usuário são permitidas (máximo 3 dispositivos simultâneos)
+
+**Exceção**: Administradores podem configurar tempo customizado por papel.
+
+---
+
+### ⚠️ RN-AUTH-005: Logout Automático
+
+**Descrição**: Sistema faz logout automático em situações específicas.
+
+**Gatilhos**:
+- Inatividade por 30 minutos
+- Detecção de sessão em novo dispositivo (quando exceder limite)
+- Mudança de senha ou permissões
+- Suspeita de fraude detectada pelo sistema
+
+---
+
+## 3. Tentativas de Login
+
+### 🔒 RN-AUTH-006: Bloqueio por Tentativas Falhas
+
+**Descrição**: Protege contra ataques de força bruta.
+
+**Regras**:
+- Após 3 tentativas falhas consecutivas: CAPTCHA obrigatório
+- Após 5 tentativas falhas: conta bloqueada por 15 minutos
+- Após 10 tentativas falhas: conta bloqueada até intervenção de administrador
+
+**Notificação**: Email enviado ao usuário em cada tentativa falha.
+
+---
+
+## 4. Autenticação Multifator (MFA)
+
+### ℹ️ RN-AUTH-007: MFA Opcional
+
+**Descrição**: MFA pode ser habilitado pelo usuário.
+
+**Métodos suportados**:
+- Email (código de 6 dígitos)
+- SMS (código de 6 dígitos)
+- Aplicativo autenticador (TOTP)
+
+**Regras**:
+- Código expira em 5 minutos
+- Máximo de 3 tentativas por código
+- Código só pode ser usado uma vez
+
+---
+
+### 🔒 RN-AUTH-008: MFA Obrigatório para Administradores
+
+**Descrição**: Administradores devem usar MFA.
+
+**Regras**:
+- Administrador não consegue acessar painel sem MFA ativo
+- Deve configurar MFA no primeiro login após promoção
+- Requer reautenticação MFA a cada 8 horas
+
+---
+
+## 5. Recuperação de Senha
+
+### ⚠️ RN-AUTH-009: Processo de Recuperação
+
+**Descrição**: Usuário pode recuperar senha via email.
+
+**Fluxo**:
+1. Usuário solicita recuperação
+2. Sistema envia link único para email cadastrado
+3. Link expira em 1 hora
+4. Usuário cria nova senha seguindo RN-AUTH-001
+
+**Segurança**:
+- Link só pode ser usado uma vez
+- IP da solicitação é registrado
+- Email de confirmação é enviado após troca bem-sucedida
+
+---
+
+## 6. Permissões e Autorização
+
+### 🔒 RN-AUTH-010: Princípio do Menor Privilégio
+
+**Descrição**: Usuários têm apenas as permissões necessárias para suas funções.
+
+**Papéis base**:
+- **Aluno**: visualizar cursos, materiais, notas
+- **Professor**: gerenciar turmas, lançar notas, criar conteúdo
+- **Coordenador**: aprovar conteúdo, relatórios de turmas
+- **Administrador**: configurações do sistema, gestão de usuários
+
+**Regra**: Nenhum papel herda automaticamente permissões de outro.
+
+---
+
+### ⚠️ RN-AUTH-011: Delegação de Permissões
+
+**Descrição**: Administrador pode delegar permissões temporárias.
+
+**Regras**:
+- Delegação tem data de início e fim obrigatórias
+- Máximo de 90 dias por delegação
+- Sistema revoga automaticamente ao expirar
+- Todas as ações com permissão delegada são auditadas
+
+---
+
+## Referências
+
+- **Jornada**: [Login e Autenticação](../?path=/docs/jornadas-autenticacao--docs)
+- **Casos de Uso**: [UC-001: Login de Usuário](../?path=/docs/casos-de-uso-autenticacao--docs)
+- **Código**: `packages/ui/src/components/LoginForm/`
+
+---
+
+**Última atualização**: 14 de janeiro de 2026  
+**Responsável**: Equipe de Segurança  
+**Revisão**: Mensal

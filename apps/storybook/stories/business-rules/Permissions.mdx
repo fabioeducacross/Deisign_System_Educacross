@@ -1,0 +1,252 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Regras de Negócio/Permissões" />
+
+# Regras de Permissões e Papéis
+
+## Visão Geral
+
+Este documento define os papéis (roles) disponíveis na plataforma e suas permissões específicas.
+
+---
+
+## Matriz de Permissões
+
+| Recurso | Aluno | Professor | Coordenador | Administrador |
+|---------|-------|-----------|-------------|---------------|
+| **Cursos** |
+| Visualizar cursos disponíveis | ✅ | ✅ | ✅ | ✅ |
+| Matricular-se | ✅ | ❌ | ❌ | ✅ |
+| Criar curso | ❌ | ❌ | ✅ | ✅ |
+| Editar curso | ❌ | 🔸¹ | ✅ | ✅ |
+| Excluir curso | ❌ | ❌ | ✅ | ✅ |
+| **Conteúdo** |
+| Visualizar materiais | ✅ | ✅ | ✅ | ✅ |
+| Fazer upload de materiais | ❌ | ✅ | ✅ | ✅ |
+| Aprovar materiais | ❌ | ❌ | ✅ | ✅ |
+| **Avaliações** |
+| Fazer provas | ✅ | ❌ | ❌ | ❌ |
+| Criar avaliações | ❌ | ✅ | ✅ | ✅ |
+| Lançar notas | ❌ | ✅ | ✅ | ✅ |
+| Visualizar notas | ✅² | ✅³ | ✅⁴ | ✅ |
+| **Usuários** |
+| Visualizar próprio perfil | ✅ | ✅ | ✅ | ✅ |
+| Editar próprio perfil | ✅ | ✅ | ✅ | ✅ |
+| Visualizar outros usuários | 🔸⁵ | ✅⁶ | ✅ | ✅ |
+| Criar usuários | ❌ | ❌ | 🔸⁷ | ✅ |
+| Desativar usuários | ❌ | ❌ | ❌ | ✅ |
+| **Relatórios** |
+| Relatório individual | ✅ | ✅ | ✅ | ✅ |
+| Relatório de turma | ❌ | ✅ | ✅ | ✅ |
+| Relatório institucional | ❌ | ❌ | ✅ | ✅ |
+
+**Legenda**:
+- ✅ Permitido
+- ❌ Negado
+- 🔸 Permitido com restrições (ver notas)
+
+---
+
+## Notas das Restrições
+
+1. **Professor editar curso**: Apenas cursos onde é instrutor principal
+2. **Aluno visualizar notas**: Apenas próprias notas
+3. **Professor visualizar notas**: Apenas de turmas onde leciona
+4. **Coordenador visualizar notas**: Apenas de coordenadoria sob sua gestão
+5. **Aluno visualizar outros**: Apenas colegas da mesma turma
+6. **Professor visualizar outros**: Apenas alunos de suas turmas
+7. **Coordenador criar usuários**: Apenas professores e alunos, não outros coordenadores
+
+---
+
+## Definição de Papéis
+
+### 🔵 Aluno
+
+**Descrição**: Usuário que consome conteúdo educacional.
+
+**Permissões principais**:
+- Matricular-se em cursos disponíveis
+- Acessar materiais didáticos
+- Realizar avaliações
+- Visualizar próprio desempenho
+- Interagir em fóruns e atividades
+
+**Restrições**:
+- Não pode acessar conteúdo de cursos onde não está matriculado
+- Não pode visualizar notas de outros alunos
+- Não pode editar configurações de curso
+
+---
+
+### 🟢 Professor
+
+**Descrição**: Usuário responsável por lecionar e avaliar.
+
+**Permissões principais**:
+- Gerenciar conteúdo de suas disciplinas
+- Criar e corrigir avaliações
+- Lançar notas e frequências
+- Visualizar lista de alunos
+- Gerar relatórios de turma
+
+**Restrições**:
+- Não pode editar cursos onde não é instrutor
+- Não pode aprovar conteúdo (requer coordenador)
+- Não pode alterar estrutura curricular
+- Não pode acessar dados de alunos de outras turmas
+
+**Regras especiais**:
+- RN-PERM-001: Professor substituto herda permissões do titular
+- RN-PERM-002: Professor pode delegar correção para monitores (com aprovação coordenador)
+
+---
+
+### 🟡 Coordenador
+
+**Descrição**: Gestor acadêmico de cursos ou áreas.
+
+**Permissões principais**:
+- Criar e estruturar cursos
+- Aprovar conteúdo de professores
+- Gerenciar professores e alunos de sua área
+- Acessar relatórios consolidados
+- Configurar parâmetros de avaliação
+
+**Restrições**:
+- Não pode criar outros coordenadores
+- Não pode acessar configurações globais do sistema
+- Não pode desativar usuários (apenas administrador)
+- Escopo limitado a cursos sob sua coordenadoria
+
+**Regras especiais**:
+- RN-PERM-003: Coordenador pode ter múltiplas coordenadorias
+- RN-PERM-004: Aprovação de conteúdo não pode ser feita pelo próprio criador
+
+---
+
+### 🔴 Administrador
+
+**Descrição**: Gestor técnico do sistema com acesso total.
+
+**Permissões principais**:
+- Acesso completo ao sistema
+- Criar e desativar usuários de qualquer papel
+- Configurar parâmetros globais
+- Acessar logs e auditoria
+- Gerenciar integrações
+
+**Restrições**:
+- Ações críticas requerem MFA (RN-AUTH-008)
+- Algumas ações requerem justificativa obrigatória
+
+**Regras especiais**:
+- RN-PERM-005: Deve haver no mínimo 2 administradores ativos
+- RN-PERM-006: Administrador não pode se auto-remover
+- RN-PERM-007: Todas as ações são auditadas com log permanente
+
+---
+
+## Regras de Transição de Papéis
+
+### 🔒 RN-PERM-008: Promoção de Papel
+
+**Descrição**: Processo para alterar papel de usuário.
+
+**Regras**:
+- Apenas administrador pode promover usuários
+- Promoção para coordenador requer aprovação de outro coordenador
+- Promoção para administrador requer aprovação de 2 administradores
+- Sistema envia notificação para o usuário promovido
+- Usuário deve reautenticar após mudança de papel
+
+---
+
+### ⚠️ RN-PERM-009: Rebaixamento de Papel
+
+**Descrição**: Processo para reduzir permissões.
+
+**Regras**:
+- Apenas administrador pode rebaixar papéis
+- Rebaixamento requer justificativa obrigatória
+- Sessões ativas são encerradas imediatamente
+- Usuário é notificado por email
+- Ação é auditada permanentemente
+
+---
+
+### ℹ️ RN-PERM-010: Acúmulo de Papéis
+
+**Descrição**: Usuário pode ter múltiplos papéis.
+
+**Cenários permitidos**:
+- Professor pode ser Coordenador
+- Professor pode ser Aluno (cursos de formação)
+- Coordenador pode ser Professor
+
+**Cenário bloqueado**:
+- Administrador não pode ter outros papéis (separação de responsabilidades)
+
+**Regra de acesso**: Sistema sempre aplica permissão mais restritiva quando há conflito.
+
+---
+
+## Permissões Especiais
+
+### 🔸 RN-PERM-011: Permissões Temporárias
+
+**Descrição**: Administrador pode conceder permissões temporárias.
+
+**Uso**:
+- Professor substituto
+- Acesso temporário para auditoria
+- Permissões de férias/licença
+
+**Regras**:
+- Máximo 90 dias
+- Sistema revoga automaticamente
+- Todas as ações são auditadas
+- Email de confirmação no início e fim
+
+---
+
+### 🔸 RN-PERM-012: Herança de Permissões
+
+**Descrição**: Alguns contextos herdam permissões.
+
+**Exemplo**:
+- Monitor herda permissões limitadas do professor para correção
+- Tutor herda permissões do coordenador para acompanhamento
+
+**Regra**: Herança nunca ultrapassa o papel original.
+
+---
+
+## Auditoria
+
+### 🔒 RN-PERM-013: Registro de Ações
+
+**Descrição**: Sistema registra todas as ações sensíveis.
+
+**Informações registradas**:
+- Usuário que executou
+- Data/hora
+- IP de origem
+- Ação realizada
+- Dados alterados (antes/depois)
+
+**Retenção**: 5 anos para conformidade com LGPD.
+
+---
+
+## Referências
+
+- **Regras de Negócio**: [Autenticação](../?path=/docs/regras-de-negócio-autenticação--docs)
+- **Jornadas**: [Gestão de Usuários](../?path=/docs/jornadas-gestao-usuarios--docs)
+- **Casos de Uso**: [UC-005: Alterar Papel de Usuário](../?path=/docs/casos-de-uso-usuarios--docs)
+
+---
+
+**Última atualização**: 14 de janeiro de 2026  
+**Responsável**: Equipe de Produto  
+**Revisão**: Trimestral

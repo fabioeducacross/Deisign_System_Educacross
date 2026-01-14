@@ -1,0 +1,440 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Funcionalidades/Missões/Reenviar Expirada" />
+
+# Como Reenviar Missão Expirada
+
+## Visão Geral
+
+Quando uma missão atinge a **data de expiração**, os alunos não podem mais acessá-la. Porém, se você deseja **dar uma segunda chance** ou **reaplicar a mesma missão**, é possível reenviá-la sem precisar criar do zero.
+
+**Importante**: Não há botão direto de "Reenviar". O processo funciona através do recurso de **compartilhamento**.
+
+---
+
+## Por Que Missões Expiram?
+
+### Função da Data de Expiração
+
+```mermaid
+timeline
+    title Ciclo de Vida de uma Missão
+    Criação : Professor cria : Define data de início e fim
+    Ativa : Alunos podem jogar : Período entre início e fim
+    Expirada : Data de fim passou : Alunos não conseguem mais acessar
+    Arquivada : Professor arquiva : Sai da lista principal
+```
+
+**Por que expira**:
+- ✅ Mantém relevância pedagógica (conteúdo do momento)
+- ✅ Evita sobrecarga de missões antigas acumuladas
+- ✅ Delimita ciclos de aprendizagem (bimestres, semanas)
+- ✅ Cria senso de urgência (motivação)
+
+---
+
+## Quando Reenviar uma Missão?
+
+### Situações Comuns
+
+| Cenário | Por quê? |
+|---------|----------|
+| **Aluno faltou muito** | Não teve tempo de fazer no prazo original |
+| **Greve/feriados prolongados** | Prazo ficou curto, turma toda precisa refazer |
+| **Resultado ruim** | Muitos alunos foram mal, professor quer dar segunda chance |
+| **Reforço** | Após revisão de conteúdo, reaplicar mesma atividade |
+| **Nova turma** | Usar missão bem-sucedida com outra turma no ano seguinte |
+
+---
+
+## Como Funciona o Reenvio
+
+### Workflow Visual
+
+<div style={{
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.5rem',
+  marginTop: '1.5rem',
+  marginBottom: '2rem'
+}}>
+
+<div>
+<img 
+  src="/images/missoes/reenviar-1.png" 
+  alt="Botão 'Compartilhar' na lista de missões para iniciar processo de reenvio"
+  style={{
+    maxWidth: '800px',
+    width: '100%',
+    height: 'auto',
+    border: '1px solid var(--color-neutral-200)',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+  }}
+/>
+<p style={{ fontSize: '0.9rem', color: 'var(--color-neutral-600)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+  Figura 1: Compartilhar missão consigo mesmo
+</p>
+</div>
+
+<div>
+<img 
+  src="/images/missoes/reenviar-2.png" 
+  alt="Modal de compartilhamento com opção 'Somente Eu' selecionada"
+  style={{
+    maxWidth: '800px',
+    width: '100%',
+    height: 'auto',
+    border: '1px solid var(--color-neutral-200)',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+  }}
+/>
+<p style={{ fontSize: '0.9rem', color: 'var(--color-neutral-600)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+  Figura 2: Selecionar "Somente Eu" no compartilhamento
+</p>
+</div>
+
+<div>
+<img 
+  src="/images/missoes/reenviar-3.png" 
+  alt="Aba 'Missões Compartilhadas' com filtro 'Somente Eu' para encontrar missão"
+  style={{
+    maxWidth: '800px',
+    width: '100%',
+    height: 'auto',
+    border: '1px solid var(--color-neutral-200)',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+  }}
+/>
+<p style={{ fontSize: '0.9rem', color: 'var(--color-neutral-600)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+  Figura 3: Acessar "Missões Compartilhadas" e filtrar por "Somente Eu"
+</p>
+</div>
+
+<div>
+<img 
+  src="/images/missoes/reenviar-4.png" 
+  alt="Lista de missões expiradas compartilhadas consigo mesmo"
+  style={{
+    maxWidth: '800px',
+    width: '100%',
+    height: 'auto',
+    border: '1px solid var(--color-neutral-200)',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+  }}
+/>
+<p style={{ fontSize: '0.9rem', color: 'var(--color-neutral-600)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+  Figura 4: Localizar missão expirada na lista
+</p>
+</div>
+
+<div>
+<img 
+  src="/images/missoes/reenviar-5.png" 
+  alt="Botão 'Usar Missão' para recriar missão com novas datas e destinatários"
+  style={{
+    maxWidth: '800px',
+    width: '100%',
+    height: 'auto',
+    border: '1px solid var(--color-neutral-200)',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+  }}
+/>
+<p style={{ fontSize: '0.9rem', color: 'var(--color-neutral-600)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+  Figura 5: Clicar em "Usar Missão" para reenviar
+</p>
+</div>
+
+</div>
+
+---
+
+### Fluxo Simplificado
+
+```mermaid
+flowchart LR
+    A[Missão expira] --> B[Professor compartilha com si mesmo]
+    B --> C[Busca em 'Missões Compartilhadas']
+    C --> D[Clica em 'Usar Missão']
+    D --> E[Ajusta datas e destinatários]
+    E --> F[Envia novamente]
+    F --> G[Alunos têm nova chance]
+    
+    style A fill:#FFB6C1
+    style G fill:#90EE90
+```
+
+<div style={{
+  padding: '1rem',
+  border: '1px solid var(--color-info-200)',
+  borderRadius: '8px',
+  backgroundColor: 'var(--color-info-8)',
+  marginTop: '1rem'
+}}>
+
+**💡 Conceito-chave**: Reenviar = Compartilhar com você mesmo + Usar como template.
+
+</div>
+
+---
+
+## Passo a Passo Completo
+
+### Etapa 1: Compartilhar a Missão Expirada
+
+1. Acesse **"Missões"**
+2. Localize a missão expirada (pode estar arquivada)
+   - Se arquivada: Clique em **"Ver Arquivadas"**
+3. Na coluna **"Ações"**, clique no ícone de **compartilhar** (🔗)
+4. Selecione **"Somente eu"**
+5. Confirme o compartilhamento
+
+**O que aconteceu**: A missão foi adicionada à sua biblioteca pessoal de missões compartilhadas.
+
+---
+
+### Etapa 2: Acessar Missões Compartilhadas
+
+1. Clique em **"Missões"**
+2. Clique em **"Nova Missão"**
+3. Selecione **"Missão Compartilhada"**
+4. No filtro, escolha **"Somente eu"**
+5. Localize a missão que você acabou de compartilhar
+   - Dica: Use o campo de busca pelo nome
+
+---
+
+### Etapa 3: Usar a Missão Como Template
+
+1. Ao encontrar a missão, clique em **"Usar Missão"**
+2. Sistema abre formulário de criação **já preenchido** com:
+   - ✅ Mesmos jogos
+   - ✅ Mesma ordem
+   - ✅ Mesma configuração (fluxo, ranking, etc.)
+   - ❌ Nome (virá como "Cópia de [nome original]")
+   - ❌ Datas (vazias para você definir novas)
+   - ❌ Destinatários (vazios para você escolher)
+
+---
+
+### Etapa 4: Personalizar o Reenvio
+
+**Ajuste os campos necessários**:
+
+| Campo | O que fazer |
+|-------|-------------|
+| **Nome** | Altere se quiser (ex: "Tabuada - 2ª Chance") |
+| **Destinatários** | Escolha: mesma turma ou diferentes alunos |
+| **Data de início** | Defina nova data (pode ser hoje) |
+| **Data de fim** | Defina novo prazo |
+| **Jogos** | Já vêm selecionados (pode adicionar/remover) |
+| **Fluxo** | Já vem configurado (pode alterar) |
+| **Ranking** | Já vem configurado (pode alterar) |
+
+**Recomendação**: Se for dar segunda chance para mesmos alunos, altere o nome para deixar claro (ex: "Revisão" ou "2ª tentativa").
+
+---
+
+### Etapa 5: Enviar
+
+1. Revise todas as configurações
+2. Clique em **"Criar Missão"**
+3. Escolha:
+   - **Enviar agora**: Alunos recebem imediatamente
+   - **Enviar depois**: Fica salva para você enviar manualmente
+
+**Pronto!** Missão foi reenviada. Alunos recebem notificação e podem jogar novamente.
+
+---
+
+## Diagrama Completo do Processo
+
+```mermaid
+sequenceDiagram
+    participant P as Professor
+    participant S as Sistema
+    participant A as Alunos
+    
+    Note over P,A: Missão Original Expira
+    P->>S: Compartilha missão expirada (Somente eu)
+    S->>S: Adiciona à biblioteca pessoal
+    P->>S: Acessa Nova Missão → Compartilhada → Somente eu
+    S->>P: Exibe lista de missões compartilhadas
+    P->>S: Clica em "Usar Missão"
+    S->>P: Abre formulário preenchido
+    P->>S: Ajusta datas e destinatários
+    S->>P: Valida dados
+    P->>S: Clica em "Enviar"
+    S->>A: Notifica alunos
+    A->>S: Acessam missão
+    Note over A,S: Alunos jogam novamente
+```
+
+---
+
+## Casos de Uso
+
+### Caso 1: Aluno Faltou Durante Prazo Original
+
+**Situação**: Maria esteve doente a semana toda e não fez a missão.
+
+**Ação**:
+1. Professor compartilha missão original com si mesmo
+2. Busca em "Missões Compartilhadas"
+3. Usa missão
+4. **Destinatário**: Seleciona **apenas Maria** (individual)
+5. Define novo prazo (1 semana para recuperar)
+6. Envia
+
+**Resultado**: Maria recebe missão exclusiva só para ela, sem que turma toda precise refazer.
+
+---
+
+### Caso 2: Turma Inteira Teve Resultado Ruim
+
+**Situação**: Apenas 30% dos alunos concluíram, a maioria não entendeu o conteúdo.
+
+**Ação**:
+1. Professor refaz explicação do conteúdo em aula presencial
+2. Compartilha missão expirada consigo mesmo
+3. Usa missão
+4. **Destinatário**: Seleciona **a turma toda**
+5. **Nome**: Altera para "Tabuada - Revisão"
+6. Define novo prazo (3-5 dias)
+7. Envia
+
+**Resultado**: Turma tem segunda chance após reforço do conteúdo.
+
+---
+
+### Caso 3: Usar Com Nova Turma No Ano Seguinte
+
+**Situação**: Missão funcionou muito bem no ano passado, professor quer usar com turma nova.
+
+**Ação**:
+1. Busca missão arquivada do ano anterior
+2. Compartilha consigo mesmo
+3. Usa missão
+4. **Destinatário**: Seleciona **nova turma** (3º B de 2026)
+5. Ajusta datas para calendário atual
+6. Envia
+
+**Resultado**: Economia de tempo. Não precisa criar missão do zero.
+
+---
+
+## Alternativas ao Reenvio
+
+### Quando NÃO Reenviar
+
+Em alguns casos, pode ser melhor **criar nova missão** ao invés de reenviar:
+
+| Cenário | Melhor Opção | Por quê? |
+|---------|--------------|----------|
+| Jogos ficaram desatualizados | **Criar nova** | Novos jogos disponíveis |
+| Alunos memorizaram respostas | **Criar nova** | Evitar "cola" da memória |
+| Conteúdo mudou | **Criar nova** | Currículo/método diferente |
+| Poucos ajustes necessários | **Reenviar** | Economiza tempo |
+| Mesma atividade, nova turma | **Reenviar** | Funciona perfeitamente |
+
+---
+
+## Vantagens do Método de Reenvio
+
+### ✅ Benefícios
+
+1. **Economia de tempo**: Não precisa recriar do zero
+2. **Consistência**: Mesmos jogos e configurações
+3. **Histórico preservado**: Dados da missão original não são perdidos
+4. **Flexibilidade**: Pode ajustar o que quiser (datas, destinatários, nome)
+5. **Organização**: Mantém biblioteca pessoal de missões bem-sucedidas
+
+---
+
+## Boas Práticas
+
+### ✅ Recomendações
+
+1. **Altere o nome**: Diferencie original da reenviada (ex: "Tabuada v2")
+2. **Prazo adequado**: Dê tempo suficiente para alunos fazerem
+3. **Comunique o motivo**: Explique aos alunos por que estão recebendo novamente
+4. **Acompanhe de perto**: Alunos que já falharam podem precisar de suporte extra
+5. **Compartilhe consigo mesmo regularmente**: Crie biblioteca de missões favoritas
+
+### ⚠️ Evite
+
+1. **Reenviar demais**: Perde o efeito de prazo/urgência
+2. **Mesmo prazo curto**: Se na primeira vez foi pouco, aumente
+3. **Não explicar**: Alunos podem ficar confusos ao ver missão "repetida"
+
+---
+
+## Comparação: Reenviar vs Criar Nova
+
+| Aspecto | Reenviar (Compartilhar) | Criar Nova |
+|---------|-------------------------|------------|
+| **Tempo** | ⚡ Rápido (5 min) | 🕐 Mais lento (15-30 min) |
+| **Jogos** | ✅ Já selecionados | 🔍 Precisa buscar novamente |
+| **Configuração** | ✅ Já definida | ⚙️ Precisa configurar |
+| **Flexibilidade** | ⭐⭐ Média | ⭐⭐⭐ Total |
+| **Quando usar** | Missão funcionou bem | Quer mudanças significativas |
+
+---
+
+## Troubleshooting
+
+### Problema: Não encontro missão expirada para compartilhar
+
+**Causa**: Missão pode estar arquivada.
+
+**Solução**:
+1. Clique em "Ver Arquivadas"
+2. Localize a missão
+3. Compartilhe a partir daí
+
+---
+
+### Problema: Compartilhei mas não aparece em "Missões Compartilhadas"
+
+**Verificações**:
+1. Você selecionou "Somente eu"? (Não "Escola" ou "Rede")
+2. Está filtrando por "Somente eu" na busca?
+3. Usou o nome correto na busca?
+
+**Solução**: Tente compartilhar novamente e verifique os filtros.
+
+---
+
+### Problema: Alunos reclamam que é a mesma missão
+
+**Causa**: Eles lembram de ter feito antes.
+
+**Esclarecimento**: Explique que:
+- É uma segunda chance (reforço)
+- Podem melhorar a nota/pontuação
+- Conteúdo foi revisado em aula, agora devem ter mais facilidade
+
+---
+
+### Problema: Dados da missão original sumiram ao reenviar
+
+**Esclarecimento**: Dados **não somem**. Reenviar cria uma **nova missão** (cópia independente). A missão original e seus dados continuam existindo.
+
+Para ver dados da original: Acesse "Missões" (ou "Ver Arquivadas") e localize a missão original.
+
+---
+
+## Referências
+
+- [Como compartilhar Missões](../?path=/docs/funcionalidades-missões-compartilhar--docs)
+- [Missões Arquivadas](../?path=/docs/funcionalidades-missões-arquivadas--docs)
+- [Como criar Missão Personalizada](../?path=/docs/funcionalidades-missões-criar-missão-personalizada--docs)
+
+---
+
+**Fonte**: [Suporte Educacross - Reenviar Expirada](https://suporte.educacross.com.br/pt/category/missoes/article/reenviar-missao-expirada)  
+**Última atualização**: 14 de janeiro de 2026
