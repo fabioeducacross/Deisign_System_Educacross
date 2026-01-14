@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Criar Missão Personalizada" />
 
@@ -137,12 +138,11 @@ Missões Personalizadas permitem que o professor selecione jogos específicos pa
 
 ### 1. Acessar a Criação de Missão
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Login Professor] --> B[Aba 'Missões da Escola']
     B --> C[Botão 'Criar Missão']
     C --> D[Selecionar 'Missões Personalizadas']
-```
+`} />
 
 **Caminho**: Professor → Missões da Escola → Criar Missão → **Missões Personalizadas**
 
@@ -189,8 +189,7 @@ Utilize os filtros para refinar a busca:
 
 Se já conhece o jogo, digite o nome diretamente na barra de pesquisa.
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Buscar jogos] --> B{Sabe o nome?}
     B -->|Sim| C[Digitar na busca]
     B -->|Não| D[Usar filtros]
@@ -201,7 +200,7 @@ flowchart TD
     C --> I[Visualizar resultados]
     G --> I
     H --> I
-```
+`} />
 
 #### Visualizar Detalhes do Jogo
 
@@ -275,8 +274,7 @@ Escolha como o aluno navegará pelos jogos:
 - Controle total da progressão
 - Indicado para: conceitos que se constroem (ex: somar → subtrair → multiplicar)
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Fluxo Livre] --> B[Aluno escolhe ordem]
     B --> C[Maior engajamento]
     
@@ -285,7 +283,7 @@ flowchart LR
     
     style A fill:#e1f5ff
     style D fill:#fff4e1
-```
+`} />
 
 #### Ranking
 
@@ -316,8 +314,7 @@ Após configurar tudo, clique em **"Criar Missão"**.
 
 Você terá duas opções:
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Criar Missão] --> B{Enviar agora ou depois?}
     B -->|Enviar missão agora| C[Missão disponível imediatamente]
     B -->|Enviar missão depois| D[Salvar como rascunho]
@@ -328,7 +325,7 @@ flowchart TD
     D --> G[Missão fica em 'Não enviada']
     G --> H[Pode editar quando quiser]
     H --> I[Enviar depois manualmente]
-```
+`} />
 
 #### Enviar Missão Agora
 

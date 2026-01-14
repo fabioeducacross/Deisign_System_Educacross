@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Missões Arquivadas" />
 
@@ -108,8 +109,7 @@ Missões arquivadas são aquelas que foram **movidas para uma área separada**, 
 
 ### Passo a Passo
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Acessar Missões] --> B[Localizar missão]
     B --> C[Clicar em ações]
     C --> D[Selecionar 'Arquivar']
@@ -117,7 +117,7 @@ flowchart LR
     E --> F[Missão arquivada]
     
     style F fill:#90EE90
-```
+`} />
 
 1. Acesse a aba **"Missões"**
 2. Localize a missão que deseja arquivar
@@ -155,8 +155,7 @@ Na visualização de arquivadas, você pode filtrar por:
 
 Se precisar **trazer de volta** uma missão arquivada:
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Ver Arquivadas] --> B[Localizar missão]
     B --> C[Clicar em ações]
     C --> D[Selecionar 'Desarquivar']
@@ -164,7 +163,7 @@ flowchart LR
     E --> F[Missão volta para lista principal]
     
     style F fill:#90EE90
-```
+`} />
 
 1. Acesse **"Ver Arquivadas"**
 2. Localize a missão
@@ -216,14 +215,13 @@ flowchart LR
 
 ### Sistema de Arquivamento por Período
 
-```mermaid
-timeline
+<MermaidDiagram chart={`timeline
     title Ciclo de Vida das Missões
     Bimestre 1 : Criar missões : Alunos jogam : Concluir
     Bimestre 2 : Arquivar antigas : Criar novas : Alunos jogam
     Bimestre 3 : Arquivar antigas : Criar novas : Alunos jogam
     Bimestre 4 : Arquivar antigas : Criar novas : Revisar arquivadas
-```
+`} />
 
 ### Sugestão de Rotina
 
@@ -352,8 +350,7 @@ Mesmo arquivada, você ainda pode acessar:
 
 ## Comparação de Ações
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Tenho uma missão antiga] --> B{O que fazer?}
     B -->|Quero manter histórico| C[Arquivar]
     B -->|Foi erro/teste| D[Excluir]
@@ -366,7 +363,7 @@ flowchart TD
     style C fill:#90EE90
     style D fill:#FFB6C1
     style E fill:#87CEEB
-```
+`} />
 
 ---
 

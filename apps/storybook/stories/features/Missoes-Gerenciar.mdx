@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Gerenciar Missões" />
 
@@ -14,15 +15,14 @@ Na lista "Missões", é possível observar todas as missões criadas, acompanhar
 
 ## Estados de uma Missão
 
-```mermaid
-stateDiagram-v2
+<MermaidDiagram chart={`stateDiagram-v2
     [*] --> NaoEnviada: Criar missão
     NaoEnviada --> Enviada: Enviar
     NaoEnviada --> NaoEnviada: Editar
     NaoEnviada --> [*]: Excluir
     Enviada --> Cancelada: Cancelar
     Enviada --> Concluida: Alunos completam
-```
+`} />
 
 ---
 
@@ -162,8 +162,7 @@ stateDiagram-v2
 
 **Como fazer**: Clique no ícone de editar (✏️) na coluna "Ações"
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Clicar em Editar] --> B[Fazer alterações]
     B --> C{Salvar?}
     C -->|Sim| D[Missão atualizada]
@@ -171,7 +170,7 @@ flowchart LR
     D --> F{Enviar agora?}
     F -->|Sim| G[Disponível para alunos]
     F -->|Não| H[Continua não enviada]
-```
+`} />
 
 ---
 
@@ -224,14 +223,13 @@ flowchart LR
 
 **Como fazer**: Clique no ícone vermelho (❌) na coluna "Ações"
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A{Missão foi iniciada?} -->|Não| B[Pode EXCLUIR]
     A -->|Sim| C[Pode apenas CANCELAR]
     B --> D[Missão desaparece]
     C --> E[Missão fica com status 'Cancelada']
     E --> F[Dados dos alunos preservados]
-```
+`} />
 
 ---
 

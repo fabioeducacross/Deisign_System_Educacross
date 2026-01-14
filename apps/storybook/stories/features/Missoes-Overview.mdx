@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Visão Geral" />
 
@@ -231,8 +232,7 @@ A plataforma oferece **5 tipos** de missões para atender diferentes necessidade
 
 ## Fluxo de Trabalho com Missões
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Professor acessa 'Missões'] --> B{Escolher tipo}
     
     B -->|Personalizada| C[Selecionar jogos manualmente]
@@ -266,7 +266,7 @@ flowchart TD
     S --> O
     
     R --> T[Professor acompanha pelo relatório]
-```
+`} />
 
 ---
 
@@ -296,8 +296,7 @@ O aluno pode jogar na plataforma de **três formas**:
 
 ### Estados de uma Missão
 
-```mermaid
-stateDiagram-v2
+<MermaidDiagram chart={`stateDiagram-v2
     [*] --> Rascunho: Criar missão
     Rascunho --> Enviada: Enviar agora
     Rascunho --> Editando: Editar
@@ -310,7 +309,7 @@ stateDiagram-v2
     Expirada --> Arquivada: Arquivar
     Enviada --> Cancelada: Cancelar
     Arquivada --> Rascunho: Reutilizar
-```
+`} />
 
 **Legenda**:
 - **Rascunho**: Missão criada mas não enviada

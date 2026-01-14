@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Compartilhar Missões" />
 
@@ -79,8 +80,7 @@ Existem **3 níveis** de compartilhamento de missões:
 
 ### Diagrama Conceitual dos Níveis
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Compartilhar Missão] --> B{Escolher nível}
     B -->|Somente eu| C[Biblioteca Pessoal]
     B -->|Minha Escola| D[Colegas da Escola]
@@ -93,7 +93,7 @@ flowchart TD
     style C fill:#e1f5ff
     style D fill:#fff4e1
     style E fill:#e1ffe1
-```
+`} />
 
 ### 1. 🔒 Somente Eu
 
@@ -166,15 +166,14 @@ flowchart TD
 4. Escolha o nível: "Somente eu", "Minha Escola" ou "Minha Rede Escolar"
 5. Confirme o compartilhamento
 
-```mermaid
-sequenceDiagram
+<MermaidDiagram chart={`sequenceDiagram
     Professor->>Sistema: Clica em compartilhar
     Sistema->>Professor: Exibe opções
     Professor->>Sistema: Escolhe nível
     Sistema->>Sistema: Salva configuração
     Sistema->>Professor: Confirmação
     Sistema->>Destinatários: Disponibiliza missão
-```
+`} />
 
 ### Restrições
 

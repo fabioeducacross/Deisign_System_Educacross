@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Link Direcionado" />
 
@@ -73,15 +74,14 @@ O **Link Direcionado** permite que professores compartilhem missões diretamente
 
 ### Diagrama do Fluxo
 
-```mermaid
-sequenceDiagram
+<MermaidDiagram chart={`sequenceDiagram
     Professor->>Sistema: Cria missão
     Professor->>Sistema: Gera link direcionado
     Sistema->>Professor: Fornece URL única
     Professor->>Aluno: Envia link (WhatsApp/Email/etc)
     Aluno->>Sistema: Acessa link
     Sistema->>Aluno: Abre missão diretamente
-```
+`} />
 
 ---
 
@@ -246,8 +246,7 @@ Você pode compartilhar o link por:
 
 ## Comparação com Outras Formas de Compartilhamento
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Quero compartilhar missão] --> B{Para quem?}
     B -->|Turma inteira| C[Envio Normal]
     B -->|Aluno específico| D[Link Direcionado]
@@ -260,7 +259,7 @@ flowchart LR
     style C fill:#e1f5ff
     style D fill:#fff4e1
     style E fill:#e1ffe1
-```
+`} />
 
 ### Quando Usar Cada Um
 

@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Missões, Explorar e Trilhas" />
 
@@ -8,8 +9,7 @@ import { Meta } from '@storybook/blocks';
 
 A plataforma Educacross oferece **três formas diferentes** de os alunos interagirem com os jogos educativos. Cada modo tem objetivos pedagógicos específicos e atende a diferentes necessidades de aprendizagem.
 
-```mermaid
-mindmap
+<MermaidDiagram chart={`mindmap
   root((Modos de Jogo))
     Missões
       Professor direciona
@@ -26,7 +26,7 @@ mindmap
       Sequência pedagógica
       Progressão estruturada
       Currículo
-```
+`} />
 
 ---
 
@@ -175,8 +175,7 @@ mindmap
 
 ### Como Funciona
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Gestor cria Trilha] --> B[Define sequência de jogos]
     B --> C[Disponibiliza para escolas/turmas]
     C --> D[Alunos acessam]
@@ -187,7 +186,7 @@ flowchart LR
     style A fill:#FFE4B5
     style E fill:#87CEEB
     style G fill:#90EE90
-```
+`} />
 
 ### Exemplo de Trilha
 
@@ -216,8 +215,7 @@ flowchart LR
 
 **Estratégia recomendada**: Usar os três modos de forma complementar.
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Trilha da Escola] -->|Base curricular| B[Progressão anual]
     C[Missões do Professor] -->|Reforço/Avaliação| D[Aprendizado dirigido]
     E[Explorar] -->|Autonomia| F[Descoberta e aprofundamento]
@@ -227,7 +225,7 @@ flowchart TD
     F --> G
     
     style G fill:#90EE90
-```
+`} />
 
 **Exemplo de semana típica**:
 - **Segunda a Quinta**: Aluno segue Trilha curricular (3 jogos por dia)

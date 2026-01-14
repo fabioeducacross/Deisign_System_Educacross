@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Reenviar Expirada" />
 
@@ -16,14 +17,13 @@ Quando uma missão atinge a **data de expiração**, os alunos não podem mais a
 
 ### Função da Data de Expiração
 
-```mermaid
-timeline
+<MermaidDiagram chart={`timeline
     title Ciclo de Vida de uma Missão
     Criação : Professor cria : Define data de início e fim
     Ativa : Alunos podem jogar : Período entre início e fim
     Expirada : Data de fim passou : Alunos não conseguem mais acessar
     Arquivada : Professor arquiva : Sai da lista principal
-```
+`} />
 
 **Por que expira**:
 - ✅ Mantém relevância pedagógica (conteúdo do momento)
@@ -134,8 +134,7 @@ timeline
 
 ### Fluxo Simplificado
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Missão expira] --> B[Professor compartilha com si mesmo]
     B --> C[Busca em 'Missões Compartilhadas']
     C --> D[Clica em 'Usar Missão']
@@ -145,7 +144,7 @@ flowchart LR
     
     style A fill:#FFB6C1
     style G fill:#90EE90
-```
+`} />
 
 <div style={{
   padding: '1rem',
@@ -232,8 +231,7 @@ flowchart LR
 
 ## Diagrama Completo do Processo
 
-```mermaid
-sequenceDiagram
+<MermaidDiagram chart={`sequenceDiagram
     participant P as Professor
     participant S as Sistema
     participant A as Alunos
@@ -251,7 +249,7 @@ sequenceDiagram
     S->>A: Notifica alunos
     A->>S: Acessam missão
     Note over A,S: Alunos jogam novamente
-```
+`} />
 
 ---
 

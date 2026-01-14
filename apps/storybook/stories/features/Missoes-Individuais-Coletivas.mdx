@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Individuais vs Coletivas" />
 
@@ -60,8 +61,7 @@ Missões onde **cada aluno joga no seu próprio ritmo**, sem precisar estar sinc
 
 ### Características
 
-```mermaid
-flowchart LR
+<MermaidDiagram chart={`flowchart LR
     A[Professor envia missão] --> B[Aluno recebe notificação]
     B --> C[Aluno acessa quando quiser]
     C --> D[Joga no próprio ritmo]
@@ -69,7 +69,7 @@ flowchart LR
     E --> F[Professor vê relatório]
     
     style D fill:#87CEEB
-```
+`} />
 
 **Principais aspectos**:
 - ✅ Aluno escolhe quando jogar
@@ -117,8 +117,7 @@ Missões onde **toda a turma joga junto**, com o professor **liderando a ativida
 
 ### Como Funciona
 
-```mermaid
-sequenceDiagram
+<MermaidDiagram chart={`sequenceDiagram
     participant P as Professor
     participant S as Sistema (Projetor)
     participant A as Alunos
@@ -131,7 +130,7 @@ sequenceDiagram
     S->>A: Sincroniza todos
     A->>S: Completam atividade
     S->>P: Mostra resultados coletivos
-```
+`} />
 
 ### Características
 
@@ -190,26 +189,24 @@ sequenceDiagram
 
 ### Individual
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Criar Nova Missão] --> B[Escolher Personalizada/Educacross/etc]
     B --> C[Selecionar jogos]
     C --> D[Configurar]
     D --> E[Enviar]
     E --> F[Alunos jogam individualmente]
-```
+`} />
 
 ### Coletiva (Liga das Corujinhas)
 
-```mermaid
-flowchart TD
+<MermaidDiagram chart={`flowchart TD
     A[Criar Nova Missão] --> B[Escolher 'Coletivas']
     B --> C[Selecionar turma Infantil]
     C --> D[Escolher jogos da Liga]
     D --> E[Configurar dia/horário da aula]
     E --> F[Iniciar em sala com projetor]
     F --> G[Professor lidera atividade]
-```
+`} />
 
 ---
 
