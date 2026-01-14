@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Funcionalidades/Missões/Tempo Recomendado" />
 
@@ -16,14 +17,14 @@ Este tempo é baseado em **pesquisas pedagógicas** e na **experiência da plata
 
 ### 📊 Referência Base
 
-```mermaid
+<MermaidDiagram chart={`
 pie title Distribuição Semanal Recomendada (90 min)
     "Segunda-feira" : 18
     "Terça-feira" : 18
     "Quarta-feira" : 18
     "Quinta-feira" : 18
     "Sexta-feira" : 18
-```
+`} />
 
 **90 minutos/semana = 18 minutos/dia** (5 dias)
 
@@ -55,7 +56,7 @@ pie title Distribuição Semanal Recomendada (90 min)
 
 ### Dados de Desempenho
 
-```mermaid
+<MermaidDiagram chart={`
 graph LR
     A[0-30 min/semana] -->|Insuficiente| B[Baixo impacto]
     C[30-60 min/semana] -->|Regular| D[Impacto moderado]
@@ -66,7 +67,7 @@ graph LR
     style D fill:#FFE4B5
     style F fill:#87CEEB
     style H fill:#90EE90
-```
+`} />
 
 **Resultados observados**:
 - 🟥 **< 30 min/semana**: Pouco impacto no desempenho
@@ -189,7 +190,7 @@ graph LR
 
 ### Dashboard do Professor
 
-```mermaid
+<MermaidDiagram chart={`
 graph TD
     A[Relatórios] --> B[Tempo de Uso]
     B --> C[Aluno A: 120 min 🟢]

@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Casos de Uso/Visão Geral" />
 
@@ -171,7 +172,7 @@ Casos relacionados a transações financeiras.
 
 ## Relacionamento entre Artefatos
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart TD
     A[Jornada do Usuário] --> B[Caso de Uso]
     B --> C[Regra de Negócio]
@@ -184,7 +185,7 @@ flowchart TD
     style A fill:#e1f5ff
     style B fill:#fff4e1
     style C fill:#ffe1e1
-```
+`} />
 
 **Exemplo de rastreabilidade**:
 1. **Jornada**: [Matrícula do Aluno](../?path=/docs/jornadas-aluno-matrícula--docs)

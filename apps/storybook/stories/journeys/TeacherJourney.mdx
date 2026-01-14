@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Jornadas/Professor/Gestão de Turma" />
 
@@ -18,7 +19,7 @@ Esta jornada descreve como o professor gerencia suas turmas, desde o acesso inic
 
 ## Fluxo Principal
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart TD
     A[Login do professor] --> B[Acessar dashboard]
     B --> C[Visualizar turmas ativas]
@@ -48,7 +49,7 @@ flowchart TD
     U --> Z
     Y --> Z
     Z --> AA[Fim]
-```
+`} />
 
 ---
 
@@ -81,7 +82,7 @@ flowchart TD
 
 **Fluxo de upload**:
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Clicar em 'Adicionar material'] --> B[Selecionar arquivo]
     B --> C{Arquivo válido?}
@@ -94,7 +95,7 @@ flowchart LR
     H -->|Sim| I[Publicar e notificar]
     H -->|Não| J[Salvar como rascunho]
     I --> K[Material disponível]
-```
+`} />
 
 **Metadados obrigatórios**:
 - Título (RN-VAL-014)
@@ -169,7 +170,7 @@ flowchart LR
 
 **Configurações**:
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart TD
     A[Criar avaliação] --> B[Escolher tipo]
     B --> C[Definir título e descrição]
@@ -185,7 +186,7 @@ flowchart TD
     K --> L{Publicar?}
     L -->|Sim| M[Notificar alunos]
     L -->|Não| N[Salvar rascunho]
-```
+`} />
 
 **Regras de negócio**:
 - Peso da avaliação: 0.1 a 10.0
@@ -212,7 +213,7 @@ flowchart TD
 
 **Fluxo de correção**:
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Acessar avaliações pendentes] --> B[Selecionar avaliação]
     B --> C{Tipo de correção}
@@ -228,7 +229,7 @@ flowchart LR
     K --> J
     J -->|Sim| L[Publicar notas]
     L --> M[Alunos visualizam feedback]
-```
+`} />
 
 **Recursos de correção**:
 - Grade de correção (rubrica)
@@ -267,7 +268,7 @@ flowchart LR
 
 **Fluxo manual**:
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Acessar aula do dia] --> B[Visualizar lista de alunos]
     B --> C[Marcar presentes/ausentes]
@@ -279,7 +280,7 @@ flowchart LR
     G -->|Sim| H[Sistema envia alerta]
     G -->|Não| I[Fim]
     H --> I
-```
+`} />
 
 **Regras de negócio**:
 - Frequência mínima: 75% (RN-VAL-011)
@@ -304,7 +305,7 @@ flowchart LR
 
 ### Fluxo A: Conteúdo Reprovado pela Coordenação
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Professor publica conteúdo] --> B[Coordenador revisa]
     B --> C{Aprovado?}
@@ -313,11 +314,11 @@ flowchart LR
     E --> F[Professor corrige]
     F --> A
     C -->|Sim| G[Conteúdo disponível para alunos]
-```
+`} />
 
 ### Fluxo B: Aluno Contesta Nota
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Aluno solicita revisão] --> B[Professor recebe notificação]
     B --> C[Professor reavalia]
@@ -326,7 +327,7 @@ flowchart LR
     D -->|Não| F[Mantém nota e justifica]
     E --> G[Aluno visualiza resultado]
     F --> G
-```
+`} />
 
 ---
 

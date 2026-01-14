@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Casos de Uso/Autenticação/UC-001: Login de Usuário" />
 
@@ -45,7 +46,7 @@ import { Meta } from '@storybook/blocks';
 
 ## Fluxo Principal
 
-```mermaid
+<MermaidDiagram chart={`
 sequenceDiagram
     actor U as Usuário
     participant F as Frontend
@@ -68,7 +69,7 @@ sequenceDiagram
     B->>F: 13. Retorna token + dados usuário
     F->>F: 14. Armazena token (localStorage)
     F->>U: 15. Redireciona para dashboard
-```
+`} />
 
 **Passos detalhados**:
 
@@ -172,7 +173,7 @@ sequenceDiagram
 
 ### FA-01: Credenciais Inválidas
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Enviar credenciais] --> B{Válidas?}
     B -->|Não| C[Incrementar tentativas]
@@ -185,7 +186,7 @@ flowchart LR
     I -->|Sim| E
     I -->|Não| J[Bloquear conta 15 min]
     J --> K[Enviar email de bloqueio]
-```
+`} />
 
 **Mensagens**:
 - Tentativa 1-2: "Email ou senha incorretos. Tente novamente."
@@ -225,7 +226,7 @@ flowchart LR
 
 **Condição**: Usuário tem MFA ativado ou papel exige MFA (admin)
 
-```mermaid
+<MermaidDiagram chart={`
 sequenceDiagram
     actor U as Usuário
     participant F as Frontend
@@ -247,7 +248,7 @@ sequenceDiagram
     MFA->>B: 13. Código válido
     B->>F: 14. Retorna token JWT
     F->>U: 15. Redireciona para dashboard
-```
+`} />
 
 ---
 

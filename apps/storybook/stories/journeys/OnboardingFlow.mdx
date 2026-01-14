@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Jornadas/Onboarding/Primeiro Acesso" />
 
@@ -18,7 +19,7 @@ Esta jornada descreve a experiência de um novo usuário (qualquer papel) no pri
 
 ## Fluxo Principal
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart TD
     A[Primeiro acesso pós-cadastro] --> B{Email confirmado?}
     B -->|Não| C[Solicitar confirmação]
@@ -60,7 +61,7 @@ flowchart TD
     AA --> AC[Redirecionar para ação sugerida]
     AB --> AC
     AC --> AD[Fim]
-```
+`} />
 
 ---
 
@@ -68,7 +69,7 @@ flowchart TD
 
 ### Características Gerais
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Iniciar tour] --> B[Destacar elemento]
     B --> C[Exibir tooltip explicativo]
@@ -79,7 +80,7 @@ flowchart LR
     E -->|Sim| G[Botão 'Concluir']
     G --> H[Salvar progresso]
     H --> I[Exibir badge de conclusão]
-```
+`} />
 
 **Elementos do tooltip**:
 - Título da etapa
@@ -319,7 +320,7 @@ flowchart LR
 
 ### Fluxo A: Usuário Pula Tour
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Clicar em 'Pular tour'] --> B[Confirmar ação]
     B --> C{Confirma?}
@@ -327,11 +328,11 @@ flowchart LR
     C -->|Sim| E[Salvar progresso parcial]
     E --> F[Exibir link para retomar]
     F --> G[Redirecionar para dashboard]
-```
+`} />
 
 ### Fluxo B: Retomar Tour Incompleto
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Acessar dashboard] --> B{Tour incompleto?}
     B -->|Sim| C[Exibir banner]
@@ -339,7 +340,7 @@ flowchart LR
     D -->|Sim| E[Retomar de onde parou]
     D -->|Não| F[Minimizar banner]
     B -->|Não| G[Dashboard normal]
-```
+`} />
 
 ---
 

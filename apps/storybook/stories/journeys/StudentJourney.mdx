@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks';
+import { MermaidDiagram } from '../../src/components/MermaidDiagram';
 
 <Meta title="Jornadas/Aluno/Matrícula" />
 
@@ -18,7 +19,7 @@ Esta jornada descreve o processo completo de matrícula de um novo aluno na plat
 
 ## Fluxo Principal
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart TD
     A[Início: Aluno acessa site] --> B{Tem conta?}
     B -->|Não| C[Criar conta]
@@ -45,7 +46,7 @@ flowchart TD
     R --> S[Acessar dashboard aluno]
     S --> T[Visualizar materiais]
     T --> U[Fim: Aluno matriculado]
-```
+`} />
 
 ---
 
@@ -270,7 +271,7 @@ flowchart TD
 
 ### Fluxo A: Aluno não Atende Pré-requisitos
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Tentar matricular] --> B{Atende pré-requisitos?}
     B -->|Não| C[Mostrar requisitos faltantes]
@@ -278,11 +279,11 @@ flowchart LR
     D --> E{Aluno aceita sugestão?}
     E -->|Sim| F[Matricular em curso prep.]
     E -->|Não| G[Voltar ao catálogo]
-```
+`} />
 
 ### Fluxo B: Falha no Pagamento
 
-```mermaid
+<MermaidDiagram chart={`
 flowchart LR
     A[Processar pagamento] --> B{Pagamento aprovado?}
     B -->|Não| C[Identificar motivo]
@@ -291,7 +292,7 @@ flowchart LR
     D -->|Não| F[Solicitar novo método]
     E --> B
     F --> A
-```
+`} />
 
 ---
 
