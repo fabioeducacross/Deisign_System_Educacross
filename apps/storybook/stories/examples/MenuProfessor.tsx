@@ -25,7 +25,7 @@ export function MenuProfessor() {
     };
 
     return (
-        <Sidebar showLogo>
+        <Sidebar>
             {/* Painel */}
             <SidebarItem icon="Grid" label="Painel" variant="default" />
 

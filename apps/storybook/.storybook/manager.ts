@@ -1,4 +1,4 @@
-import { addons } from "@storybook/manager-api";
+import { addons } from "storybook/manager-api";
 import themeLight from "./theme";
 import themeDark from "./educacross-theme-dark";
 

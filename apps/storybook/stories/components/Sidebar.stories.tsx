@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Sidebar, SidebarItem, SidebarSubItem } from "@educacross/ui";
 import { useState } from "react";
 

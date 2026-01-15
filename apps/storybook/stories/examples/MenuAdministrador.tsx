@@ -17,7 +17,7 @@ export const MenuAdministrador = () => {
 
     return (
         <div className="h-screen bg-gray-50">
-            <Sidebar showLogo theme={theme}>
+            <Sidebar theme={theme}>
                 <SidebarItem icon="Home" label="Painel Inicial" variant="default" theme={theme} />
                 <SidebarItem icon="TrendingUp" label="Relatórios Gerais" variant="active" theme={theme} expandable expanded={expandedItems.relatorios} onClick={() => toggleExpand("relatorios")} />
                 {expandedItems.relatorios && (<><SidebarSubItem label="Volume de acessos" active={selectedSubItem === "volume-acessos"} theme={theme} onClick={() => setSelectedSubItem("volume-acessos")} /><SidebarSubItem label="Acessos mensais alunos" active={selectedSubItem === "acessos-alunos"} theme={theme} onClick={() => setSelectedSubItem("acessos-alunos")} /><SidebarSubItem label="Acessos professores" active={selectedSubItem === "acessos-professores"} theme={theme} onClick={() => setSelectedSubItem("acessos-professores")} /><SidebarSubItem label="Evidências Escolas" active={selectedSubItem === "evidencias-escolas"} theme={theme} onClick={() => setSelectedSubItem("evidencias-escolas")} /><SidebarSubItem label="Evidências Alunos" active={selectedSubItem === "evidencias-alunos"} theme={theme} onClick={() => setSelectedSubItem("evidencias-alunos")} /><SidebarSubItem label="Habilidades" active={selectedSubItem === "habilidades"} theme={theme} onClick={() => setSelectedSubItem("habilidades")} /><SidebarSubItem label="Ranking de conquistas" active={selectedSubItem === "ranking-conquistas"} theme={theme} onClick={() => setSelectedSubItem("ranking-conquistas")} /></>)}

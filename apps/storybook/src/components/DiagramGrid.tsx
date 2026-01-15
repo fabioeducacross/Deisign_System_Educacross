@@ -26,9 +26,6 @@ export const DiagramGrid: React.FC<DiagramGridProps> = ({
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gap: gridGap,
         margin: '2rem 0',
-        '@media (max-width: 768px)': {
-          gridTemplateColumns: columns > 1 ? '1fr' : `repeat(${columns}, 1fr)`
-        }
       }}
     >
       {children}

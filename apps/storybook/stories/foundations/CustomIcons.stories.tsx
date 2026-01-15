@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CustomIcon, customIcons, type IconCategory } from "@educacross/ui";
 import { useState } from "react";
 

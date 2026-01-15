@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { TokenShowcase } from "../../src/components";
 
 const meta: Meta = {
     title: "Foundations/Spacing",
@@ -25,6 +26,10 @@ O sistema de espaçamento segue a escala padrão do Tailwind CSS.
 // Gap (Flexbox/Grid)
 <div className="flex gap-4">16px entre items</div>
 \`\`\`
+
+## Copiar Tokens
+
+Clique em qualquer token abaixo para copiar o nome para a área de transferência.
         `,
             },
         },
@@ -57,30 +62,24 @@ function SpacingRow({ name, value, pixels }: SpacingRowProps) {
 export const Scale: Story = {
     render: () => (
         <div className="p-8 bg-background">
-            <h2 className="text-2xl font-bold mb-8 text-foreground">Escala de Espaçamento</h2>
-
-            <div className="space-y-3">
-                <SpacingRow name="0" value="0" pixels="0px" />
-                <SpacingRow name="px" value="1px" pixels="1px" />
-                <SpacingRow name="0.5" value="0.125rem" pixels="2px" />
-                <SpacingRow name="1" value="0.25rem" pixels="4px" />
-                <SpacingRow name="1.5" value="0.375rem" pixels="6px" />
-                <SpacingRow name="2" value="0.5rem" pixels="8px" />
-                <SpacingRow name="2.5" value="0.625rem" pixels="10px" />
-                <SpacingRow name="3" value="0.75rem" pixels="12px" />
-                <SpacingRow name="3.5" value="0.875rem" pixels="14px" />
-                <SpacingRow name="4" value="1rem" pixels="16px" />
-                <SpacingRow name="5" value="1.25rem" pixels="20px" />
-                <SpacingRow name="6" value="1.5rem" pixels="24px" />
-                <SpacingRow name="7" value="1.75rem" pixels="28px" />
-                <SpacingRow name="8" value="2rem" pixels="32px" />
-                <SpacingRow name="9" value="2.25rem" pixels="36px" />
-                <SpacingRow name="10" value="2.5rem" pixels="40px" />
-                <SpacingRow name="12" value="3rem" pixels="48px" />
-                <SpacingRow name="14" value="3.5rem" pixels="56px" />
-                <SpacingRow name="16" value="4rem" pixels="64px" />
-                <SpacingRow name="20" value="5rem" pixels="80px" />
-            </div>
+            <TokenShowcase
+                title="Escala de Espaçamento"
+                category="spacing"
+                tokens={[
+                    { name: "Nenhum", value: "0px", token: "0" },
+                    { name: "Extra Pequeno", value: "0.25rem", token: "1" },
+                    { name: "Pequeno", value: "0.5rem", token: "2" },
+                    { name: "Pequeno+", value: "0.75rem", token: "3" },
+                    { name: "Base", value: "1rem", token: "4" },
+                    { name: "Médio", value: "1.25rem", token: "5" },
+                    { name: "Médio+", value: "1.5rem", token: "6" },
+                    { name: "Grande", value: "2rem", token: "8" },
+                    { name: "Extra Grande", value: "2.5rem", token: "10" },
+                    { name: "2XL", value: "3rem", token: "12" },
+                    { name: "3XL", value: "4rem", token: "16" },
+                    { name: "4XL", value: "5rem", token: "20" },
+                ]}
+            />
         </div>
     ),
 };
@@ -88,38 +87,18 @@ export const Scale: Story = {
 export const BorderRadius: Story = {
     render: () => (
         <div className="p-8 bg-background">
-            <h2 className="text-2xl font-bold mb-8 text-foreground">Border Radius</h2>
-            <p className="text-muted-foreground mb-6">
-                O token <code className="font-mono text-sm">--radius</code> define o raio base.
-            </p>
-
-            <div className="flex flex-wrap gap-8">
-                <div className="text-center">
-                    <div className="w-20 h-20 bg-primary rounded-none mb-2" />
-                    <p className="text-sm text-muted-foreground">none</p>
-                    <p className="text-xs font-mono text-muted-foreground">0</p>
-                </div>
-                <div className="text-center">
-                    <div className="w-20 h-20 bg-primary rounded-sm mb-2" />
-                    <p className="text-sm text-muted-foreground">sm</p>
-                    <p className="text-xs font-mono text-muted-foreground">calc(--radius - 4px)</p>
-                </div>
-                <div className="text-center">
-                    <div className="w-20 h-20 bg-primary rounded-md mb-2" />
-                    <p className="text-sm text-muted-foreground">md</p>
-                    <p className="text-xs font-mono text-muted-foreground">calc(--radius - 2px)</p>
-                </div>
-                <div className="text-center">
-                    <div className="w-20 h-20 bg-primary rounded-lg mb-2" />
-                    <p className="text-sm text-muted-foreground">lg</p>
-                    <p className="text-xs font-mono text-muted-foreground">--radius</p>
-                </div>
-                <div className="text-center">
-                    <div className="w-20 h-20 bg-primary rounded-full mb-2" />
-                    <p className="text-sm text-muted-foreground">full</p>
-                    <p className="text-xs font-mono text-muted-foreground">9999px</p>
-                </div>
-            </div>
+            <TokenShowcase
+                title="Border Radius"
+                category="radius"
+                tokens={[
+                    { name: "Nenhum", value: "0px", token: "rounded-none" },
+                    { name: "Pequeno", value: "calc(var(--radius) - 4px)", token: "rounded-sm" },
+                    { name: "Médio", value: "calc(var(--radius) - 2px)", token: "rounded-md" },
+                    { name: "Grande", value: "var(--radius)", token: "rounded-lg" },
+                    { name: "Extra Grande", value: "calc(var(--radius) + 4px)", token: "rounded-xl" },
+                    { name: "Circular", value: "9999px", token: "rounded-full" },
+                ]}
+            />
         </div>
     ),
 };

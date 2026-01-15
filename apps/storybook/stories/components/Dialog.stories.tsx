@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 import {
     Dialog,
     DialogTrigger,
@@ -48,7 +48,7 @@ export const Default: Story = {
                     <DialogDescription>Content</DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="secondary">Close</Button>
                     </DialogClose>
                     <Button>Save changes</Button>
@@ -270,7 +270,7 @@ export const WithForm: Story = {
                     </div>
                 </div>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button>Save Changes</Button>
@@ -340,7 +340,7 @@ export const Confirmation: Story = {
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>
                     <Button variant="destructive">Delete Account</Button>
@@ -482,7 +482,7 @@ export const ScrollableContent: Story = {
                     ))}
                 </div>
                 <DialogFooter>
-                    <DialogClose asChild>
+                    <DialogClose>
                         <Button variant="outline">Decline</Button>
                     </DialogClose>
                     <Button>Accept</Button>

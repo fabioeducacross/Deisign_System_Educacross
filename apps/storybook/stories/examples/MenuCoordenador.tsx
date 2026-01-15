@@ -22,7 +22,7 @@ export const MenuCoordenador = () => {
 
     return (
         <div className="h-screen bg-gray-50">
-            <Sidebar showLogo theme={theme}>
+            <Sidebar theme={theme}>
                 {/* Painel */}
                 <SidebarItem 
                     icon="Home" 

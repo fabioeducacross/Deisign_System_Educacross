@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { colors, spacing, borderRadius, opacityColors, themeVariables, misc } from "@educacross/ui";
 
 const meta: Meta = {

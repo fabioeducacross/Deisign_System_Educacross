@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react-vite";
 import { withThemeByClassName } from "@storybook/addon-themes";
 
 // Import Tailwind CSS and design tokens
@@ -28,7 +28,7 @@ const preview: Preview = {
             },
         },
         viewport: {
-            viewports: {
+            options: {
                 mobile: {
                     name: "Mobile",
                     styles: { width: "375px", height: "667px" },

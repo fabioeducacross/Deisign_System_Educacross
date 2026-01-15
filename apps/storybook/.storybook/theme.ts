@@ -1,4 +1,4 @@
-import { create } from "@storybook/theming/create";
+import { create } from "storybook/theming/create";
 import logoEducacross from "../public/logo-educacross.svg";
 
 export default create({

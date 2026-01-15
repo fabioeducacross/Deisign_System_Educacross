@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn, expect, userEvent, within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn, expect, userEvent, within } from "storybook/test";
 import { Input } from "@educacross/ui";
 
 const meta: Meta<typeof Input> = {

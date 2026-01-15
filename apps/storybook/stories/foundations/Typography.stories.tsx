@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { TokenShowcase } from "../../src/components";
 
 const meta: Meta = {
     title: "Foundations/Typography",
@@ -32,6 +33,10 @@ Montserrat está configurada com os seguintes pesos:
 - **Medium (500)**: Para destaque moderado
 - **Semibold (600)**: Para subtítulos e elementos de interface
 - **Bold (700)**: Para títulos e ênfase forte
+
+## Copiar Tokens
+
+Clique em qualquer token abaixo para copiar o nome da classe para a área de transferência.
         `,
             },
         },
@@ -68,16 +73,21 @@ function TypeSample({ name, className, size, lineHeight }: TypeSampleProps) {
 export const Scale: Story = {
     render: () => (
         <div className="p-8 bg-background space-y-6">
-            <h2 className="text-2xl font-bold mb-8 text-foreground">Escala Tipográfica</h2>
-
-            <TypeSample name="4XL" className="text-4xl text-foreground" size="2.25rem" lineHeight="2.5rem" />
-            <TypeSample name="3XL" className="text-3xl text-foreground" size="1.875rem" lineHeight="2.25rem" />
-            <TypeSample name="2XL" className="text-2xl text-foreground" size="1.5rem" lineHeight="2rem" />
-            <TypeSample name="XL" className="text-xl text-foreground" size="1.25rem" lineHeight="1.75rem" />
-            <TypeSample name="LG" className="text-lg text-foreground" size="1.125rem" lineHeight="1.75rem" />
-            <TypeSample name="Base" className="text-base text-foreground" size="1rem" lineHeight="1.5rem" />
-            <TypeSample name="SM" className="text-sm text-foreground" size="0.875rem" lineHeight="1.25rem" />
-            <TypeSample name="XS" className="text-xs text-foreground" size="0.75rem" lineHeight="1rem" />
+            <TokenShowcase
+                title="Escala Tipográfica"
+                category="typography"
+                tokens={[
+                    { name: "Heading 1", value: "2.25rem", token: "text-4xl" },
+                    { name: "Heading 2", value: "1.875rem", token: "text-3xl" },
+                    { name: "Heading 3", value: "1.5rem", token: "text-2xl" },
+                    { name: "Heading 4", value: "1.25rem", token: "text-xl" },
+                    { name: "Heading 5", value: "1.125rem", token: "text-lg" },
+                    { name: "Body Large", value: "1.125rem", token: "text-lg" },
+                    { name: "Body", value: "1rem", token: "text-base" },
+                    { name: "Small", value: "0.875rem", token: "text-sm" },
+                    { name: "Extra Small", value: "0.75rem", token: "text-xs" },
+                ]}
+            />
         </div>
     ),
 };

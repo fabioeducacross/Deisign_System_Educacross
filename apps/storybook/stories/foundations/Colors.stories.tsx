@@ -1,4 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ColorPalette } from "../../src/components";
 
 const meta: Meta = {
     title: "Foundations/Colors",
@@ -25,6 +26,10 @@ Todas as cores são definidas como CSS custom properties e mapeadas para o Tailw
   color: hsl(var(--primary-foreground));
 }
 \`\`\`
+
+## Copiar Tokens
+
+Clique em qualquer cor abaixo para copiar o nome do token CSS para a área de transferência.
 
 ## Light / Dark Mode
 
@@ -134,76 +139,56 @@ export const BaseColors: Story = {
 export const AllTokens: Story = {
     render: () => (
         <div className="p-8 bg-background">
-            <h2 className="text-2xl font-bold mb-6 text-foreground">Todos os Tokens de Cor</h2>
+            <h2 className="text-2xl font-bold mb-6 text-foreground">Paleta de Cores Completa</h2>
+            <p className="text-muted-foreground mb-8">
+                Clique em qualquer cor para copiar o token CSS.
+            </p>
 
-            <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                    <thead>
-                        <tr className="border-b border-border">
-                            <th className="text-left py-3 px-4 text-foreground">Token</th>
-                            <th className="text-left py-3 px-4 text-foreground">CSS Variable</th>
-                            <th className="text-left py-3 px-4 text-foreground">Tailwind Class</th>
-                            <th className="text-left py-3 px-4 text-foreground">Preview</th>
-                        </tr>
-                    </thead>
-                    <tbody className="text-muted-foreground">
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Background</td>
-                            <td className="py-3 px-4 font-mono text-xs">--background</td>
-                            <td className="py-3 px-4 font-mono text-xs">bg-background</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-background border border-border" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Foreground</td>
-                            <td className="py-3 px-4 font-mono text-xs">--foreground</td>
-                            <td className="py-3 px-4 font-mono text-xs">text-foreground</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-foreground" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Primary</td>
-                            <td className="py-3 px-4 font-mono text-xs">--primary</td>
-                            <td className="py-3 px-4 font-mono text-xs">bg-primary</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-primary" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Secondary</td>
-                            <td className="py-3 px-4 font-mono text-xs">--secondary</td>
-                            <td className="py-3 px-4 font-mono text-xs">bg-secondary</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-secondary border border-border" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Destructive</td>
-                            <td className="py-3 px-4 font-mono text-xs">--destructive</td>
-                            <td className="py-3 px-4 font-mono text-xs">bg-destructive</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-destructive" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Muted</td>
-                            <td className="py-3 px-4 font-mono text-xs">--muted</td>
-                            <td className="py-3 px-4 font-mono text-xs">bg-muted</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-muted border border-border" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Accent</td>
-                            <td className="py-3 px-4 font-mono text-xs">--accent</td>
-                            <td className="py-3 px-4 font-mono text-xs">bg-accent</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-accent border border-border" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Border</td>
-                            <td className="py-3 px-4 font-mono text-xs">--border</td>
-                            <td className="py-3 px-4 font-mono text-xs">border-border</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-border" /></td>
-                        </tr>
-                        <tr className="border-b border-border">
-                            <td className="py-3 px-4">Ring</td>
-                            <td className="py-3 px-4 font-mono text-xs">--ring</td>
-                            <td className="py-3 px-4 font-mono text-xs">ring-ring</td>
-                            <td className="py-3 px-4"><div className="w-8 h-8 rounded bg-ring" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <ColorPalette
+                title="Cores Primárias"
+                columns={4}
+                colors={[
+                    { name: "Primary", value: "#7367F0", token: "var(--primary)" },
+                    { name: "Primary Foreground", value: "#FFFFFF", token: "var(--primary-foreground)" },
+                    { name: "Secondary", value: "#808390", token: "var(--secondary)" },
+                    { name: "Secondary Foreground", value: "#FFFFFF", token: "var(--secondary-foreground)" },
+                ]}
+            />
+
+            <ColorPalette
+                title="Cores de Estado"
+                columns={4}
+                colors={[
+                    { name: "Destructive", value: "#FF4B50", token: "var(--destructive)" },
+                    { name: "Destructive Foreground", value: "#FFFFFF", token: "var(--destructive-foreground)" },
+                    { name: "Success", value: "#28C76F", token: "var(--success)" },
+                    { name: "Success Foreground", value: "#FFFFFF", token: "var(--success-foreground)" },
+                ]}
+            />
+
+            <ColorPalette
+                title="Cores de Superfície"
+                columns={5}
+                colors={[
+                    { name: "Background", value: "#FFFFFF", token: "var(--background)" },
+                    { name: "Foreground", value: "#1F2937", token: "var(--foreground)" },
+                    { name: "Card", value: "#FFFFFF", token: "var(--card)" },
+                    { name: "Card Foreground", value: "#1F2937", token: "var(--card-foreground)" },
+                    { name: "Popover", value: "#FFFFFF", token: "var(--popover)" },
+                ]}
+            />
+
+            <ColorPalette
+                title="Cores Neutras"
+                columns={5}
+                colors={[
+                    { name: "Muted", value: "#F5F5F7", token: "var(--muted)" },
+                    { name: "Muted Foreground", value: "#6B7280", token: "var(--muted-foreground)" },
+                    { name: "Accent", value: "#F5F5F7", token: "var(--accent)" },
+                    { name: "Accent Foreground", value: "#1F2937", token: "var(--accent-foreground)" },
+                    { name: "Border", value: "#E1E1E8", token: "var(--border)" },
+                ]}
+            />
         </div>
     ),
 };
