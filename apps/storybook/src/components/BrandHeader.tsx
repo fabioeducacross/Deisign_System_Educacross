@@ -27,6 +27,15 @@ export const BrandHeader: React.FC<BrandHeaderProps> = ({
         overflow: 'hidden',
       }}
     >
+      {/* Logo */}
+      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <img 
+          src="./logo-educacross-dark.svg" 
+          alt="Educacross Design System"
+          style={{ height: '48px', display: 'inline-block' }}
+        />
+      </div>
+
       {/* Decorative circles */}
       <div
         style={{

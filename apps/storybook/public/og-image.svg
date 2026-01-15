@@ -1,0 +1,55 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo com gradiente -->
+  <rect width="1200" height="630" fill="url(#og-gradient)"/>
+  
+  <!-- Círculos decorativos (blur effect) -->
+  <circle cx="200" cy="150" r="180" fill="rgba(255, 255, 255, 0.08)" filter="url(#blur1)"/>
+  <circle cx="1000" cy="480" r="200" fill="rgba(255, 255, 255, 0.06)" filter="url(#blur2)"/>
+  
+  <!-- Logo Educacross centralizado -->
+  <g transform="translate(440, 180)">
+    <rect width="120" height="120" rx="24" fill="white" fill-opacity="0.95"/>
+    <path d="M480 220H540V235H505V250H530V265H505V280H540V295H480V220Z" fill="#7367F0"/>
+  </g>
+  
+  <!-- Título principal -->
+  <text x="600" y="370" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="72" font-weight="700" fill="white">
+    Educacross
+  </text>
+  
+  <!-- Subtítulo -->
+  <text x="600" y="420" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="36" font-weight="500" fill="rgba(255, 255, 255, 0.9)">
+    Design System
+  </text>
+  
+  <!-- Descrição -->
+  <text x="600" y="490" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="24" font-weight="400" fill="rgba(255, 255, 255, 0.75)">
+    20+ Componentes React • Design Tokens • A11y WCAG 2.1 AA
+  </text>
+  
+  <!-- Badge de versão -->
+  <g transform="translate(560, 520)">
+    <rect width="80" height="32" rx="16" fill="rgba(255, 255, 255, 0.15)"/>
+    <text x="40" y="21" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="16" font-weight="600" fill="white">
+      v1.0.0
+    </text>
+  </g>
+  
+  <!-- Definições -->
+  <defs>
+    <!-- Gradiente principal -->
+    <linearGradient id="og-gradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7367F0"/>
+      <stop offset="50%" stop-color="#6059D0"/>
+      <stop offset="100%" stop-color="#5C52C0"/>
+    </linearGradient>
+    
+    <!-- Filtros de blur -->
+    <filter id="blur1">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="40"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="50"/>
+    </filter>
+  </defs>
+</svg>

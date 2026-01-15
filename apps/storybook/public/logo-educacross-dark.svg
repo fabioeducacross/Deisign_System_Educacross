@@ -1,0 +1,21 @@
+<svg width="200" height="48" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ícone E estilizado -->
+  <rect x="4" y="8" width="32" height="32" rx="8" fill="url(#gradient-dark)"/>
+  <path d="M16 16H28V20H20V22H26V26H20V28H28V32H16V16Z" fill="white"/>
+  
+  <!-- Texto Educacross -->
+  <text x="44" y="28" font-family="Montserrat, sans-serif" font-size="18" font-weight="700" fill="#8F85F3">
+    Educacross
+  </text>
+  <text x="44" y="38" font-family="Montserrat, sans-serif" font-size="10" font-weight="400" fill="#94A3B8">
+    Design System
+  </text>
+  
+  <!-- Gradiente para dark mode -->
+  <defs>
+    <linearGradient id="gradient-dark" x1="4" y1="8" x2="36" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8F85F3"/>
+      <stop offset="100%" stop-color="#6B5FD6"/>
+    </linearGradient>
+  </defs>
+</svg>
