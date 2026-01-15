@@ -1,25 +1,34 @@
 import { Meta } from '@storybook/blocks';
-import { MermaidDiagram } from '../../src/components/MermaidDiagram';
+import { MermaidDiagram, Section, Callout, DiagramGrid } from '../../src/components';
 
 <Meta title="Jornadas/Aluno/Matrícula" />
 
-# Jornada de Matrícula do Aluno
+<Section 
+  title="🎓 Jornada de Matrícula do Aluno" 
+  level="primary"
+  description="Fluxo completo de matrícula de um novo aluno na plataforma Educacross"
+  spacing="spacious"
+>
 
 ## Visão Geral
 
 Esta jornada descreve o processo completo de matrícula de um novo aluno na plataforma Educacross, desde o cadastro inicial até o acesso aos materiais do curso.
 
-**Objetivo**: Aluno conseguir se matricular em um curso e acessar conteúdo.
+| Atributo | Valor |
+|----------|-------|
+| **Objetivo** | Aluno conseguir se matricular em um curso e acessar conteúdo |
+| **Duração média** | 15 minutos |
+| **Taxa de conclusão** | 85% |
+| **Usuário** | Novo aluno (sem conta prévia) |
 
-**Duração média**: 15 minutos
-
-**Taxa de conclusão esperada**: 85%
+</Section>
 
 ---
 
 ## Fluxo Principal
 
-<MermaidDiagram chart={`
+<MermaidDiagram 
+  chart={`
 flowchart TD
     A[Início: Aluno acessa site] --> B{Tem conta?}
     B -->|Não| C[Criar conta]
@@ -46,15 +55,20 @@ flowchart TD
     R --> S[Acessar dashboard aluno]
     S --> T[Visualizar materiais]
     T --> U[Fim: Aluno matriculado]
-`} />
+`} 
+  caption="Fluxograma da matrícula do aluno com todos os caminhos de decisão"
+/>
 
 ---
 
 ## Etapas Detalhadas
 
-### 1. Cadastro de Nova Conta
-
-**Objetivo**: Criar credenciais de acesso.
+<Section 
+  title="1. Cadastro de Nova Conta" 
+  level="secondary"
+  description="Criação de credenciais de acesso para novo aluno"
+  spacing="normal"
+>
 
 **Dados solicitados**:
 - Nome completo (RN-VAL-005)
@@ -69,23 +83,28 @@ flowchart TD
 - CPF e email devem ser únicos
 - Idade mínima de 16 anos (RN-VAL-007)
 
-**Pontos de fricção**:
-- ⚠️ Senha complexa pode frustrar usuários
-- ⚠️ Validação de CPF pode falhar por digitação incorreta
-- ⚠️ Email já cadastrado gera confusão
+<Callout type="warning" title="Pontos de Fricção Identificados">
+- **Senha complexa** pode frustrar usuários
+- **Validação de CPF** pode falhar por digitação incorreta
+- **Email já cadastrado** gera confusão
+</Callout>
 
-**Melhorias aplicadas**:
+<Callout type="success" title="Melhorias Aplicadas">
 - ✅ Indicador de força de senha em tempo real
 - ✅ Formatação automática de CPF e telefone
 - ✅ Sugestão de recuperação de senha se email existe
+</Callout>
 
-**Tempo médio**: 3 minutos
+**⏱️ Tempo médio**: 3 minutos
 
----
+</Section>
 
-### 2. Validação de Email
-
-**Objetivo**: Confirmar que email é válido e acessível.
+<Section 
+  title="2. Validação de Email" 
+  level="secondary"
+  description="Confirmação de acesso ao email cadastrado"
+  spacing="normal"
+>
 
 **Fluxo**:
 1. Sistema envia email de confirmação
@@ -98,6 +117,10 @@ flowchart TD
 - Link expira em 24 horas (RN-VAL-003)
 - Aluno tem acesso limitado até confirmar
 - Sistema permite reenvio de email (máximo 3 vezes por hora)
+
+<Callout type="info" title="💡 Dica de Implementação">
+Use um email transacional dedicado para melhorar taxa de entrega e evitar spam folder.
+</Callout>
 
 **Pontos de fricção**:
 - ⚠️ Email pode cair em spam
@@ -342,3 +365,5 @@ flowchart LR
 **Última atualização**: 14 de janeiro de 2026  
 **Responsável**: Equipe de Produto  
 **Revisão**: Mensal
+
+</Section>

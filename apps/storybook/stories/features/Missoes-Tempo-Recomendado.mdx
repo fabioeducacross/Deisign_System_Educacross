@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/blocks';
-import { MermaidDiagram } from '../../src/components/MermaidDiagram';
+import { MermaidDiagram, Callout } from '../../src/components';
 
 <Meta title="Funcionalidades/Missões/Tempo Recomendado" />
 
@@ -28,17 +28,9 @@ pie title Distribuição Semanal Recomendada (90 min)
 
 **90 minutos/semana = 18 minutos/dia** (5 dias)
 
-<div style={{
-  padding: '1rem',
-  border: '1px solid var(--color-info-200)',
-  borderRadius: '8px',
-  backgroundColor: 'var(--color-info-8)',
-  marginTop: '1rem'
-}}>
-
-**💡 Dica**: 18 minutos por dia são suficientes para jogar 2-3 jogos educativos com qualidade.
-
-</div>
+<Callout type="tip" title="💡 Dica">
+18 minutos por dia são suficientes para jogar 2-3 jogos educativos com qualidade.
+</Callout>
 
 ---
 
@@ -204,7 +196,7 @@ graph TD
     style C fill:#90EE90
     style D fill:#FFE4B5
     style E fill:#FFB6C1
-```
+`} />
 
 ---
 
@@ -251,17 +243,8 @@ graph TD
 
 **O que comunicar**:
 
-<div style={{
-  padding: '1rem',
-  border: '1px solid var(--color-primary-200)',
-  borderRadius: '8px',
-  backgroundColor: 'var(--color-primary-8)',
-  marginTop: '1rem'
-}}>
-
-**📨 Modelo de comunicado**:
-
-"Prezados responsáveis,
+<Callout type="info" title="📨 Modelo de comunicado">
+  Prezados responsáveis,
 
 Para um aprendizado efetivo através da plataforma Educacross, recomendamos que os alunos dediquem **90 minutos por semana** (cerca de 18 minutos por dia) aos jogos educativos.
 
@@ -275,9 +258,8 @@ Para um aprendizado efetivo através da plataforma Educacross, recomendamos que 
 - Jogar pelos alunos (eles devem ter autonomia)
 - Forçar sessões longas (qualidade > quantidade)
 
-Obrigado pelo apoio!"
-
-</div>
+Obrigado pelo apoio!
+</Callout>
 
 ---
 

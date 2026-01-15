@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@educacross/ui": "workspace:*",
+    "lucide-react": "^0.562.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-feather": "^2.0.10"
+    "react-feather": "^2.0.10",
+    "react-zoom-pan-pinch": "^3.7.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^8.6.15",

@@ -55,7 +55,7 @@ const ControlButton: React.FC<{
     }}
   >
     {icon}
-    <span style={{ display: { '@media': '(max-width: 640px)' } ? 'none' : 'inline' }}>
+    <span style={{ display: 'inline' }} className="hidden sm:inline">
       {label}
     </span>
   </button>
@@ -128,7 +128,7 @@ export const MermaidDiagram: React.FC<MermaidDiagramProps> = ({
             centerOnInit
             wheel={{ step: 0.1 }}
           >
-            {({ zoomIn, zoomOut, resetTransform }) => (
+            {({ zoomIn, zoomOut, resetTransform }: any) => (
               <>
                 {/* Controles de Zoom - Barra compacta */}
                 <div
@@ -309,7 +309,7 @@ export const MermaidDiagram: React.FC<MermaidDiagramProps> = ({
               centerOnInit
               wheel={{ step: 0.1 }}
             >
-              {({ zoomIn, zoomOut, resetTransform }) => (
+              {({ zoomIn, zoomOut, resetTransform }: any) => (
                 <div
                   style={{
                     width: '100%',

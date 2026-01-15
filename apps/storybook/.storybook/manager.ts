@@ -1,6 +1,14 @@
 import { addons } from "@storybook/manager-api";
-import theme from "./theme";
+import themeLight from "./theme";
+import themeDark from "./educacross-theme-dark";
+
+// Detecta preferência do sistema
+const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 addons.setConfig({
-    theme,
+    theme: isDarkMode ? themeDark : themeLight,
+    sidebar: {
+        showRoots: true,
+        collapsedRoots: [],
+    },
 });

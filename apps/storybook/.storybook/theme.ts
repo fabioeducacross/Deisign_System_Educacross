@@ -3,33 +3,48 @@ import logoEducacross from "../public/logo-educacross.svg";
 
 export default create({
     base: "light",
+    
+    // Branding
     brandTitle: "Educacross Design System",
-    brandUrl: "#", // Sem link externo
+    brandUrl: "https://educacross.com.br",
     brandImage: logoEducacross,
-    brandTarget: "_self",
+    brandTarget: "_blank",
 
-    // UI
-    appBg: "#ffffff",
-    appContentBg: "#ffffff",
-    appBorderColor: "#e5e7eb",
-    appBorderRadius: 8,
+    // UI Colors (Educacross tokens)
+    appBg: "#FFFFFF",
+    appContentBg: "#F5F5F7",              // --color-gray-100
+    appBorderColor: "#E1E1E8",            // --color-gray-300
+    appPreviewBg: "#FFFFFF",
+    appBorderRadius: 12,
 
     // Typography
-    fontBase: '"Montserrat", sans-serif',
-    fontCode: "monospace",
+    fontBase: '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    fontCode: '"JetBrains Mono", "Fira Code", Consolas, monospace',
 
     // Text colors
-    textColor: "#111827",
-    textInverseColor: "#ffffff",
+    textColor: "#1F2937",                  // Texto principal (gray-900)
+    textInverseColor: "#FFFFFF",
+    textMutedColor: "#6B7280",             // Texto secundário (gray-600)
 
-    // Toolbar default and active colors
-    barTextColor: "#6b7280",
-    barSelectedColor: "#2563eb",
-    barBg: "#ffffff",
+    // Toolbar colors (Educacross Primary)
+    barTextColor: "#4B5563",               // gray-700
+    barHoverColor: "#7367F0",              // --color-primary-500
+    barSelectedColor: "#7367F0",           // --color-primary-500
+    barBg: "#FFFFFF",
+
+    // Buttons (Primary Educacross)
+    buttonBg: "#7367F0",                   // --color-primary-500
+    buttonBorder: "#7367F0",
+    booleanBg: "#E1E1E8",
+    booleanSelectedBg: "#7367F0",
+
+    // Colors
+    colorPrimary: "#7367F0",               // --color-primary-500
+    colorSecondary: "#00BAD1",             // --color-info-500
 
     // Form colors
-    inputBg: "#ffffff",
-    inputBorder: "#d1d5db",
-    inputTextColor: "#111827",
-    inputBorderRadius: 6,
+    inputBg: "#FFFFFF",
+    inputBorder: "#D7D7E0",                // --color-gray-400
+    inputTextColor: "#1F2937",
+    inputBorderRadius: 8,
 });
