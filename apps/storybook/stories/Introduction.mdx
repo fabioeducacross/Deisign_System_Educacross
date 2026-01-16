@@ -45,7 +45,11 @@ import { BrandHeader, FeatureCard, DiagramGrid, Callout } from '../src/component
 
 <Callout type="info" title="Instalação via GitHub">
   ```bash
-  pnpm add github:fabioeducacross/Design_System_Educacross
+  # Versão específica (recomendado)
+  pnpm add github:fabioeducacross/Design_System_Educacross#v0.1.0
+  
+  # Branch master (desenvolvimento)
+  pnpm add github:fabioeducacross/Design_System_Educacross#master
   ```
 </Callout>
 
@@ -57,8 +61,8 @@ import { BrandHeader, FeatureCard, DiagramGrid, Callout } from '../src/component
 ### Quick Start
 
 ```tsx
-// 1. Instalar
-pnpm add github:fabioeducacross/Design_System_Educacross
+// 1. Instalar versão estável
+pnpm add github:fabioeducacross/Design_System_Educacross#v0.1.0
 
 // 2. Configurar Tailwind
 import { educacrossPreset } from "@educacross/ui/tailwind-preset";
