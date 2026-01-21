@@ -286,5 +286,15 @@ export {
     type ThemeMode,
 } from "./tokens";
 
+// Metadata (Design System Discovery)
+export {
+    componentList,
+    iconIndex,
+    metadata,
+    type ComponentName,
+    type ComponentCategory,
+    type IconCategory,
+} from "./metadata";
+
 // Utilities
 export { cn } from "./utils";

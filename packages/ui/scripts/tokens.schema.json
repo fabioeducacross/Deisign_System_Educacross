@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com.br/schemas/tokens.json",
+  "title": "Design Tokens Schema",
+  "description": "Schema para validação do tokens.json do Design System Educacross",
+  "type": "object",
+  "required": ["generatedAt", "version", "tokens", "totalTokens"],
+  "properties": {
+    "generatedAt": {
+      "type": "string",
+      "description": "Timestamp ISO 8601 da geração",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "Versão semântica do Design System",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-z0-9.]+)?$"
+    },
+    "totalTokens": {
+      "type": "integer",
+      "description": "Total de tokens extraídos",
+      "minimum": 1
+    },
+    "tokens": {
+      "type": "object",
+      "description": "Tokens organizados por tipo",
+      "required": ["colors", "spacing", "radius", "typography", "other"],
+      "properties": {
+        "colors": {
+          "type": "array",
+          "description": "Tokens de cores",
+          "items": {
+            "$ref": "#/definitions/token"
+          }
+        },
+        "spacing": {
+          "type": "array",
+          "description": "Tokens de espaçamento",
+          "items": {
+            "$ref": "#/definitions/token"
+          }
+        },
+        "radius": {
+          "type": "array",
+          "description": "Tokens de border-radius",
+          "items": {
+            "$ref": "#/definitions/token"
+          }
+        },
+        "typography": {
+          "type": "array",
+          "description": "Tokens de tipografia",
+          "items": {
+            "$ref": "#/definitions/token"
+          }
+        },
+        "other": {
+          "type": "array",
+          "description": "Outros tokens (shadows, z-index, etc.)",
+          "items": {
+            "$ref": "#/definitions/token"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "token": {
+      "type": "object",
+      "required": ["name", "value", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nome do token (sem --)",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "examples": ["primary", "color-primary-500", "radius-md"]
+        },
+        "value": {
+          "type": "string",
+          "description": "Valor CSS do token",
+          "minLength": 1,
+          "examples": ["221.2 83.2% 53.3%", "0.5rem", "#ffffff"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Tipo do token",
+          "enum": ["color", "spacing", "radius", "typography", "shadow", "other"]
+        },
+        "cssVar": {
+          "type": "string",
+          "description": "Variável CSS completa",
+          "pattern": "^var\\(--[a-z][a-z0-9-]*\\)$",
+          "examples": ["var(--primary)", "var(--radius-md)"]
+        }
+      }
+    }
+  }
+}

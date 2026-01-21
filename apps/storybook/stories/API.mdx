@@ -1,0 +1,578 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentação/API Reference" />
+
+# API Reference
+
+Referência completa de todos os componentes do Design System Educacross v0.2.0.
+
+## Índice por Categoria
+
+### 📝 Forms (Formulários)
+- [Button](#button) - Botões com múltiplas variantes
+- [Input](#input) - Campos de texto
+- [Label](#label) - Rótulos de formulário
+- [Checkbox](#checkbox) - Caixas de seleção
+- [Radio](#radio) - Botões de opção
+- [Select](#select) - Menus dropdown
+
+### 📐 Layout (Estrutura)
+- [Header](#header) - Cabeçalho da aplicação
+- [Sidebar](#sidebar) - Barra lateral de navegação
+- [Card](#card) - Contêineres de conteúdo
+- [Accordion](#accordion) - Painéis expansíveis
+- [Tabs](#tabs) - Abas de navegação
+
+### 🔔 Feedback (Notificações)
+- [Alert](#alert) - Alertas e avisos
+- [Dialog](#dialog) - Diálogos modais
+- [Toast](#toast) - Notificações temporárias
+- [Tooltip](#tooltip) - Dicas contextuais
+- [Popover](#popover) - Popovers interativos
+
+### 📊 Data (Dados)
+- [Table](#table) - Tabelas de dados
+- [Pagination](#pagination) - Paginação
+- [Badge](#badge) - Etiquetas e status
+- [Avatar](#avatar) - Imagens de perfil
+- [Skeleton](#skeleton) - Loading placeholders
+
+### 🧭 Navigation (Navegação)
+- [DropdownMenu](#dropdownmenu) - Menus suspensos
+
+### 🎨 Theme (Tema)
+- [ThemeSwitcher](#themeswitcher) - Alternador de tema
+
+### 🎯 Icons (Ícones)
+- [Logo](#logo) - Logotipo Educacross
+- [Icon](#icon) - Ícones Feather (180+)
+- [CustomIcon](#customicon) - Ícones customizados Educacross (150+)
+- [AvatarIcon](#avataricon) - Ícone padrão para avatares
+
+---
+
+## Componentes Detalhados
+
+### Button
+
+Botão interativo com múltiplas variantes e tamanhos.
+
+**Props principais:**
+- `variant`: `default | destructive | outline | secondary | ghost | link`
+- `size`: `default | sm | lg | icon`
+- `disabled`: `boolean`
+- `loading`: `boolean`
+
+📖 [Documentação completa](/?path=/story/components-button--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Button/README.md)
+
+---
+
+### Input
+
+Campo de entrada de texto com suporte a ícones e estados.
+
+**Props principais:**
+- `type`: `text | email | password | number | tel | url | search`
+- `placeholder`: `string`
+- `disabled`: `boolean`
+- `error`: `boolean`
+
+📖 [Documentação completa](/?path=/story/components-input--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Input/README.md)
+
+---
+
+### Label
+
+Rótulo de formulário acessível e semântico.
+
+**Props principais:**
+- `htmlFor`: `string` (ID do input associado)
+- `required`: `boolean`
+
+📖 [Documentação completa](/?path=/story/components-label--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Label/README.md)
+
+---
+
+### Checkbox
+
+Caixa de seleção com estados checked/indeterminate.
+
+**Props principais:**
+- `checked`: `boolean | "indeterminate"`
+- `disabled`: `boolean`
+- `onCheckedChange`: `(checked: boolean) => void`
+
+📖 [Documentação completa](/?path=/story/components-checkbox--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Checkbox/README.md)
+
+---
+
+### Radio
+
+Botão de opção para seleções exclusivas.
+
+**Props principais:**
+- `value`: `string`
+- `checked`: `boolean`
+- `disabled`: `boolean`
+
+📖 [Documentação completa](/?path=/story/components-radio--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Radio/README.md)
+
+---
+
+### Select
+
+Menu dropdown para seleção de opções.
+
+**Props principais:**
+- `value`: `string`
+- `onValueChange`: `(value: string) => void`
+- `disabled`: `boolean`
+- `placeholder`: `string`
+
+📖 [Documentação completa](/?path=/story/components-select--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Select/README.md)
+
+---
+
+### Header
+
+Cabeçalho de aplicação com logo e navegação.
+
+**Props principais:**
+- `variant`: `default | sticky | transparent`
+- `logo`: `ReactNode`
+- `navigation`: `ReactNode`
+
+📖 [Documentação completa](/?path=/story/components-header--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Header/README.md)
+
+---
+
+### Sidebar
+
+Barra lateral de navegação colapsável.
+
+**Props principais:**
+- `theme`: `purple | white`
+- `collapsed`: `boolean`
+
+📖 [Documentação completa](/?path=/story/components-sidebar--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Sidebar/README.md)
+
+---
+
+### Card
+
+Contêiner de conteúdo com cabeçalho, corpo e rodapé.
+
+**Props principais:**
+- `variant`: `default | elevated | outlined`
+
+📖 [Documentação completa](/?path=/story/components-card--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Card/README.md)
+
+---
+
+### Accordion
+
+Painéis expansíveis para organizar conteúdo.
+
+**Props principais:**
+- `type`: `single | multiple`
+- `collapsible`: `boolean`
+- `defaultValue`: `string | string[]`
+
+📖 [Documentação completa](/?path=/story/components-accordion--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Accordion/README.md)
+
+---
+
+### Tabs
+
+Abas de navegação para organizar conteúdo.
+
+**Props principais:**
+- `defaultValue`: `string`
+- `value`: `string` (controlado)
+- `onValueChange`: `(value: string) => void`
+
+📖 [Documentação completa](/?path=/story/components-tabs--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Tabs/README.md)
+
+---
+
+### Alert
+
+Componente de alerta para notificações inline.
+
+**Props principais:**
+- `variant`: `default | destructive | success | warning | info`
+
+📖 [Documentação completa](/?path=/story/components-alert--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Alert/README.md)
+
+---
+
+### Dialog
+
+Diálogo modal com overlay e foco automático.
+
+**Props principais:**
+- `open`: `boolean`
+- `onOpenChange`: `(open: boolean) => void`
+- `size`: `sm | default | lg | xl | full`
+
+📖 [Documentação completa](/?path=/story/components-dialog--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Dialog/README.md)
+
+---
+
+### Toast
+
+Notificações temporárias com API imperativa.
+
+**API:**
+```tsx
+toast("Mensagem")
+toast.success("Sucesso!")
+toast.error("Erro!")
+toast.promise(promise, { loading: "...", success: "OK", error: "Erro" })
+```
+
+📖 [Documentação completa](/?path=/story/components-toast--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Toast/README.md)
+
+---
+
+### Tooltip
+
+Dica contextual que aparece ao passar o mouse.
+
+**Props principais:**
+- `side`: `top | right | bottom | left`
+- `align`: `start | center | end`
+- `delayDuration`: `number` (padrão: 400ms)
+
+📖 [Documentação completa](/?path=/story/components-tooltip--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Tooltip/README.md)
+
+---
+
+### Popover
+
+Popover interativo acionado por clique.
+
+**Props principais:**
+- `open`: `boolean`
+- `onOpenChange`: `(open: boolean) => void`
+- `side`: `top | right | bottom | left`
+- `align`: `start | center | end`
+
+📖 [Documentação completa](/?path=/story/components-popover--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Popover/README.md)
+
+---
+
+### Table
+
+Tabela semântica com cabeçalho, corpo e rodapé.
+
+**Componentes:**
+- `Table` - Wrapper
+- `TableHeader` - Cabeçalho
+- `TableBody` - Corpo
+- `TableRow` - Linha
+- `TableHead` - Célula de cabeçalho
+- `TableCell` - Célula de dados
+- `TableFooter` - Rodapé
+- `TableCaption` - Legenda
+
+📖 [Documentação completa](/?path=/story/components-table--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Table/README.md)
+
+---
+
+### Pagination
+
+Controles de paginação com numeração.
+
+**Props principais:**
+- `currentPage`: `number`
+- `totalPages`: `number`
+- `onPageChange`: `(page: number) => void`
+- `siblingCount`: `number` (padrão: 1)
+- `variant`: `default | outline | ghost`
+- `size`: `default | sm | lg`
+
+📖 [Documentação completa](/?path=/story/components-pagination--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Pagination/README.md)
+
+---
+
+### Badge
+
+Etiqueta para categorização e status.
+
+**Props principais:**
+- `variant`: `default | secondary | destructive | outline | success | warning | info | softPrimary | softSecondary | softDestructive | softSuccess | softWarning | softInfo`
+- `size`: `default | sm | lg`
+
+📖 [Documentação completa](/?path=/story/components-badge--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Badge/README.md)
+
+---
+
+### Avatar
+
+Componente de imagem de perfil com fallback.
+
+**Props principais:**
+- `size`: `xs | sm | default | lg | xl | 2xl`
+
+**Componentes:**
+- `Avatar` - Wrapper
+- `AvatarImage` - Imagem
+- `AvatarFallback` - Fallback (iniciais ou ícone)
+
+📖 [Documentação completa](/?path=/story/components-avatar--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Avatar/README.md)
+
+---
+
+### Skeleton
+
+Placeholder animado para estados de loading.
+
+**Props principais:**
+- `variant`: `default | primary | card`
+
+**Componentes:**
+- `Skeleton` - Forma genérica
+- `SkeletonText` - Parágrafos de texto
+
+📖 [Documentação completa](/?path=/story/components-skeleton--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Skeleton/README.md)
+
+---
+
+### DropdownMenu
+
+Menu suspenso com itens de ação.
+
+**Props principais:**
+- `open`: `boolean`
+- `onOpenChange`: `(open: boolean) => void`
+
+**Componentes:**
+- `DropdownMenu` - Wrapper
+- `DropdownMenuTrigger` - Botão
+- `DropdownMenuContent` - Container
+- `DropdownMenuItem` - Item
+- `DropdownMenuCheckboxItem` - Checkbox
+- `DropdownMenuRadioItem` - Radio
+- `DropdownMenuSeparator` - Separador
+- `DropdownMenuLabel` - Label
+- `DropdownMenuSub` - Submenu
+
+📖 [Documentação completa](/?path=/story/components-dropdownmenu--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/DropdownMenu/README.md)
+
+---
+
+### ThemeSwitcher
+
+Alternador de tema claro/escuro/sistema.
+
+**Props principais:**
+- `variant`: `button | dropdown | toggle`
+- `size`: `sm | default | lg`
+- `showLabel`: `boolean`
+
+**Hook:**
+```tsx
+const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme();
+```
+
+📖 [Documentação completa](/?path=/story/components-themeswitcher--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/ThemeSwitcher/README.md)
+
+---
+
+### Logo
+
+Logotipo Educacross com múltiplas variantes.
+
+**Props principais:**
+- `variant`: `default | white | short | icon`
+- `size`: `sm | default | lg | xl`
+- `animated`: `boolean`
+
+📖 [Documentação completa](/?path=/story/components-logo--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Logo/README.md)
+
+---
+
+### Icon
+
+Wrapper para Feather Icons (180+ ícones).
+
+**Props principais:**
+- `name`: `IconName` (ex: "Check", "X", "Heart")
+- `size`: `xs | sm | default | md | lg | xl | 2xl`
+- `variant`: `default | muted | primary | secondary | destructive | success | warning`
+- `pixelSize`: `number`
+- `strokeWidth`: `number`
+
+📖 [Documentação completa](/?path=/story/foundations-icons--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/Icon/README.md)
+
+---
+
+### CustomIcon
+
+Ícones customizados do Educacross (150+) organizados em 17 categorias.
+
+**Props principais:**
+- `name`: `string`
+- `category`: `IconCategory` (conhecimento, acao, menu, interface, metricas, social, usuarios, agrupamentos, gamificacao, idioma, proficiencia, bncc, saeb, saresp, avalia)
+- `size`: `xs | sm | default | md | lg | xl | 2xl`
+
+**Categorias:**
+- `conhecimento` - Disciplinas (Português, Matemática, Liga Corujinhas)
+- `acao` - Operações (edit, delete, share, trophy)
+- `menu` - Navegação
+- `metricas` - Indicadores (Pontos, Progresso, Dificuldade)
+- `social` - Redes sociais (Facebook, Instagram, WhatsApp, YouTube)
+- `usuarios` - Papéis (Aluno, Professor, Coordenador, Diretor, Gestor, Administrador)
+- `agrupamentos` - Hierarquia (Ano, Turma, Escola, Rede)
+- `gamificacao` - Recompensas (Estrelas, Moedas, Pontos-XP, Insígnias, Troféus)
+- `idioma` - Localização (Brasil, EUA, Espanha)
+- `proficiencia` - Níveis (Abaixo do Básico, Básico, Proficiente, Avançado)
+- Categorias educacionais: BNCC, SAEB, SARESP, Avalia
+
+📖 [Documentação completa](/?path=/story/foundations-icons--custom-icons)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/CustomIcon/README.md)
+
+---
+
+### AvatarIcon
+
+Ícone padrão Educacross para avatares sem imagem.
+
+**Props principais:**
+- `size`: `sm | default | lg`
+
+**Uso:**
+```tsx
+<Avatar>
+  <AvatarIcon />
+  <AvatarFallback>EC</AvatarFallback>
+</Avatar>
+```
+
+📖 [Documentação completa](/?path=/story/components-avatar--default)  
+📝 [README](https://github.com/fabioeducacross/design-system/blob/main/packages/ui/src/components/AvatarIcon/README.md)
+
+---
+
+## Metadata e Manifesto
+
+### componentList
+
+Lista estruturada de todos os componentes por categoria:
+
+```tsx
+import { componentList } from "@fabioeducacross/ui";
+
+console.log(componentList);
+// {
+//   forms: ["Button", "Input", "Label", "Checkbox", "Radio", "Select"],
+//   layout: ["Header", "Sidebar", "Card", "Accordion", "Tabs"],
+//   feedback: ["Alert", "Dialog", "Toast", "Tooltip", "Popover"],
+//   data: ["Table", "Pagination", "Badge", "Avatar", "Skeleton"],
+//   navigation: ["DropdownMenu"],
+//   theme: ["ThemeSwitcher"],
+//   icons: ["Logo", "Icon", "CustomIcon", "AvatarIcon"]
+// }
+```
+
+### manifest.json
+
+Manifesto completo com exportações e metadata:
+
+```json
+{
+  "name": "@fabioeducacross/ui",
+  "version": "0.2.0",
+  "exports": {
+    "components": [...],
+    "utils": [...],
+    "metadata": {...}
+  }
+}
+```
+
+**Localização:** `node_modules/@fabioeducacross/ui/dist/manifest.json`
+
+### tokens.json
+
+Tokens do Design System (cores, espaçamento, tipografia):
+
+```json
+{
+  "colors": {
+    "primary": "hsl(221.2 83.2% 53.3%)",
+    "destructive": "#EA5455",
+    ...
+  },
+  "spacing": { ... },
+  "typography": { ... }
+}
+```
+
+**Localização:** `node_modules/@fabioeducacross/ui/dist/tokens.json`
+
+---
+
+## Recursos Adicionais
+
+### 📚 Guias
+
+- [Introduction](/?path=/docs/introduction--docs) - Introdução ao Design System
+- [Getting Started](/?path=/docs/getting-started--docs) - Primeiros passos
+- [Accessibility](/?path=/docs/guidelines-accessibility--docs) - Diretrizes de acessibilidade
+- [States](/?path=/docs/guidelines-states--docs) - Estados de interface
+
+### 🎨 Foundations
+
+- [Colors](/?path=/docs/foundations-colors--docs) - Paleta de cores
+- [Typography](/?path=/docs/foundations-typography--docs) - Tipografia
+- [Spacing](/?path=/docs/foundations-spacing--docs) - Espaçamento
+- [Icons](/?path=/docs/foundations-icons--docs) - Ícones Feather e Custom
+
+### 🔗 Links Externos
+
+- [GitHub Repository](https://github.com/fabioeducacross/design-system)
+- [NPM Package](https://github.com/fabioeducacross/packages/ui)
+- [Changelog](https://github.com/fabioeducacross/design-system/blob/main/CHANGELOG.md)
+- [Contributing Guide](https://github.com/fabioeducacross/design-system/blob/main/CONTRIBUTING.md)
+
+---
+
+## Suporte
+
+Para dúvidas, bugs ou sugestões:
+
+- 🐛 [Issues no GitHub](https://github.com/fabioeducacross/design-system/issues)
+- 💬 [Discussions](https://github.com/fabioeducacross/design-system/discussions)
+- 📧 Email: dev@educacross.com
+
+---
+
+**Versão da Documentação:** v0.2.0  
+**Última atualização:** 2024

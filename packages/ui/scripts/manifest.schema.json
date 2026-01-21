@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com.br/schemas/manifest.json",
+  "title": "Component Manifest Schema",
+  "description": "Schema para validação do manifest.json do Design System Educacross",
+  "type": "object",
+  "required": ["name", "version", "description", "generatedAt", "totalComponents", "components"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nome do pacote NPM",
+      "pattern": "^@[a-z0-9-]+/[a-z0-9-]+$",
+      "examples": ["@fabioeducacross/ui"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Versão semântica do pacote",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-z0-9.]+)?$",
+      "examples": ["0.2.0", "1.0.0-beta.1"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrição do Design System",
+      "minLength": 10,
+      "maxLength": 200
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "Timestamp ISO 8601 da geração",
+      "format": "date-time"
+    },
+    "totalComponents": {
+      "type": "integer",
+      "description": "Total de componentes no manifest",
+      "minimum": 1
+    },
+    "components": {
+      "type": "array",
+      "description": "Lista de componentes com metadados",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/component"
+      }
+    }
+  },
+  "definitions": {
+    "component": {
+      "type": "object",
+      "required": ["name", "category", "path", "hasVariants", "hasTests", "hasStories", "hasReadme", "exports"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nome do componente",
+          "pattern": "^[A-Z][a-zA-Z0-9]*$",
+          "examples": ["Button", "Logo", "Card"]
+        },
+        "category": {
+          "type": "string",
+          "description": "Categoria do componente",
+          "enum": ["layout", "forms", "display", "feedback", "overlay", "navigation", "theme", "icons"]
+        },
+        "path": {
+          "type": "string",
+          "description": "Caminho relativo do componente",
+          "pattern": "^\\./components/[A-Z][a-zA-Z0-9]*$"
+        },
+        "hasVariants": {
+          "type": "boolean",
+          "description": "Se o componente possui variantes CVA"
+        },
+        "hasTests": {
+          "type": "boolean",
+          "description": "Se existe arquivo .test.tsx"
+        },
+        "hasStories": {
+          "type": "boolean",
+          "description": "Se existe arquivo .stories.tsx no Storybook"
+        },
+        "hasReadme": {
+          "type": "boolean",
+          "description": "Se existe README.md no diretório do componente"
+        },
+        "exports": {
+          "type": "array",
+          "description": "Lista de exports do componente",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][a-zA-Z0-9]*$"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}
