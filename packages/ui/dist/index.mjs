@@ -1275,6 +1275,9 @@ var formFieldVariants = cva8("space-y-2", {
   variants: {
     /**
      * Tamanho do campo (afeta label, helper text e espaçamento)
+     * - sm: Campos compactos, ideal para checkboxes e formulários densos
+     * - md: Tamanho padrão, uso geral
+     * - lg: Campos de destaque, maior legibilidade
      */
     size: {
       sm: "space-y-1",
@@ -1283,8 +1286,8 @@ var formFieldVariants = cva8("space-y-2", {
     },
     /**
      * Layout do campo
-     * - vertical: label acima do input (padrão)
-     * - horizontal: label ao lado do input (útil para checkboxes inline)
+     * - vertical: Label acima do input (padrão, uso geral)
+     * - horizontal: Label ao lado do input (ideal para checkboxes inline)
      */
     layout: {
       vertical: "flex flex-col",
@@ -1312,7 +1315,7 @@ var formFieldLabelVariants = cva8(
       layout: {
         vertical: "block",
         horizontal: "inline-flex pt-2"
-        // Alinha com input
+        // Alinha verticalmente com input
       },
       disabled: {
         true: "cursor-not-allowed opacity-70",

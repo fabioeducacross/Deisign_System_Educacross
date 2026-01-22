@@ -66,7 +66,6 @@ export function RegistrationFormExample() {
     resolver: zodResolver(registrationSchema),
     mode: "onTouched",
     defaultValues: {
-      terms: false,
       newsletter: false,
     },
   });
