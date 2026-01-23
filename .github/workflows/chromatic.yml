@@ -1,0 +1,45 @@
+name: Chromatic Visual Testing
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  chromatic:
+    name: Visual Testing
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Histórico completo para comparação de diffs
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Build pacotes
+        run: pnpm build
+
+      - name: Publicar no Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true  # Não falha CI se houver mudanças visuais
+          exitOnceUploaded: true   # Não espera aprovação manual em PRs
+          onlyChanged: true        # Testa apenas stories modificadas
+          autoAcceptChanges: master # Auto-aprova builds na branch master

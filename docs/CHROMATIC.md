@@ -76,7 +76,75 @@ pnpm exec chromatic --project-token=chpt_84de3749269a39d --exit-once-uploaded
 
 ## Workflow CI/CD
 
-### GitHub Actions (Recomendado)
+### ✅ GitHub Actions Configurado
+
+O workflow está configurado em `.github/workflows/chromatic.yml` e roda automaticamente em:
+- ✅ Push para branch `master` (auto-aprova mudanças)
+- ✅ Pull Requests (envia status check)
+
+**Configuração atual:**
+```yaml
+name: Chromatic Visual Testing
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true
+          exitOnceUploaded: true
+          onlyChanged: true
+          autoAcceptChanges: master
+```
+
+### 🔐 Setup do Secret
+
+**Passo 1**: Adicione o secret no GitHub Repository:
+1. Vá em **Settings** → **Secrets and variables** → **Actions**
+2. Clique em **New repository secret**
+3. Nome: `CHROMATIC_PROJECT_TOKEN`
+4. Valor: `chpt_84de3749269a39d`
+5. Salve
+
+**Passo 2**: Commit e push
+```bash
+git add .github/
+git commit -m "ci: adiciona workflow Chromatic"
+git push
+```
+
+O workflow será executado automaticamente no próximo push!
+
+### 📋 Opções do Workflow
+
+| Opção | Descrição |
+|-------|-----------|
+| `exitZeroOnChanges: true` | CI não falha se houver mudanças visuais |
+| `exitOnceUploaded: true` | Não espera aprovação manual (ideal para PRs) |
+| `onlyChanged: true` | Testa apenas stories modificadas (mais rápido) |
+| `autoAcceptChanges: master` | Auto-aprova builds na branch master |
+
+### GitHub Actions (Manual - para referência)
 
 Crie `.github/workflows/chromatic.yml`:
 
