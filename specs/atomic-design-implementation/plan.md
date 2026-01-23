@@ -29,7 +29,7 @@ Implementar **arquitetura completa de componentes** no modelo **Atomic Design** 
 **Testing**: 
 - Vitest (testes unitários)
 - Testing Library (testes de componentes)
-- Storybook 8 (testes visuais + play functions)
+- Storybook 10 (testes visuais + play functions)
 - Playwright (opcional, testes E2E)
 
 **Target Platform**: Web (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)  
@@ -158,7 +158,7 @@ Design_System_Educacross/
 │       ├── package.json
 │       └── tsup.config.ts
 ├── apps/
-│   └── storybook/              # Documentação Storybook 8
+│   └── storybook/              # Documentação Storybook 10
 │       └── stories/
 │           ├── components/
 │           │   ├── FormField.stories.tsx    # 🆕 Story

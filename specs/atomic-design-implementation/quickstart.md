@@ -487,7 +487,7 @@ Agora que FormField está funcionando, siga os mesmos passos para:
 - [Zod](https://zod.dev/) — Schema validation
 - [Radix UI](https://www.radix-ui.com/) — Accessible primitives
 - [CVA](https://cva.style/docs) — Variant classes
-- [Storybook 8](https://storybook.js.org/docs) — Component documentation
+- [Storybook 10](https://storybook.js.org/docs) — Component documentation
 
 ### Design System Interno
 

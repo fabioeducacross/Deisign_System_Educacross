@@ -124,7 +124,7 @@ Criar um **Design System completo** baseado em React, TypeScript, Tailwind CSS e
 |----|-----------|--------|
 | FR-5.1 | Monorepo pnpm + Turborepo | ✅ Done |
 | FR-5.2 | Build ESM + CJS + DTS | ✅ Done |
-| FR-5.3 | Storybook 8 com addons | ✅ Done |
+| FR-5.3 | Storybook 10 com addons | ✅ Done |
 | FR-5.4 | TypeScript strict mode | ✅ Done |
 | FR-5.5 | Tailwind preset com tokens | ✅ Done |
 
@@ -173,7 +173,7 @@ Criar um **Design System completo** baseado em React, TypeScript, Tailwind CSS e
 ### 6.2 Development
 - `typescript`: ^5.0.0
 - `tailwindcss`: ^3.4.0
-- `storybook`: ^8.0.0
+- `storybook`: ^10.1.11
 - `tsup`: Bundling
 - `vitest`: Testes (pendente)
 

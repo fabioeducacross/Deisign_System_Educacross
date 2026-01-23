@@ -11,7 +11,7 @@ Sistema de design em código para reduzir inconsistências visuais, acelerar des
 - **Tailwind CSS 3.4+** - Styling com utility classes
 - **Radix UI** - Primitivos acessíveis
 - **shadcn/ui patterns** - Componentes customizáveis
-- **Storybook 8** - Documentação e playground
+- **Storybook 10** - Documentação e playground
 - **pnpm** - Package manager
 - **Turborepo** - Monorepo build system
 

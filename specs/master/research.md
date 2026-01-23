@@ -138,7 +138,7 @@ Pesquisa técnica validou todas as escolhas de stack para o Design System Educac
 
 ## R-7: Documentation
 
-### Decision: Storybook 8
+### Decision: Storybook 10
 
 **Rationale:**
 - Autodocs para documentação automática
