@@ -1,0 +1,48 @@
+feat(DataTable): adiciona seleção de linhas e row actions (T9)
+
+FEATURES PRINCIPAIS:
+- Row selection com checkboxes (single/multi via TanStack Table)
+- Coluna de seleção com checkbox select all no header
+- DataTableRowActions: Dropdown com ações contextuais por linha
+- Helpers utilitários para gerenciamento de seleção
+
+COMPONENTS CRIADOS:
+1. helpers.tsx:
+   - createSelectColumn Factory para coluna de checkboxes
+   - getSelectedRows getSelectedRowIds Obter linhas selecionadas
+   - clearRowSelection toggleAllRowsSelection Controle de seleção
+   - executeBulkAction Executar ação em massa com Promise.all
+   - RowAction type Interface para ações customizadas
+
+2. DataTableRowActions.tsx:
+   - Dropdown com MoreHorizontal ícone
+   - Suporta ícones labels e disabled condicional
+   - Separador automático antes de ações destructive
+   - Renderiza apenas ações disponíveis não disabled
+
+TESTS:
+- helpers.test.tsx 19 testes createSelectColumn selection helpers bulk actions
+- DataTableRowActions.test.tsx 17 testes renderização menu labels a11y edge cases
+
+EXPORTS:
+- DataTable/index.ts Exporta helpers DataTableRowActions e RowAction type
+- src/index.ts Exporta todos os helpers e componentes de seleção
+
+ARCHITECTURE:
+- Integração TanStack Table enableRowSelection onRowSelectionChange
+- Type-safe com generics RowAction<TData> createSelectColumn<TData>
+- Checkbox component usado para seleção onChange
+- DropdownMenu usado para row actions menu
+
+ACCESSIBILITY:
+- aria-labels em checkboxes select all e por linha
+- aria-label em botão de ações
+- Suporte a navegação por teclado via DropdownMenu
+
+BUILD:
+- Build TypeScript validado
+- Sem erros de tipo
+- 36 testes passando 19 helpers + 17 row actions
+
+PRÓXIMO:
+- T10 DataTable Estados e Loading Skeleton Empty States Error Boundaries

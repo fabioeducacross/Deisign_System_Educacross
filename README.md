@@ -110,6 +110,9 @@ pnpm storybook          # Storybook em http://localhost:6006
 pnpm build              # Build de todos os pacotes
 pnpm build:storybook    # Build do Storybook
 
+# Visual Testing
+pnpm chromatic          # Publica no Chromatic para visual testing
+
 # Qualidade
 pnpm lint               # ESLint
 pnpm typecheck          # TypeScript
@@ -121,6 +124,14 @@ pnpm test:coverage      # Cobertura de testes
 # Limpeza
 pnpm clean              # Remove dist e node_modules
 ```
+
+## Links Rápidos
+
+- 📚 **[Storybook Publicado](https://69727df0ab06437ceb56a008-gvenynqzgl.chromatic.com/)** - Visualize todos os componentes
+- 🎨 **[Chromatic](https://www.chromatic.com/setup?appId=69727df0ab06437ceb56a008)** - Visual testing e snapshots
+- 📖 **[Guia de Uso](./USAGE.md)** - Como instalar e usar o Design System
+- 🤝 **[Como Contribuir](./CONTRIBUTING.md)** - Guidelines para contribuidores
+- 🚀 **[Configuração Chromatic](./docs/CHROMATIC.md)** - Setup de visual testing
 
 ## Componentes MVP
 

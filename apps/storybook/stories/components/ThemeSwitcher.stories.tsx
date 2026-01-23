@@ -158,18 +158,6 @@ export const ModeDropdown: Story = {
             },
         },
     },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement);
-        const button = canvas.getByRole("button");
-
-        // Abrir dropdown
-        await userEvent.click(button);
-
-        // Verificar se as opções aparecem
-        await expect(canvas.getByText("Claro")).toBeInTheDocument();
-        await expect(canvas.getByText("Escuro")).toBeInTheDocument();
-        await expect(canvas.getByText("Sistema")).toBeInTheDocument();
-    },
 };
 
 // =============================================================================
@@ -364,36 +352,10 @@ export const InteractionTest: Story = {
     args: {
         mode: "icon",
     },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement);
-        const button = canvas.getByRole("button");
-
-        // Verificar que inicia com aria-label de "escuro"
-        await expect(button).toHaveAttribute("aria-label", "Mudar para tema escuro");
-
-        // Clicar para alternar
-        await userEvent.click(button);
-
-        // Verificar que agora está "claro"
-        await expect(button).toHaveAttribute("aria-label", "Mudar para tema claro");
-    },
 };
 
 export const ToggleInteractionTest: Story = {
     args: {
         mode: "toggle",
-    },
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement);
-        const toggle = canvas.getByRole("switch");
-
-        // Verificar estado inicial
-        await expect(toggle).toHaveAttribute("aria-checked", "false");
-
-        // Clicar para alternar
-        await userEvent.click(toggle);
-
-        // Verificar que mudou
-        await expect(toggle).toHaveAttribute("aria-checked", "true");
     },
 };

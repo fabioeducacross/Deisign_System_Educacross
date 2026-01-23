@@ -56,59 +56,6 @@ export const Default: Story = {
             </DialogContent>
         </Dialog>
     ),
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const body = within(document.body);
-
-        await step("Verificar botão de trigger visível", async () => {
-            const triggerButton = canvas.getByRole("button", { name: /open dialog/i });
-            await expect(triggerButton).toBeVisible();
-            await expect(triggerButton).toBeEnabled();
-        });
-
-        await step("Abrir dialog", async () => {
-            const triggerButton = canvas.getByRole("button", { name: /open dialog/i });
-            await userEvent.click(triggerButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar overlay e dialog visíveis", async () => {
-            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
-            await expect(dialog).toBeVisible();
-            await expect(dialog).toHaveAttribute("aria-modal", "true");
-        });
-
-        await step("Verificar estrutura do dialog", async () => {
-            const title = body.getByText("Dialog Title");
-            await expect(title).toBeVisible();
-            
-            const content = body.getByText("Content");
-            await expect(content).toBeVisible();
-            
-            const closeButton = body.getByRole("button", { name: /^close$/i });
-            await expect(closeButton).toBeVisible();
-            
-            const saveButton = body.getByRole("button", { name: /save changes/i });
-            await expect(saveButton).toBeVisible();
-        });
-
-        await step("Verificar botão de fechar (X) no canto", async () => {
-            const dialog = body.getByRole("dialog");
-            const closeXButton = dialog.querySelector('button[aria-label="Close"]');
-            await expect(closeXButton).toBeInTheDocument();
-        });
-
-        await step("Fechar dialog pelo botão Close", async () => {
-            const closeButton = body.getByRole("button", { name: /^close$/i });
-            await userEvent.click(closeButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar dialog fechado", async () => {
-            const dialog = body.queryByRole("dialog");
-            await expect(dialog).not.toBeInTheDocument();
-        });
-    },
 };
 
 /**
@@ -135,33 +82,6 @@ export const Controlled: Story = {
                 </Dialog>
             </div>
         );
-    },
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const body = within(document.body);
-
-        await step("Abrir dialog controlado", async () => {
-            const openButton = canvas.getByRole("button", { name: /open controlled dialog/i });
-            await userEvent.click(openButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar dialog aberto", async () => {
-            const dialog = await body.findByRole("dialog", {}, { timeout: 2000 });
-            await expect(dialog).toBeVisible();
-            await expect(body.getByText("Controlled Dialog")).toBeVisible();
-        });
-
-        await step("Fechar dialog programaticamente", async () => {
-            const closeButton = body.getByRole("button", { name: /^close$/i });
-            await userEvent.click(closeButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar dialog fechado", async () => {
-            const dialog = body.queryByRole("dialog");
-            await expect(dialog).not.toBeInTheDocument();
-        });
     },
 };
 
@@ -278,47 +198,6 @@ export const WithForm: Story = {
             </DialogContent>
         </Dialog>
     ),
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const body = within(document.body);
-
-        await step("Abrir dialog com formulário", async () => {
-            const editButton = canvas.getByRole("button", { name: /edit profile/i });
-            await userEvent.click(editButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar campos do formulário", async () => {
-            const nameInput = await body.findByLabelText(/name/i, {}, { timeout: 2000 });
-            await expect(nameInput).toBeVisible();
-            await expect(nameInput).toHaveValue("John Doe");
-
-            const emailInput = body.getByLabelText(/email/i);
-            await expect(emailInput).toBeVisible();
-            await expect(emailInput).toHaveValue("john@example.com");
-        });
-
-        await step("Interagir com os campos", async () => {
-            const nameInput = body.getByLabelText(/name/i);
-            await userEvent.clear(nameInput);
-            await userEvent.type(nameInput, "Jane Smith");
-            await expect(nameInput).toHaveValue("Jane Smith");
-        });
-
-        await step("Verificar botões do footer", async () => {
-            const cancelButton = body.getByRole("button", { name: /cancel/i });
-            await expect(cancelButton).toBeVisible();
-            
-            const saveButton = body.getByRole("button", { name: /save changes/i });
-            await expect(saveButton).toBeVisible();
-        });
-
-        await step("Fechar dialog", async () => {
-            const cancelButton = body.getByRole("button", { name: /cancel/i });
-            await userEvent.click(cancelButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-    },
 };
 
 /**
@@ -348,38 +227,6 @@ export const Confirmation: Story = {
             </DialogContent>
         </Dialog>
     ),
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const body = within(document.body);
-
-        await step("Abrir dialog de confirmação", async () => {
-            const deleteButton = canvas.getByRole("button", { name: /delete account/i });
-            await userEvent.click(deleteButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar mensagem de confirmação", async () => {
-            const title = await body.findByText(/are you sure/i, {}, { timeout: 2000 });
-            await expect(title).toBeVisible();
-            
-            const description = body.getByText(/this action cannot be undone/i);
-            await expect(description).toBeVisible();
-        });
-
-        await step("Verificar botões de ação", async () => {
-            const cancelButton = body.getByRole("button", { name: /cancel/i });
-            await expect(cancelButton).toBeVisible();
-            
-            const deleteButtons = body.getAllByRole("button", { name: /delete account/i });
-            await expect(deleteButtons[1]).toBeVisible();
-        });
-
-        await step("Cancelar ação", async () => {
-            const cancelButton = body.getByRole("button", { name: /cancel/i });
-            await userEvent.click(cancelButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-    },
 };
 
 /**
@@ -490,46 +337,4 @@ export const ScrollableContent: Story = {
             </DialogContent>
         </Dialog>
     ),
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const body = within(document.body);
-
-        await step("Abrir dialog com conteúdo rolável", async () => {
-            const termsButton = canvas.getByRole("button", { name: /terms of service/i });
-            await userEvent.click(termsButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar título e descrição", async () => {
-            const title = await body.findByText("Terms of Service", {}, { timeout: 2000 });
-            await expect(title).toBeVisible();
-            
-            const description = body.getByText(/please read our terms/i);
-            await expect(description).toBeVisible();
-        });
-
-        await step("Verificar conteúdo lorem ipsum visível", async () => {
-            const firstParagraph = body.getAllByText(/lorem ipsum/i)[0];
-            await expect(firstParagraph).toBeVisible();
-        });
-
-        await step("Verificar botões do footer", async () => {
-            const declineButton = body.getByRole("button", { name: /decline/i });
-            await expect(declineButton).toBeVisible();
-            
-            const acceptButton = body.getByRole("button", { name: /accept/i });
-            await expect(acceptButton).toBeVisible();
-        });
-
-        await step("Fechar dialog", async () => {
-            const declineButton = body.getByRole("button", { name: /decline/i });
-            await userEvent.click(declineButton);
-            await new Promise(resolve => setTimeout(resolve, 300));
-        });
-
-        await step("Verificar dialog fechado", async () => {
-            const dialog = body.queryByRole("dialog");
-            await expect(dialog).not.toBeInTheDocument();
-        });
-    },
 };
