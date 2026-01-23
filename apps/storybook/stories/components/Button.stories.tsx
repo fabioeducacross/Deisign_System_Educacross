@@ -16,7 +16,7 @@ O **Button** é o componente principal para ações e interações do usuário.
 - ✅ 11 variantes visuais (incluindo as do Design System Figma)
 - ✅ 4 tamanhos
 - ✅ Estado de loading com spinner
-- ✅ Suporte a \`asChild\` para composição
+- ✅ Suporte a asChild para composição
 - ✅ Acessível: navegação por teclado, foco visível, aria-attributes
 - ✅ Tokens semânticos do Figma
 
