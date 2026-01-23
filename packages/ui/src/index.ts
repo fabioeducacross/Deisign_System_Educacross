@@ -68,8 +68,10 @@ export {
 export {
   DataTable,
   DataTablePagination,
+  DataTableToolbar,
   type DataTableProps,
   type DataTablePaginationProps,
+  type DataTableToolbarProps,
 } from "./components/DataTable";
 
 // Theme
