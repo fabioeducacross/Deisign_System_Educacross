@@ -620,16 +620,3 @@ import { EdBadge } from "@fabioeducacross/ui-vue3";
         },
     },
 };
-                <Badge variant="default">New</Badge>
-            </div>
-            <div className="flex items-center justify-between rounded-lg border p-3">
-                <span>Bug Fix</span>
-                <Badge variant="success">Resolved</Badge>
-            </div>
-            <div className="flex items-center justify-between rounded-lg border p-3">
-                <span>Documentation</span>
-                <Badge variant="secondary">In Progress</Badge>
-            </div>
-        </div>
-    ),
-};

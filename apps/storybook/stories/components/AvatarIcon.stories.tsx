@@ -365,4 +365,3 @@ import { EdAvatar, EdAvatarFallback, EdAvatarIcon } from "@fabioeducacross/ui-vu
         },
     },
 };
-};

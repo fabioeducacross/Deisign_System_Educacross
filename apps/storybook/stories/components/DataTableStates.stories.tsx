@@ -447,6 +447,67 @@ export const LoadingComplete: Story = {
 <DataTableSkeleton 
   showToolbar 
   showPagination 
+  rows={8} 
+  columns={6} 
+/>`,
+      vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="p-3">
+    <!-- Toolbar skeleton -->
+    <div class="d-flex justify-content-between align-items-center mb-3 placeholder-glow">
+      <span class="placeholder" style="width: 200px; height: 40px;"></span>
+      <span class="placeholder" style="width: 100px; height: 40px;"></span>
+    </div>
+    
+    <!-- Table skeleton -->
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th v-for="col in 6" :key="col">
+              <span class="placeholder col-12"></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in 8" :key="row">
+            <td v-for="col in 6" :key="col">
+              <span class="placeholder col-12"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination skeleton -->
+    <div class="d-flex justify-content-between align-items-center mt-3 placeholder-glow">
+      <span class="placeholder" style="width: 150px; height: 36px;"></span>
+      <span class="placeholder" style="width: 200px; height: 36px;"></span>
+    </div>
+  </div>
+</template>`,
+      vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdDataTableSkeleton 
+    :show-toolbar="true" 
+    :show-pagination="true" 
+    :rows="8" 
+    :columns="6" 
+  />
+</template>
+
+<script setup lang="ts">
+import { EdDataTableSkeleton } from "@fabioeducacross/ui-vue3";
+</script>`,
+    },
+  },
+};
+
+/**
+ * Skeleton compacto (2 colunas, 3 linhas).
+ */
+export const LoadingCompact: Story = {
+  render: () => <DataTableSkeleton rows={3} columns={2} showHeader={false} />,
   parameters: {
     multiFrameworkCode: {
       react: `import { DataTableSkeleton } from "@fabioeducacross/ui";
@@ -488,42 +549,13 @@ import { EdDataTableSkeleton } from "@fabioeducacross/ui-vue3";
 </script>`,
     },
   },
-  rows={8} 
-  columns={6} 
-/>`,
-      vue2: `<!-- Exemplo conceitual com Bootstrap -->
-<template>
-  <div>
-    <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
-      <div class="placeholder-glow" style="width: 200px">
-        <span class="placeholder col-12"></span>
-      </div>
-      <div class="placeholder-glow" style="width: 100px">
-        <span class="placeholder col-12"></span>
-      </div>
-    </div>
-    
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th v-for="i in 6" :key="i">
-              <div class="placeholder-glow">
-                <span class="placeholder col-12"></span>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="row in 8" :key="row">
-            <td v-for="col in 6" :key="col">
-              <div class="placeholder-glow">
-                <span class="placeholder col-12"></span>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+};
+
+/**
+ * Skeleton com altura customizada.
+ */
+export const LoadingTall: Story = {
+  render: () => <DataTableSkeleton rows={5} columns={4} rowHeight="h-16" />,
   parameters: {
     multiFrameworkCode: {
       react: `import { DataTableSkeleton } from "@fabioeducacross/ui";
@@ -574,47 +606,6 @@ import { EdDataTableSkeleton } from "@fabioeducacross/ui-vue3";
 </script>`,
     },
   },
-    </div>
-    
-    <div class="d-flex justify-content-between p-3 border-top">
-      <div class="placeholder-glow" style="width: 150px">
-        <span class="placeholder col-12"></span>
-      </div>
-      <div class="placeholder-glow" style="width: 200px">
-        <span class="placeholder col-12"></span>
-      </div>
-    </div>
-  </div>
-</template>`,
-      vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
-<template>
-  <EdDataTableSkeleton 
-    :show-toolbar="true" 
-    :show-pagination="true" 
-    :rows="8" 
-    :columns="6" 
-  />
-</template>
-
-<script setup lang="ts">
-import { EdDataTableSkeleton } from "@fabioeducacross/ui-vue3";
-</script>`,
-    },
-  },
-};
-
-/**
- * Skeleton compacto (2 colunas, 3 linhas).
- */
-export const LoadingCompact: Story = {
-  render: () => <DataTableSkeleton rows={3} columns={2} showHeader={false} />,
-};
-
-/**
- * Skeleton com altura customizada.
- */
-export const LoadingTall: Story = {
-  render: () => <DataTableSkeleton rows={5} columns={4} rowHeight="h-16" />,
 };
 
 /**
