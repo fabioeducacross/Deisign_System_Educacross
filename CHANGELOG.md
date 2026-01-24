@@ -15,15 +15,31 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - `DataTableStates` - 10 stories para empty states e loading skeletons
   - NoData, NoResults, Error, CustomContent, WithSecondaryAction
   - LoadingDefault, LoadingComplete, LoadingCompact, LoadingTall, StateTransition
+- **Player** - Componente de áudio com 7 stories
+  - Controles nativos, título ReactNode, download, autoplay, loop
+- **9 Componentes Frontoffice** - ChartDefault, ChartBar, ChartPie, ChartRadialBar, RangeProgressBar, ProgressStat, RainbowProgressBar, LegendCard, LegendEnum
+  - Integração com ApexCharts 4.0 e react-apexcharts 1.9
 
 ### Changed
 - Storybook atualizado para v10.1.11 com suporte a `multiFrameworkCode` no parameters
 - Todas stories agora exibem 3 abas de código (React/Vue 2/Vue 3) na documentação
 - Componentes LOW priority completos: Card (3), Alert (4), Toast (3), Tooltip (3), Header (3), Logo (3)
+- **TypeScript Strict Types**: Eliminados todos os 26 warnings de `@typescript-eslint/no-explicit-any`
+  - types/common.ts e types/utils.ts: Funções genéricas com `unknown[]` ao invés de `any[]`
+  - DataTable helpers: Tipado `Row<TData>` importado de @tanstack/react-table
+  - CustomIcon: Tipado `React.ForwardedRef<HTMLImageElement>` e props específicas
+  - ChartBar: Tipado formatter com `opts?: { dataPointIndex?: number }`
+  - Testes: Interfaces completas `Manifest`, `Tokens`, `ManifestComponent` com todas as propriedades
 
 ### Fixed
 - Correções de sintaxe em AvatarIcon, Badge e DataTableStates stories
 - Resolução de erros de parse em hot reload do Storybook
+- **Build DTS**: Corrigidos erros de tipo ApexCharts no ChartBar para build passar
+  - Formatter de tooltip.x agora aceita `number` conforme spec
+  - Removido `yaxis.position` (propriedade inexistente em ApexYAxis)
+  - Refatorado useMemo para tipagem explícita dentro da função
+- **Lint**: 8 unused variables em testes corrigidos
+- **Typecheck**: 12 erros de interface em testes corrigidos
 
 ## [0.1.0] - 2026-01-06
 

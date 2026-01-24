@@ -4,7 +4,7 @@
  */
 
 import * as React from "react";
-import type { ColumnDef, Table } from "@tanstack/react-table";
+import type { ColumnDef, Table, Row } from "@tanstack/react-table";
 import { Checkbox } from "../Checkbox";
 
 // ============================================================================
@@ -91,7 +91,7 @@ export function createSelectColumn<TData>(
       );
     },
     // Cell com checkbox individual
-    cell: ({ row }: { row: any }) => {
+    cell: ({ row }: { row: Row<TData> }) => {
       return (
         <div className="flex items-center justify-center">
           <Checkbox

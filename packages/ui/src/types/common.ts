@@ -177,7 +177,7 @@ export function isReactElement(value: unknown): value is React.ReactElement {
 /**
  * Guard de tipo para verificar se valor é função
  */
-export function isFunction<T extends (...args: any[]) => any>(
+export function isFunction<T extends (...args: unknown[]) => unknown>(
   value: unknown
 ): value is T {
   return typeof value === "function";

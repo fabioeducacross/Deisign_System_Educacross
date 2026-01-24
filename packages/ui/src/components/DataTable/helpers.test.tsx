@@ -87,7 +87,7 @@ describe("createSelectColumn", () => {
   it("header retorna null quando enableSelectAll é false", () => {
     const column = createSelectColumn<MockUser>({ enableSelectAll: false });
     const mockTable = createMockTable([]);
-    const header = column.header?.({ table: mockTable } as any);
+    const header = column.header?.({ table: mockTable, column: {} as Column<MockUser, unknown>, header: {} as Header<MockUser, unknown> });
     expect(header).toBeNull();
   });
 });

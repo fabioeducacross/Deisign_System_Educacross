@@ -10,14 +10,29 @@ import * as path from "path";
 
 const MANIFEST_PATH = path.join(__dirname, "../../dist/manifest.json");
 
+interface ManifestComponent {
+    name: string;
+    category: string;
+    exports: string[];
+    path: string;
+}
+
+interface Manifest {
+    name: string;
+    components: ManifestComponent[];
+    totalComponents: number;
+    version: string;
+    generatedAt: string;
+}
+
 describe("generate-manifest", () => {
-    let manifest: any;
+    let manifest: Manifest;
 
     beforeAll(() => {
         // Lê o manifest gerado
         if (fs.existsSync(MANIFEST_PATH)) {
             const content = fs.readFileSync(MANIFEST_PATH, "utf-8");
-            manifest = JSON.parse(content);
+            manifest = JSON.parse(content) as Manifest;
         }
     });
 
@@ -83,15 +98,15 @@ describe("generate-manifest", () => {
         });
 
         it("deve incluir Logo", () => {
-            const logo = manifest.components.find((c: any) => c.name === "Logo");
+            const logo = manifest.components.find((c) => c.name === "Logo");
             expect(logo).toBeDefined();
-            expect(logo.category).toBe("layout");
+            expect(logo?.category).toBe("layout");
         });
 
         it("deve incluir Button", () => {
-            const button = manifest.components.find((c: any) => c.name === "Button");
+            const button = manifest.components.find((c) => c.name === "Button");
             expect(button).toBeDefined();
-            expect(button.category).toBe("forms");
+            expect(button?.category).toBe("forms");
         });
     });
 
@@ -115,7 +130,7 @@ describe("generate-manifest", () => {
 
         it("deve ter componentes em múltiplas categorias", () => {
             const categories = new Set(
-                manifest.components.map((c: any) => c.category)
+                manifest.components.map((c) => c.category)
             );
             expect(categories.size).toBeGreaterThanOrEqual(5);
         });

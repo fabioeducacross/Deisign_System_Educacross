@@ -10,14 +10,28 @@ import * as path from "path";
 
 const TOKENS_PATH = path.join(__dirname, "../../dist/tokens.json");
 
+interface Token {
+    name: string;
+    value: string;
+    type: string;
+    cssVar?: string;
+}
+
+interface Tokens {
+    tokens: Record<string, Token[]>;
+    totalTokens: number;
+    version: string;
+    generatedAt: string;
+}
+
 describe("generate-tokens", () => {
-    let tokens: any;
+    let tokens: Tokens;
 
     beforeAll(() => {
         // Lê os tokens gerados
         if (fs.existsSync(TOKENS_PATH)) {
             const content = fs.readFileSync(TOKENS_PATH, "utf-8");
-            tokens = JSON.parse(content);
+            tokens = JSON.parse(content) as Tokens;
         }
     });
 
@@ -72,7 +86,7 @@ describe("generate-tokens", () => {
 
         it("tokens devem ter cssVar quando aplicável", () => {
             for (const tokenCategory of Object.values(tokens.tokens)) {
-                for (const token of tokenCategory as any[]) {
+                for (const token of tokenCategory) {
                     if (token.cssVar) {
                         expect(token.cssVar).toMatch(/^var\(--[\w-]+\)$/);
                     }
@@ -94,7 +108,7 @@ describe("generate-tokens", () => {
 
         it("nomes de tokens não devem ter prefixo --", () => {
             for (const tokenCategory of Object.values(tokens.tokens)) {
-                for (const token of tokenCategory as any[]) {
+                for (const token of tokenCategory) {
                     expect(token.name).not.toMatch(/^--/);
                 }
             }
@@ -102,7 +116,7 @@ describe("generate-tokens", () => {
 
         it("valores não devem estar vazios", () => {
             for (const tokenCategory of Object.values(tokens.tokens)) {
-                for (const token of tokenCategory as any[]) {
+                for (const token of tokenCategory) {
                     expect(token.value).toBeTruthy();
                     expect(token.value.length).toBeGreaterThan(0);
                 }
@@ -113,7 +127,7 @@ describe("generate-tokens", () => {
     describe("Tokens específicos", () => {
         it("deve incluir token primary", () => {
             const primary = tokens.tokens.colors.find(
-                (t: any) => t.name === "primary" || t.name.includes("primary")
+                (t) => t.name === "primary" || t.name.includes("primary")
             );
             expect(primary).toBeDefined();
         });
@@ -126,7 +140,7 @@ describe("generate-tokens", () => {
             const validTypes = ["color", "spacing", "radius", "typography", "shadow", "other"];
 
             for (const tokenCategory of Object.values(tokens.tokens)) {
-                for (const token of tokenCategory as any[]) {
+                for (const token of tokenCategory) {
                     expect(validTypes).toContain(token.type);
                 }
             }

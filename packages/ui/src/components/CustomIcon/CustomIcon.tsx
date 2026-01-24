@@ -253,11 +253,11 @@ export const CustomIcon = React.forwardRef<SVGSVGElement, CustomIconProps>(
 
         return (
             <img
-                ref={ref as any}
+                ref={ref as React.ForwardedRef<HTMLImageElement>}
                 src={iconPath}
                 alt={name}
                 className={cn(customIconVariants({ size, variant }), className)}
-                {...(props as any)}
+                {...(props as React.ImgHTMLAttributes<HTMLImageElement>)}
             />
         );
     }

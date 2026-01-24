@@ -77,7 +77,7 @@ export type Without<T, K extends keyof T> = Omit<T, K>;
  * type ButtonProps = PropsOf<typeof Button>; // { label: string; onClick: () => void }
  */
 export type PropsOf<
-  T extends React.ComponentType<any> | keyof JSX.IntrinsicElements
+  T extends React.ComponentType<Record<string, unknown>> | keyof JSX.IntrinsicElements
 > = T extends React.ComponentType<infer P>
   ? P
   : T extends keyof JSX.IntrinsicElements
@@ -163,7 +163,7 @@ export type Merge<T, U> = Omit<T, keyof U> & U;
  * type Methods = FunctionKeys<User>; // "save" | "delete"
  */
 export type FunctionKeys<T> = {
-  [K in keyof T]: T[K] extends (...args: any[]) => any ? K : never;
+  [K in keyof T]: T[K] extends (...args: unknown[]) => unknown ? K : never;
 }[keyof T];
 
 /**
@@ -173,7 +173,7 @@ export type FunctionKeys<T> = {
  * type Data = NonFunctionKeys<User>; // "name" | "age"
  */
 export type NonFunctionKeys<T> = {
-  [K in keyof T]: T[K] extends (...args: any[]) => any ? never : K;
+  [K in keyof T]: T[K] extends (...args: unknown[]) => unknown ? never : K;
 }[keyof T];
 
 /**

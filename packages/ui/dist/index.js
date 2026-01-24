@@ -2933,8 +2933,8 @@ var ChartBar = React17.forwardRef(
           },
           x: {
             show: true,
-            formatter: (value, { dataPointIndex }) => {
-              return chartYLabels[dataPointIndex] ?? "";
+            formatter: (value, opts2) => {
+              return chartYLabels[opts2?.dataPointIndex ?? 0] ?? "";
             }
           }
         },

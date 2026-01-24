@@ -15,14 +15,34 @@ import { componentList, metadata } from "../metadata";
 const MANIFEST_PATH = path.join(__dirname, "../../dist/manifest.json");
 const INDEX_PATH = path.join(__dirname, "../index.ts");
 
+interface ManifestComponent {
+    name: string;
+    category: string;
+    hasTests?: boolean;
+    hasStories?: boolean;
+    hasReadme?: boolean;
+    hasVariants?: boolean;
+    exports: string[];
+    path: string;
+}
+
+interface Manifest {
+    name: string;
+    description: string;
+    components: ManifestComponent[];
+    totalComponents: number;
+    version: string;
+    generatedAt: string;
+}
+
 describe("Metadata Integration", () => {
-    let manifest: any;
+    let manifest: Manifest;
     let indexContent: string;
 
     beforeAll(() => {
         // Lê manifest gerado
         if (fs.existsSync(MANIFEST_PATH)) {
-            manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf-8"));
+            manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf-8")) as Manifest;
         }
 
         // Lê index.ts
@@ -102,7 +122,7 @@ describe("Metadata Integration", () => {
         it("componentes com variantes devem exportar *Variants", () => {
             for (const component of manifest.components) {
                 if (component.hasVariants) {
-                    const variantsExport = component.exports.some((e: string) =>
+                    const variantsExport = component.exports.some((e) =>
                         e.toLowerCase().includes("variants")
                     );
                     expect(variantsExport).toBe(true);
@@ -126,7 +146,7 @@ describe("Metadata Integration", () => {
     describe("Cobertura de documentação", () => {
         it("pelo menos 80% dos componentes devem ter testes", () => {
             const withTests = manifest.components.filter(
-                (c: any) => c.hasTests
+                (c) => c.hasTests
             ).length;
             const coverage = (withTests / manifest.totalComponents) * 100;
             expect(coverage).toBeGreaterThanOrEqual(80);
@@ -134,14 +154,14 @@ describe("Metadata Integration", () => {
 
         it("pelo menos 80% dos componentes devem ter stories", () => {
             const withStories = manifest.components.filter(
-                (c: any) => c.hasStories
+                (c) => c.hasStories
             ).length;
             const coverage = (withStories / manifest.totalComponents) * 100;
             expect(coverage).toBeGreaterThanOrEqual(80);
         });
 
         it("componentes novos (v0.2.0) devem ter README", () => {
-            const logo = manifest.components.find((c: any) => c.name === "Logo");
+            const logo = manifest.components.find((c) => c.name === "Logo");
             expect(logo?.hasReadme).toBe(true);
         });
     });

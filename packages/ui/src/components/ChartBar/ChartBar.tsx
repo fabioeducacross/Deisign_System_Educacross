@@ -91,8 +91,8 @@ export const ChartBar = React.forwardRef<HTMLDivElement, ChartBarProps>(
           },
           x: {
             show: true,
-            formatter: (value: number, { dataPointIndex }: any) => {
-              return chartYLabels[dataPointIndex] ?? "";
+            formatter: (value: number, opts?: { dataPointIndex?: number }) => {
+              return chartYLabels[opts?.dataPointIndex ?? 0] ?? "";
             },
           },
         },
