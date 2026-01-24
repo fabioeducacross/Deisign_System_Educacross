@@ -442,6 +442,110 @@ export const Selectable: Story = {
             </TableBody>
         </Table>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, Checkbox } from "@fabioeducacross/ui";
+
+const invoices = [
+  { invoice: "INV-001", status: "Paid", method: "Credit Card", amount: "$250.00" },
+  { invoice: "INV-002", status: "Pending", method: "PayPal", amount: "$150.00" },
+];
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[50px]"><Checkbox /></TableHead>
+      <TableHead>Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Method</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {invoices.map((invoice) => (
+      <TableRow key={invoice.invoice}>
+        <TableCell><Checkbox /></TableCell>
+        <TableCell className="font-medium">{invoice.invoice}</TableCell>
+        <TableCell>{invoice.status}</TableCell>
+        <TableCell>{invoice.method}</TableCell>
+        <TableCell className="text-right">{invoice.amount}</TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Table -->
+<template>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style="width: 50px">
+          <input type="checkbox" class="form-check-input">
+        </th>
+        <th>Invoice</th>
+        <th>Status</th>
+        <th>Method</th>
+        <th class="text-end">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="invoice in invoices" :key="invoice.invoice">
+        <td><input type="checkbox" class="form-check-input"></td>
+        <td class="fw-medium">{{ invoice.invoice }}</td>
+        <td>{{ invoice.status }}</td>
+        <td>{{ invoice.method }}</td>
+        <td class="text-end">{{ invoice.amount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      invoices: [
+        { invoice: 'INV-001', status: 'Paid', method: 'Credit Card', amount: '$250.00' },
+        { invoice: 'INV-002', status: 'Pending', method: 'PayPal', amount: '$150.00' },
+      ],
+    };
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdTable>
+    <EdTableHeader>
+      <EdTableRow>
+        <EdTableHead class="w-[50px]"><EdCheckbox /></EdTableHead>
+        <EdTableHead>Invoice</EdTableHead>
+        <EdTableHead>Status</EdTableHead>
+        <EdTableHead>Method</EdTableHead>
+        <EdTableHead class="text-right">Amount</EdTableHead>
+      </EdTableRow>
+    </EdTableHeader>
+    <EdTableBody>
+      <EdTableRow v-for="invoice in invoices" :key="invoice.invoice">
+        <EdTableCell><EdCheckbox /></EdTableCell>
+        <EdTableCell class="font-medium">{{ invoice.invoice }}</EdTableCell>
+        <EdTableCell>{{ invoice.status }}</EdTableCell>
+        <EdTableCell>{{ invoice.method }}</EdTableCell>
+        <EdTableCell class="text-right">{{ invoice.amount }}</EdTableCell>
+      </EdTableRow>
+    </EdTableBody>
+  </EdTable>
+</template>
+
+<script setup lang="ts">
+import { EdTable, EdTableHeader, EdTableBody, EdTableRow, EdTableHead, EdTableCell, EdCheckbox } from "@fabioeducacross/ui-vue3";
+import { ref } from "vue";
+
+const invoices = ref([
+  { invoice: 'INV-001', status: 'Paid', method: 'Credit Card', amount: '$250.00' },
+  { invoice: 'INV-002', status: 'Pending', method: 'PayPal', amount: '$150.00' },
+]);
+</script>`,
+        },
+    },
 };
 
 const users = [
@@ -499,6 +603,133 @@ export const UserTable: Story = {
             </TableBody>
         </Table>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell, Badge } from "@fabioeducacross/ui";
+
+const users = [
+  { id: 1, name: "John Doe", email: "john@example.com", role: "Admin", status: "Active" },
+  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Editor", status: "Inactive" },
+];
+
+<Table>
+  <TableCaption>Team members and their roles.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead>Role</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead className="text-right">Actions</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {users.map((user) => (
+      <TableRow key={user.id}>
+        <TableCell className="font-medium">{user.name}</TableCell>
+        <TableCell className="text-muted-foreground">{user.email}</TableCell>
+        <TableCell>
+          <Badge variant="outline">{user.role}</Badge>
+        </TableCell>
+        <TableCell>
+          <Badge variant={user.status === "Active" ? "success" : "secondary"}>
+            {user.status}
+          </Badge>
+        </TableCell>
+        <TableCell className="text-right">
+          <button className="text-sm text-primary hover:underline">Edit</button>
+        </TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Table -->
+<template>
+  <table class="table">
+    <caption>Team members and their roles.</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="user in users" :key="user.id">
+        <td class="fw-medium">{{ user.name }}</td>
+        <td class="text-muted">{{ user.email }}</td>
+        <td><span class="badge border">{{ user.role }}</span></td>
+        <td>
+          <span :class="['badge', user.status === 'Active' ? 'bg-success' : 'bg-secondary']">
+            {{ user.status }}
+          </span>
+        </td>
+        <td class="text-end">
+          <button class="btn btn-link btn-sm text-primary">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [
+        { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
+        { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', status: 'Inactive' },
+      ],
+    };
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdTable>
+    <EdTableCaption>Team members and their roles.</EdTableCaption>
+    <EdTableHeader>
+      <EdTableRow>
+        <EdTableHead>Name</EdTableHead>
+        <EdTableHead>Email</EdTableHead>
+        <EdTableHead>Role</EdTableHead>
+        <EdTableHead>Status</EdTableHead>
+        <EdTableHead class="text-right">Actions</EdTableHead>
+      </EdTableRow>
+    </EdTableHeader>
+    <EdTableBody>
+      <EdTableRow v-for="user in users" :key="user.id">
+        <EdTableCell class="font-medium">{{ user.name }}</EdTableCell>
+        <EdTableCell class="text-muted-foreground">{{ user.email }}</EdTableCell>
+        <EdTableCell>
+          <EdBadge variant="outline">{{ user.role }}</EdBadge>
+        </EdTableCell>
+        <EdTableCell>
+          <EdBadge :variant="user.status === 'Active' ? 'success' : 'secondary'">
+            {{ user.status }}
+          </EdBadge>
+        </EdTableCell>
+        <EdTableCell class="text-right">
+          <button class="text-sm text-primary hover:underline">Edit</button>
+        </EdTableCell>
+      </EdTableRow>
+    </EdTableBody>
+  </EdTable>
+</template>
+
+<script setup lang="ts">
+import { EdTable, EdTableCaption, EdTableHeader, EdTableBody, EdTableRow, EdTableHead, EdTableCell, EdBadge } from "@fabioeducacross/ui-vue3";
+import { ref } from "vue";
+
+const users = ref([
+  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'Editor', status: 'Inactive' },
+]);
+</script>`,
+        },
+    },
 };
 
 /**
@@ -548,6 +779,127 @@ export const Striped: Story = {
             </TableBody>
         </Table>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@fabioeducacross/ui";
+
+const products = [
+  { product: "Widget A", category: "Electronics", stock: 45, price: "$29.99" },
+  { product: "Gadget X", category: "Accessories", stock: 0, price: "$19.99" },
+];
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Product</TableHead>
+      <TableHead>Category</TableHead>
+      <TableHead>Stock</TableHead>
+      <TableHead className="text-right">Price</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {products.map((item, index) => (
+      <TableRow
+        key={item.product}
+        className={index % 2 === 0 ? "bg-muted/50" : ""}
+      >
+        <TableCell className="font-medium">{item.product}</TableCell>
+        <TableCell>{item.category}</TableCell>
+        <TableCell>
+          <span className={item.stock === 0 ? "text-destructive" : item.stock < 20 ? "text-warning" : ""}>
+            {item.stock === 0 ? "Out of stock" : item.stock}
+          </span>
+        </TableCell>
+        <TableCell className="text-right">{item.price}</TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Table striped -->
+<template>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th class="text-end">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(item, index) in products" :key="item.product">
+        <td class="fw-medium">{{ item.product }}</td>
+        <td>{{ item.category }}</td>
+        <td>
+          <span :class="{
+            'text-danger': item.stock === 0,
+            'text-warning': item.stock > 0 && item.stock < 20
+          }">
+            {{ item.stock === 0 ? 'Out of stock' : item.stock }}
+          </span>
+        </td>
+        <td class="text-end">{{ item.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      products: [
+        { product: 'Widget A', category: 'Electronics', stock: 45, price: '$29.99' },
+        { product: 'Gadget X', category: 'Accessories', stock: 0, price: '$19.99' },
+      ],
+    };
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdTable>
+    <EdTableHeader>
+      <EdTableRow>
+        <EdTableHead>Product</EdTableHead>
+        <EdTableHead>Category</EdTableHead>
+        <EdTableHead>Stock</EdTableHead>
+        <EdTableHead class="text-right">Price</EdTableHead>
+      </EdTableRow>
+    </EdTableHeader>
+    <EdTableBody>
+      <EdTableRow
+        v-for="(item, index) in products"
+        :key="item.product"
+        :class="index % 2 === 0 ? 'bg-muted/50' : ''"
+      >
+        <EdTableCell class="font-medium">{{ item.product }}</EdTableCell>
+        <EdTableCell>{{ item.category }}</EdTableCell>
+        <EdTableCell>
+          <span :class="{
+            'text-destructive': item.stock === 0,
+            'text-warning': item.stock > 0 && item.stock < 20
+          }">
+            {{ item.stock === 0 ? 'Out of stock' : item.stock }}
+          </span>
+        </EdTableCell>
+        <EdTableCell class="text-right">{{ item.price }}</EdTableCell>
+      </EdTableRow>
+    </EdTableBody>
+  </EdTable>
+</template>
+
+<script setup lang="ts">
+import { EdTable, EdTableHeader, EdTableBody, EdTableRow, EdTableHead, EdTableCell } from "@fabioeducacross/ui-vue3";
+import { ref } from "vue";
+
+const products = ref([
+  { product: 'Widget A', category: 'Electronics', stock: 45, price: '$29.99' },
+  { product: 'Gadget X', category: 'Accessories', stock: 0, price: '$19.99' },
+]);
+</script>`,
+        },
+    },
 };
 
 /**
@@ -981,5 +1333,282 @@ export const StudentManagement: Story = {
                 </div>
             </div>
         );
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, Checkbox, Badge, Select } from "@fabioeducacross/ui";
+import { useState } from "react";
+
+const StudentManagementTable = () => {
+  const [selectedRows, setSelectedRows] = useState(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const students = [
+    {
+      id: 1,
+      turma: "1º ano tarde",
+      ano: "1º Ano",
+      professores: [{ initials: "AS", color: "bg-green-500" }, { initials: "JL", color: "bg-cyan-500" }],
+      progresso: { jogos: 10, total: 100, percentual: 10 },
+      desempenho: { emoji: "😊", percentual: 50 },
+    },
+  ];
+
+  return (
+    <div className="space-y-4">
+      {/* Filtros */}
+      <div className="flex items-center gap-4">
+        <Select value="todos" options={[{ value: "todos", label: "Todos" }]} onChange={() => {}} />
+      </div>
+
+      {/* Toolbar com ações */}
+      <div className="flex items-center justify-between p-4 bg-muted/50">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">{selectedRows.size} selecionados</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="text-sm text-primary hover:underline">Exportar</button>
+        </div>
+      </div>
+
+      {/* Tabela */}
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[50px]"><Checkbox /></TableHead>
+            <TableHead>Turma</TableHead>
+            <TableHead>Ano</TableHead>
+            <TableHead>Professores</TableHead>
+            <TableHead>Progresso</TableHead>
+            <TableHead>Desempenho</TableHead>
+            <TableHead className="text-center">Ações</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {students.map((student) => (
+            <TableRow key={student.id}>
+              <TableCell><Checkbox /></TableCell>
+              <TableCell className="font-medium">{student.turma}</TableCell>
+              <TableCell>{student.ano}</TableCell>
+              <TableCell>
+                <div className="flex -space-x-2">
+                  {student.professores.map((prof, idx) => (
+                    <div key={idx} className={\`h-8 w-8 rounded-full \${prof.color} flex items-center justify-center text-xs text-white\`}>
+                      {prof.initials}
+                    </div>
+                  ))}
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="space-y-1">
+                  <div className="text-sm text-muted-foreground">{student.progresso.jogos}/{student.progresso.total} jogos</div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-red-500" style={{ width: \`\${student.progresso.percentual}%\` }} />
+                    </div>
+                    <span className="text-xs font-semibold text-red-500">{student.progresso.percentual}%</span>
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">{student.desempenho.emoji}</span>
+                  <span className="text-sm font-semibold">{student.desempenho.percentual}%</span>
+                </div>
+              </TableCell>
+              <TableCell className="text-center">
+                <button className="text-sm text-primary hover:underline">Ações</button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      {/* Paginação */}
+      <div className="px-6 py-4 border-t">
+        <span className="text-sm">Página {currentPage} de 2</span>
+      </div>
+    </div>
+  );
+};`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap - tabela de gestão complexa -->
+<template>
+  <div>
+    <!-- Filtros -->
+    <div class="d-flex gap-3 mb-3">
+      <select class="form-select">
+        <option>Todos</option>
+      </select>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="d-flex justify-content-between align-items-center p-3 bg-light mb-3">
+      <span class="text-muted">{{ selectedRows.size }} selecionados</span>
+      <button class="btn btn-link">Exportar</button>
+    </div>
+
+    <!-- Tabela -->
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th style="width: 50px"><input type="checkbox" class="form-check-input"></th>
+          <th>Turma</th>
+          <th>Ano</th>
+          <th>Professores</th>
+          <th>Progresso</th>
+          <th>Desempenho</th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="student in students" :key="student.id">
+          <td><input type="checkbox" class="form-check-input"></td>
+          <td class="fw-medium">{{ student.turma }}</td>
+          <td>{{ student.ano }}</td>
+          <td>
+            <div class="d-flex">
+              <span v-for="(prof, idx) in student.professores" :key="idx"
+                class="badge rounded-circle me-1" :class="prof.color">
+                {{ prof.initials }}
+              </span>
+            </div>
+          </td>
+          <td>
+            <small class="text-muted">{{ student.progresso.jogos }}/{{ student.progresso.total }} jogos</small>
+            <div class="progress">
+              <div class="progress-bar bg-danger" :style="{ width: student.progresso.percentual + '%' }"></div>
+            </div>
+          </td>
+          <td>
+            <span class="fs-4">{{ student.desempenho.emoji }}</span>
+            {{ student.desempenho.percentual }}%
+          </td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-link">Ações</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Paginação -->
+    <nav>
+      <ul class="pagination">
+        <li class="page-item active"><a class="page-link">1</a></li>
+        <li class="page-item"><a class="page-link">2</a></li>
+      </ul>
+    </nav>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      selectedRows: new Set(),
+      students: [
+        {
+          id: 1,
+          turma: '1º ano tarde',
+          ano: '1º Ano',
+          professores: [{ initials: 'AS', color: 'bg-success' }, { initials: 'JL', color: 'bg-info' }],
+          progresso: { jogos: 10, total: 100, percentual: 10 },
+          desempenho: { emoji: '😊', percentual: 50 },
+        },
+      ],
+    };
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="space-y-4">
+    <!-- Filtros -->
+    <div class="flex items-center gap-4">
+      <EdSelect v-model="filtro" :options="[{ value: 'todos', label: 'Todos' }]" />
+    </div>
+
+    <!-- Toolbar -->
+    <div class="flex items-center justify-between p-4 bg-muted/50">
+      <span class="text-sm text-muted-foreground">{{ selectedRows.size }} selecionados</span>
+      <button class="text-sm text-primary hover:underline">Exportar</button>
+    </div>
+
+    <!-- Tabela -->
+    <EdTable>
+      <EdTableHeader>
+        <EdTableRow>
+          <EdTableHead class="w-[50px]"><EdCheckbox /></EdTableHead>
+          <EdTableHead>Turma</EdTableHead>
+          <EdTableHead>Ano</EdTableHead>
+          <EdTableHead>Professores</EdTableHead>
+          <EdTableHead>Progresso</EdTableHead>
+          <EdTableHead>Desempenho</EdTableHead>
+          <EdTableHead class="text-center">Ações</EdTableHead>
+        </EdTableRow>
+      </EdTableHeader>
+      <EdTableBody>
+        <EdTableRow v-for="student in students" :key="student.id">
+          <EdTableCell><EdCheckbox /></EdTableCell>
+          <EdTableCell class="font-medium">{{ student.turma }}</EdTableCell>
+          <EdTableCell>{{ student.ano }}</EdTableCell>
+          <EdTableCell>
+            <div class="flex -space-x-2">
+              <div v-for="(prof, idx) in student.professores" :key="idx"
+                :class="['h-8 w-8 rounded-full flex items-center justify-center text-xs text-white', prof.color]">
+                {{ prof.initials }}
+              </div>
+            </div>
+          </EdTableCell>
+          <EdTableCell>
+            <div class="space-y-1">
+              <div class="text-sm text-muted-foreground">{{ student.progresso.jogos }}/{{ student.progresso.total }} jogos</div>
+              <div class="flex items-center gap-2">
+                <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                  <div class="h-full bg-red-500" :style="{ width: student.progresso.percentual + '%' }"></div>
+                </div>
+                <span class="text-xs font-semibold text-red-500">{{ student.progresso.percentual }}%</span>
+              </div>
+            </div>
+          </EdTableCell>
+          <EdTableCell>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">{{ student.desempenho.emoji }}</span>
+              <span class="text-sm font-semibold">{{ student.desempenho.percentual }}%</span>
+            </div>
+          </EdTableCell>
+          <EdTableCell class="text-center">
+            <button class="text-sm text-primary hover:underline">Ações</button>
+          </EdTableCell>
+        </EdTableRow>
+      </EdTableBody>
+    </EdTable>
+
+    <!-- Paginação -->
+    <div class="px-6 py-4 border-t">
+      <span class="text-sm">Página {{ currentPage }} de 2</span>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdTable, EdTableHeader, EdTableBody, EdTableRow, EdTableHead, EdTableCell, EdCheckbox, EdSelect } from "@fabioeducacross/ui-vue3";
+import { ref } from "vue";
+
+const selectedRows = ref(new Set());
+const currentPage = ref(1);
+const filtro = ref('todos');
+
+const students = ref([
+  {
+    id: 1,
+    turma: '1º ano tarde',
+    ano: '1º Ano',
+    professores: [{ initials: 'AS', color: 'bg-green-500' }, { initials: 'JL', color: 'bg-cyan-500' }],
+    progresso: { jogos: 10, total: 100, percentual: 10 },
+    desempenho: { emoji: '😊', percentual: 50 },
+  },
+]);
+</script>`,
+        },
     },
 };

@@ -295,6 +295,65 @@ export const Alignment: Story = {
             </Popover>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, Popover, PopoverTrigger, PopoverContent } from "@fabioeducacross/ui";
+
+<div className="flex gap-8">
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline">Align Start</Button>
+    </PopoverTrigger>
+    <PopoverContent align="start">
+      <p className="text-sm">Aligned to start</p>
+    </PopoverContent>
+  </Popover>
+
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline">Align End</Button>
+    </PopoverTrigger>
+    <PopoverContent align="end">
+      <p className="text-sm">Aligned to end</p>
+    </PopoverContent>
+  </Popover>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Popover -->
+<!-- Bootstrap usa data-bs-placement. -->
+<template>
+  <div class="d-flex gap-3">
+    <button class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-placement="start" title="Aligned to start">Align Start</button>
+    <button class="btn btn-outline-secondary" data-bs-toggle="popover" data-bs-placement="end" title="Aligned to end">Align End</button>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex gap-8">
+    <EdPopover>
+      <EdPopoverTrigger as-child>
+        <EdButton variant="outline">Align Start</EdButton>
+      </EdPopoverTrigger>
+      <EdPopoverContent align="start">
+        <p class="text-sm">Aligned to start</p>
+      </EdPopoverContent>
+    </EdPopover>
+
+    <EdPopover>
+      <EdPopoverTrigger as-child>
+        <EdButton variant="outline">Align End</EdButton>
+      </EdPopoverTrigger>
+      <EdPopoverContent align="end">
+        <p class="text-sm">Aligned to end</p>
+      </EdPopoverContent>
+    </EdPopover>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdPopover, EdPopoverTrigger, EdPopoverContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -322,6 +381,64 @@ export const Sides: Story = {
             </Popover>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, Popover, PopoverTrigger, PopoverContent } from "@fabioeducacross/ui";
+
+<div className="flex gap-8">
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline" size="sm">Top</Button>
+    </PopoverTrigger>
+    <PopoverContent side="top">
+      <p className="text-sm">Popover on top</p>
+    </PopoverContent>
+  </Popover>
+
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline" size="sm">Bottom</Button>
+    </PopoverTrigger>
+    <PopoverContent side="bottom">
+      <p className="text-sm">Popover on bottom</p>
+    </PopoverContent>
+  </Popover>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Popover -->
+<template>
+  <div class="d-flex gap-3">
+    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="popover" data-bs-placement="top" title="Popover on top">Top</button>
+    <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="popover" data-bs-placement="bottom" title="Popover on bottom">Bottom</button>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex gap-8">
+    <EdPopover>
+      <EdPopoverTrigger as-child>
+        <EdButton variant="outline" size="sm">Top</EdButton>
+      </EdPopoverTrigger>
+      <EdPopoverContent side="top">
+        <p class="text-sm">Popover on top</p>
+      </EdPopoverContent>
+    </EdPopover>
+
+    <EdPopover>
+      <EdPopoverTrigger as-child>
+        <EdButton variant="outline" size="sm">Bottom</EdButton>
+      </EdPopoverTrigger>
+      <EdPopoverContent side="bottom">
+        <p class="text-sm">Popover on bottom</p>
+      </EdPopoverContent>
+    </EdPopover>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdPopover, EdPopoverTrigger, EdPopoverContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -367,6 +484,99 @@ export const Confirmation: Story = {
                 </Popover>
             </div>
         );
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { useState } from "react";
+import { Button, Popover, PopoverTrigger, PopoverContent, PopoverClose } from "@fabioeducacross/ui";
+
+function ConfirmationPopover() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button variant="destructive">Delete Item</Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-64">
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h4 className="font-medium">Are you sure?</h4>
+            <p className="text-sm text-muted-foreground">
+              This action cannot be undone.
+            </p>
+          </div>
+          <div className="flex gap-2 justify-end">
+            <PopoverClose>
+              <Button variant="outline" size="sm">Cancel</Button>
+            </PopoverClose>
+            <Button variant="destructive" size="sm" onClick={() => setOpen(false)}>
+              Delete
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Popover + Modal -->
+<template>
+  <div>
+    <button class="btn btn-danger" @click="showConfirm = true">Delete Item</button>
+    <div v-if="showConfirm" class="popover show position-fixed" style="width: 16rem;">
+      <div class="popover-body">
+        <h5 class="fw-bold">Are you sure?</h5>
+        <p class="small text-muted">This action cannot be undone.</p>
+        <div class="d-flex gap-2 justify-content-end">
+          <button class="btn btn-outline-secondary btn-sm" @click="showConfirm = false">Cancel</button>
+          <button class="btn btn-danger btn-sm" @click="deleteItem">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() { return { showConfirm: false }; },
+  methods: {
+    deleteItem() {
+      console.log('Deleted!');
+      this.showConfirm = false;
+    },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdPopover :open="open" @update:open="open = $event">
+    <EdPopoverTrigger as-child>
+      <EdButton variant="destructive">Delete Item</EdButton>
+    </EdPopoverTrigger>
+    <EdPopoverContent class="w-64">
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <h4 class="font-medium">Are you sure?</h4>
+          <p class="text-sm text-muted-foreground">This action cannot be undone.</p>
+        </div>
+        <div class="flex gap-2 justify-end">
+          <EdPopoverClose>
+            <EdButton variant="outline" size="sm">Cancel</EdButton>
+          </EdPopoverClose>
+          <EdButton variant="destructive" size="sm" @click="open = false">Delete</EdButton>
+        </div>
+      </div>
+    </EdPopoverContent>
+  </EdPopover>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdButton, EdPopover, EdPopoverTrigger, EdPopoverContent, EdPopoverClose } from "@fabioeducacross/ui-vue3";
+
+const open = ref(false);
+</script>`,
+        },
     },
 };
 
@@ -422,4 +632,71 @@ export const Settings: Story = {
             </Popover>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Popover, PopoverTrigger, PopoverContent } from "@fabioeducacross/ui";
+
+<Popover>
+  <PopoverTrigger asChild>
+    <button className="p-2 rounded hover:bg-accent">
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0..." />
+      </svg>
+    </button>
+  </PopoverTrigger>
+  <PopoverContent className="w-56" align="end">
+    <div className="space-y-3">
+      <h4 className="font-medium">Quick Settings</h4>
+      <div className="space-y-2">
+        <label className="flex items-center justify-between">
+          <span className="text-sm">Dark mode</span>
+          <input type="checkbox" className="rounded" />
+        </label>
+        <label className="flex items-center justify-between">
+          <span className="text-sm">Notifications</span>
+          <input type="checkbox" className="rounded" defaultChecked />
+        </label>
+      </div>
+    </div>
+  </PopoverContent>
+</Popover>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Popover -->
+<template>
+  <button class="btn btn-link p-2 rounded" data-bs-toggle="popover" data-bs-html="true" data-bs-content="<div><strong>Quick Settings</strong><div class='form-check'><input class='form-check-input' type='checkbox' id='dark'><label class='form-check-label' for='dark'>Dark mode</label></div></div>">
+    <svg class="bi bi-gear" width="20" height="20" fill="currentColor"><use xlink:href="#gear"></use></svg>
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdPopover>
+    <EdPopoverTrigger as-child>
+      <button class="p-2 rounded hover:bg-accent">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0..." />
+        </svg>
+      </button>
+    </EdPopoverTrigger>
+    <EdPopoverContent class="w-56" align="end">
+      <div class="space-y-3">
+        <h4 class="font-medium">Quick Settings</h4>
+        <div class="space-y-2">
+          <label class="flex items-center justify-between">
+            <span class="text-sm">Dark mode</span>
+            <input type="checkbox" class="rounded" />
+          </label>
+          <label class="flex items-center justify-between">
+            <span class="text-sm">Notifications</span>
+            <input type="checkbox" class="rounded" :checked="true" />
+          </label>
+        </div>
+      </div>
+    </EdPopoverContent>
+  </EdPopover>
+</template>
+
+<script setup lang="ts">
+import { EdPopover, EdPopoverTrigger, EdPopoverContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };

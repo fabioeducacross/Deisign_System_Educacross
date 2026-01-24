@@ -311,6 +311,52 @@ export const PillsVariant: Story = {
             </TabsContent>
         </Tabs>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fabioeducacross/ui";
+
+<Tabs defaultValue="all" variant="pills">
+  <TabsList variant="pills">
+    <TabsTrigger value="all">All</TabsTrigger>
+    <TabsTrigger value="active">Active</TabsTrigger>
+    <TabsTrigger value="completed">Completed</TabsTrigger>
+  </TabsList>
+  <TabsContent value="all">Showing all items</TabsContent>
+  <TabsContent value="active">Showing active items only</TabsContent>
+  <TabsContent value="completed">Showing completed items</TabsContent>
+</Tabs>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Pills -->
+<template>
+  <ul class="nav nav-pills mb-3" role="tablist">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#all">All</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#active">Active</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#completed">Completed</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="all">Showing all items</div>
+    <div class="tab-pane fade" id="active">Showing active items only</div>
+    <div class="tab-pane fade" id="completed">Showing completed items</div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdTabs default-value="all" variant="pills">
+    <EdTabsList variant="pills">
+      <EdTabsTrigger value="all">All</EdTabsTrigger>
+      <EdTabsTrigger value="active">Active</EdTabsTrigger>
+      <EdTabsTrigger value="completed">Completed</EdTabsTrigger>
+    </EdTabsList>
+    <EdTabsContent value="all">Showing all items</EdTabsContent>
+    <EdTabsContent value="active">Showing active items only</EdTabsContent>
+    <EdTabsContent value="completed">Showing completed items</EdTabsContent>
+  </EdTabs>
+</template>
+
+<script setup lang="ts">
+import { EdTabs, EdTabsList, EdTabsTrigger, EdTabsContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -334,6 +380,53 @@ export const WithDisabled: Story = {
             </TabsContent>
         </Tabs>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fabioeducacross/ui";
+
+<Tabs defaultValue="enabled">
+  <TabsList>
+    <TabsTrigger value="enabled">Enabled</TabsTrigger>
+    <TabsTrigger value="premium" disabled>
+      Premium (Locked)
+    </TabsTrigger>
+    <TabsTrigger value="other">Other</TabsTrigger>
+  </TabsList>
+  <TabsContent value="enabled">Available content</TabsContent>
+  <TabsContent value="other">Other content</TabsContent>
+</Tabs>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#enabled">Enabled</a></li>
+    <li class="nav-item"><a class="nav-link disabled" tabindex="-1" aria-disabled="true">Premium (Locked)</a></li>
+    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#other">Other</a></li>
+  </ul>
+  <div class="tab-content border rounded p-3 mt-2">
+    <div class="tab-pane fade show active" id="enabled">Available content</div>
+    <div class="tab-pane fade" id="other">Other content</div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdTabs default-value="enabled">
+    <EdTabsList>
+      <EdTabsTrigger value="enabled">Enabled</EdTabsTrigger>
+      <EdTabsTrigger value="premium" :disabled="true">
+        Premium (Locked)
+      </EdTabsTrigger>
+      <EdTabsTrigger value="other">Other</EdTabsTrigger>
+    </EdTabsList>
+    <EdTabsContent value="enabled">Available content</EdTabsContent>
+    <EdTabsContent value="other">Other content</EdTabsContent>
+  </EdTabs>
+</template>
+
+<script setup lang="ts">
+import { EdTabs, EdTabsList, EdTabsTrigger, EdTabsContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -383,6 +476,94 @@ export const InCard: Story = {
             </Tabs>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fabioeducacross/ui";
+
+<div className="border rounded-lg shadow-sm overflow-hidden">
+  <div className="p-4 border-b bg-muted/50">
+    <h3 className="font-semibold">User Profile</h3>
+  </div>
+  <Tabs defaultValue="profile">
+    <div className="border-b">
+      <TabsList className="w-full justify-start rounded-none bg-transparent">
+        <TabsTrigger value="profile" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+          Profile
+        </TabsTrigger>
+        <TabsTrigger value="activity" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+          Activity
+        </TabsTrigger>
+      </TabsList>
+    </div>
+    <TabsContent value="profile" className="p-4">
+      <div className="space-y-2">
+        <p className="font-medium">John Doe</p>
+        <p className="text-sm text-muted-foreground">john@example.com</p>
+      </div>
+    </TabsContent>
+    <TabsContent value="activity" className="p-4">
+      <p className="text-sm text-muted-foreground">Recent activity will appear here.</p>
+    </TabsContent>
+  </Tabs>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Card -->
+<template>
+  <div class="card">
+    <div class="card-header bg-light">
+      <h5 class="card-title mb-0">User Profile</h5>
+    </div>
+    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+      <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#profile">Profile</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#activity">Activity</a></li>
+    </ul>
+    <div class="card-body">
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="profile">
+          <p class="fw-medium">John Doe</p>
+          <p class="text-muted small">john@example.com</p>
+        </div>
+        <div class="tab-pane fade" id="activity">
+          <p class="text-muted small">Recent activity will appear here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="border rounded-lg shadow-sm overflow-hidden">
+    <div class="p-4 border-b bg-muted/50">
+      <h3 class="font-semibold">User Profile</h3>
+    </div>
+    <EdTabs default-value="profile">
+      <div class="border-b">
+        <EdTabsList class="w-full justify-start rounded-none bg-transparent">
+          <EdTabsTrigger value="profile" class="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+            Profile
+          </EdTabsTrigger>
+          <EdTabsTrigger value="activity" class="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+            Activity
+          </EdTabsTrigger>
+        </EdTabsList>
+      </div>
+      <EdTabsContent value="profile" class="p-4">
+        <div class="space-y-2">
+          <p class="font-medium">John Doe</p>
+          <p class="text-sm text-muted-foreground">john@example.com</p>
+        </div>
+      </EdTabsContent>
+      <EdTabsContent value="activity" class="p-4">
+        <p class="text-sm text-muted-foreground">Recent activity will appear here.</p>
+      </EdTabsContent>
+    </EdTabs>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdTabs, EdTabsList, EdTabsTrigger, EdTabsContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -453,6 +634,99 @@ export const Rounded: Story = {
         await userEvent.click(professoresTab);
         await expect(professoresTab).toHaveAttribute("data-state", "active");
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Tabs, TabsList, TabsTrigger } from "@fabioeducacross/ui";
+
+<div className="w-full">
+  <div className="relative bg-white">
+    <div className="flex items-end justify-between">
+      {/* Tabs arredondadas */}
+      <Tabs defaultValue="redes" variant="rounded">
+        <TabsList variant="rounded" className="gap-0 flex">
+          <TabsTrigger value="redes" variant="rounded">Redes</TabsTrigger>
+          <TabsTrigger value="escolas" variant="rounded">Escolas</TabsTrigger>
+          <TabsTrigger value="professores" variant="rounded">Professores</TabsTrigger>
+        </TabsList>
+      </Tabs>
+      
+      {/* Nome da escola */}
+      <div className="flex items-center gap-[5px] pb-3 pr-6 text-[#6E63E8]">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          <path d="M6 12v5c3 3 9 3 12 0v-5" />
+        </svg>
+        <span className="text-sm font-bold uppercase tracking-[0.14px]">COLÉGIO FLORESTA ENCANTADA</span>
+      </div>
+    </div>
+    
+    {/* Linha inferior roxa */}
+    <div className="w-full h-[2px] bg-[#6E63E8]" />
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap - estilo Educacross -->
+<template>
+  <div class="bg-white">
+    <div class="d-flex justify-content-between align-items-end">
+      <!-- Tabs arredondadas -->
+      <ul class="nav" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active rounded-top border-0 px-4" data-bs-toggle="tab" href="#redes">Redes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-top border-0 px-4" data-bs-toggle="tab" href="#escolas">Escolas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-top border-0 px-4" data-bs-toggle="tab" href="#professores">Professores</a>
+        </li>
+      </ul>
+      
+      <!-- Nome da escola -->
+      <div class="d-flex align-items-center gap-2 pb-3 pe-3 text-primary">
+        <svg class="bi" width="24" height="24"><use xlink:href="#building"></use></svg>
+        <span class="small fw-bold text-uppercase">COLÉGIO FLORESTA ENCANTADA</span>
+      </div>
+    </div>
+    
+    <!-- Linha inferior roxa -->
+    <div class="border-bottom border-primary border-2"></div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="w-full">
+    <div class="relative bg-white">
+      <div class="flex items-end justify-between">
+        <!-- Tabs arredondadas -->
+        <EdTabs default-value="redes" variant="rounded">
+          <EdTabsList variant="rounded" class="gap-0 flex">
+            <EdTabsTrigger value="redes" variant="rounded">Redes</EdTabsTrigger>
+            <EdTabsTrigger value="escolas" variant="rounded">Escolas</EdTabsTrigger>
+            <EdTabsTrigger value="professores" variant="rounded">Professores</EdTabsTrigger>
+          </EdTabsList>
+        </EdTabs>
+        
+        <!-- Nome da escola -->
+        <div class="flex items-center gap-[5px] pb-3 pr-6 text-[#6E63E8]">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          </svg>
+          <span class="text-sm font-bold uppercase tracking-[0.14px]">COLÉGIO FLORESTA ENCANTADA</span>
+        </div>
+      </div>
+      
+      <!-- Linha inferior roxa -->
+      <div class="w-full h-[2px] bg-[#6E63E8]" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdTabs, EdTabsList, EdTabsTrigger } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -507,4 +781,107 @@ export const RoundedSimple: Story = {
             </div>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fabioeducacross/ui";
+
+<div className="w-full max-w-3xl">
+  <div className="bg-white rounded-md shadow-sm">
+    <Tabs defaultValue="tab1" variant="rounded">
+      <TabsList variant="rounded" className="gap-0 flex px-6">
+        <TabsTrigger value="tab1" variant="rounded">Primeira Tab</TabsTrigger>
+        <TabsTrigger value="tab2" variant="rounded">Segunda Tab</TabsTrigger>
+        <TabsTrigger value="tab3" variant="rounded">Terceira Tab</TabsTrigger>
+      </TabsList>
+      
+      {/* Linha inferior roxa */}
+      <div className="w-full h-[2px] bg-[#6E63E8]" />
+      
+      <TabsContent value="tab1" className="p-6">
+        <h3 className="font-semibold text-lg">Conteúdo da Primeira Tab</h3>
+        <p className="text-muted-foreground">Este é o conteúdo da primeira aba.</p>
+      </TabsContent>
+      <TabsContent value="tab2" className="p-6">
+        <h3 className="font-semibold text-lg">Conteúdo da Segunda Tab</h3>
+        <p className="text-muted-foreground">Aqui está o conteúdo da segunda aba.</p>
+      </TabsContent>
+      <TabsContent value="tab3" className="p-6">
+        <h3 className="font-semibold text-lg">Conteúdo da Terceira Tab</h3>
+        <p className="text-muted-foreground">E este é o conteúdo da terceira aba.</p>
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap - estilo arredondado simples -->
+<template>
+  <div class="bg-white rounded shadow-sm">
+    <div class="px-4">
+      <ul class="nav" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active rounded-top border-0 px-4" data-bs-toggle="tab" href="#tab1">Primeira Tab</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-top border-0 px-4" data-bs-toggle="tab" href="#tab2">Segunda Tab</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rounded-top border-0 px-4" data-bs-toggle="tab" href="#tab3">Terceira Tab</a>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Linha inferior roxa -->
+    <div class="border-bottom border-primary border-2"></div>
+    
+    <div class="tab-content p-4">
+      <div class="tab-pane fade show active" id="tab1">
+        <h5>Conteúdo da Primeira Tab</h5>
+        <p class="text-muted">Este é o conteúdo da primeira aba.</p>
+      </div>
+      <div class="tab-pane fade" id="tab2">
+        <h5>Conteúdo da Segunda Tab</h5>
+        <p class="text-muted">Aqui está o conteúdo da segunda aba.</p>
+      </div>
+      <div class="tab-pane fade" id="tab3">
+        <h5>Conteúdo da Terceira Tab</h5>
+        <p class="text-muted">E este é o conteúdo da terceira aba.</p>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="w-full max-w-3xl">
+    <div class="bg-white rounded-md shadow-sm">
+      <EdTabs default-value="tab1" variant="rounded">
+        <EdTabsList variant="rounded" class="gap-0 flex px-6">
+          <EdTabsTrigger value="tab1" variant="rounded">Primeira Tab</EdTabsTrigger>
+          <EdTabsTrigger value="tab2" variant="rounded">Segunda Tab</EdTabsTrigger>
+          <EdTabsTrigger value="tab3" variant="rounded">Terceira Tab</EdTabsTrigger>
+        </EdTabsList>
+        
+        <!-- Linha inferior roxa -->
+        <div class="w-full h-[2px] bg-[#6E63E8]" />
+        
+        <EdTabsContent value="tab1" class="p-6">
+          <h3 class="font-semibold text-lg">Conteúdo da Primeira Tab</h3>
+          <p class="text-muted-foreground">Este é o conteúdo da primeira aba.</p>
+        </EdTabsContent>
+        <EdTabsContent value="tab2" class="p-6">
+          <h3 class="font-semibold text-lg">Conteúdo da Segunda Tab</h3>
+          <p class="text-muted-foreground">Aqui está o conteúdo da segunda aba.</p>
+        </EdTabsContent>
+        <EdTabsContent value="tab3" class="p-6">
+          <h3 class="font-semibold text-lg">Conteúdo da Terceira Tab</h3>
+          <p class="text-muted-foreground">E este é o conteúdo da terceira aba.</p>
+        </EdTabsContent>
+      </EdTabs>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdTabs, EdTabsList, EdTabsTrigger, EdTabsContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };

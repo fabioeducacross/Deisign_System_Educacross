@@ -272,6 +272,61 @@ export const WithDisabled: Story = {
             </DropdownMenu>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@fabioeducacross/ui";
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Options</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>View</DropdownMenuItem>
+    <DropdownMenuItem>Edit</DropdownMenuItem>
+    <DropdownMenuItem disabled>Share (Premium)</DropdownMenuItem>
+    <DropdownMenuItem disabled>Export (Premium)</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Delete</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Dropdown -->
+<template>
+  <div class="dropdown">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+      Options
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">View</a></li>
+      <li><a class="dropdown-item" href="#">Edit</a></li>
+      <li><a class="dropdown-item disabled">Share (Premium)</a></li>
+      <li><a class="dropdown-item disabled">Export (Premium)</a></li>
+      <li><hr class="dropdown-divider" /></li>
+      <li><a class="dropdown-item" href="#">Delete</a></li>
+    </ul>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdDropdownMenu>
+    <EdDropdownMenuTrigger as-child>
+      <EdButton variant="outline">Options</EdButton>
+    </EdDropdownMenuTrigger>
+    <EdDropdownMenuContent>
+      <EdDropdownMenuItem>View</EdDropdownMenuItem>
+      <EdDropdownMenuItem>Edit</EdDropdownMenuItem>
+      <EdDropdownMenuItem :disabled="true">Share (Premium)</EdDropdownMenuItem>
+      <EdDropdownMenuItem :disabled="true">Export (Premium)</EdDropdownMenuItem>
+      <EdDropdownMenuSeparator />
+      <EdDropdownMenuItem>Delete</EdDropdownMenuItem>
+    </EdDropdownMenuContent>
+  </EdDropdownMenu>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdDropdownMenu, EdDropdownMenuTrigger, EdDropdownMenuContent, EdDropdownMenuItem, EdDropdownMenuSeparator } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -299,6 +354,87 @@ export const Controlled: Story = {
                 </DropdownMenu>
             </div>
         );
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { useState } from "react";
+import { Button, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@fabioeducacross/ui";
+
+function ControlledDropdown() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="flex gap-4">
+      <Button variant="outline" onClick={() => setOpen(true)}>External Open</Button>
+
+      <DropdownMenu open={open} onOpenChange={setOpen}>
+        <DropdownMenuTrigger asChild>
+          <Button>Menu ({open ? "Open" : "Closed"})</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>Option 1</DropdownMenuItem>
+          <DropdownMenuItem>Option 2</DropdownMenuItem>
+          <DropdownMenuItem>Option 3</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Dropdown -->
+<!-- Bootstrap usa data attributes para controle. -->
+<template>
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-secondary" @click="openMenu">External Open</button>
+
+    <div class="dropdown" ref="dropdownRef">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Menu ({{ isOpen ? 'Open' : 'Closed' }})
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Option 1</a></li>
+        <li><a class="dropdown-item" href="#">Option 2</a></li>
+        <li><a class="dropdown-item" href="#">Option 3</a></li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() { return { isOpen: false }; },
+  methods: {
+    openMenu() {
+      this.isOpen = true;
+      // Bootstrap API para abrir dropdown programaticamente
+    },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex gap-4">
+    <EdButton variant="outline" @click="open = true">External Open</EdButton>
+
+    <EdDropdownMenu :open="open" @update:open="open = $event">
+      <EdDropdownMenuTrigger as-child>
+        <EdButton>Menu ({{ open ? 'Open' : 'Closed' }})</EdButton>
+      </EdDropdownMenuTrigger>
+      <EdDropdownMenuContent>
+        <EdDropdownMenuItem>Option 1</EdDropdownMenuItem>
+        <EdDropdownMenuItem>Option 2</EdDropdownMenuItem>
+        <EdDropdownMenuItem>Option 3</EdDropdownMenuItem>
+      </EdDropdownMenuContent>
+    </EdDropdownMenu>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdButton, EdDropdownMenu, EdDropdownMenuTrigger, EdDropdownMenuContent, EdDropdownMenuItem } from "@fabioeducacross/ui-vue3";
+
+const open = ref(false);
+</script>`,
+        },
     },
 };
 
@@ -342,6 +478,86 @@ export const Alignment: Story = {
             </DropdownMenu>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@fabioeducacross/ui";
+
+<div className="flex gap-8">
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">Align Start</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="start">
+      <DropdownMenuItem>Item 1</DropdownMenuItem>
+      <DropdownMenuItem>Item 2</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">Align End</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="end">
+      <DropdownMenuItem>Item 1</DropdownMenuItem>
+      <DropdownMenuItem>Item 2</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Dropdown -->
+<!-- Bootstrap usa classes dropdown-menu-start e dropdown-menu-end. -->
+<template>
+  <div class="d-flex gap-3">
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Align Start
+      </button>
+      <ul class="dropdown-menu dropdown-menu-start">
+        <li><a class="dropdown-item" href="#">Item 1</a></li>
+        <li><a class="dropdown-item" href="#">Item 2</a></li>
+      </ul>
+    </div>
+
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Align End
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">Item 1</a></li>
+        <li><a class="dropdown-item" href="#">Item 2</a></li>
+      </ul>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex gap-8">
+    <EdDropdownMenu>
+      <EdDropdownMenuTrigger as-child>
+        <EdButton variant="outline">Align Start</EdButton>
+      </EdDropdownMenuTrigger>
+      <EdDropdownMenuContent align="start">
+        <EdDropdownMenuItem>Item 1</EdDropdownMenuItem>
+        <EdDropdownMenuItem>Item 2</EdDropdownMenuItem>
+      </EdDropdownMenuContent>
+    </EdDropdownMenu>
+
+    <EdDropdownMenu>
+      <EdDropdownMenuTrigger as-child>
+        <EdButton variant="outline">Align End</EdButton>
+      </EdDropdownMenuTrigger>
+      <EdDropdownMenuContent align="end">
+        <EdDropdownMenuItem>Item 1</EdDropdownMenuItem>
+        <EdDropdownMenuItem>Item 2</EdDropdownMenuItem>
+      </EdDropdownMenuContent>
+    </EdDropdownMenu>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdDropdownMenu, EdDropdownMenuTrigger, EdDropdownMenuContent, EdDropdownMenuItem } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -400,4 +616,88 @@ export const UserMenu: Story = {
             </DropdownMenu>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@fabioeducacross/ui";
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <button className="flex items-center gap-2 rounded-full border p-1 pr-4 hover:bg-accent">
+      <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-medium">
+        JD
+      </div>
+      <span className="text-sm">John Doe</span>
+    </button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent className="w-56" align="end">
+    <DropdownMenuLabel>
+      <div className="flex flex-col space-y-1">
+        <p className="text-sm font-medium">John Doe</p>
+        <p className="text-xs text-muted-foreground">john@example.com</p>
+      </div>
+    </DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Help</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem destructive>Logout</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Dropdown -->
+<template>
+  <div class="dropdown">
+    <button class="btn btn-link d-flex align-items-center gap-2 rounded-pill border p-1 pe-3" type="button" data-bs-toggle="dropdown">
+      <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.875rem;">
+        JD
+      </div>
+      <span class="small">John Doe</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" style="width: 14rem;">
+      <li class="px-3 py-2">
+        <p class="mb-0 small fw-medium">John Doe</p>
+        <p class="mb-0 text-muted" style="font-size: 0.75rem;">john@example.com</p>
+      </li>
+      <li><hr class="dropdown-divider" /></li>
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Help</a></li>
+      <li><hr class="dropdown-divider" /></li>
+      <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+    </ul>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdDropdownMenu>
+    <EdDropdownMenuTrigger as-child>
+      <button class="flex items-center gap-2 rounded-full border p-1 pr-4 hover:bg-accent">
+        <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-medium">
+          JD
+        </div>
+        <span class="text-sm">John Doe</span>
+      </button>
+    </EdDropdownMenuTrigger>
+    <EdDropdownMenuContent class="w-56" align="end">
+      <EdDropdownMenuLabel>
+        <div class="flex flex-col space-y-1">
+          <p class="text-sm font-medium">John Doe</p>
+          <p class="text-xs text-muted-foreground">john@example.com</p>
+        </div>
+      </EdDropdownMenuLabel>
+      <EdDropdownMenuSeparator />
+      <EdDropdownMenuItem>Profile</EdDropdownMenuItem>
+      <EdDropdownMenuItem>Settings</EdDropdownMenuItem>
+      <EdDropdownMenuItem>Help</EdDropdownMenuItem>
+      <EdDropdownMenuSeparator />
+      <EdDropdownMenuItem destructive>Logout</EdDropdownMenuItem>
+    </EdDropdownMenuContent>
+  </EdDropdownMenu>
+</template>
+
+<script setup lang="ts">
+import { EdDropdownMenu, EdDropdownMenuTrigger, EdDropdownMenuContent, EdDropdownMenuItem, EdDropdownMenuLabel, EdDropdownMenuSeparator } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };

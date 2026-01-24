@@ -149,6 +149,78 @@ export const Controlled: Story = {
             </div>
         );
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { useState } from "react";
+import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@fabioeducacross/ui";
+
+function ControlledDialogExample() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Controlled Dialog</DialogTitle>
+            <DialogDescription>This dialog is controlled by state.</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setOpen(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Modal -->
+<template>
+  <div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#controlledModal">Open Dialog</button>
+
+    <div class="modal fade" id="controlledModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Controlled Dialog</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body"><p>This dialog is controlled by state.</p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div>
+    <EdButton @click="open = true">Open Dialog</EdButton>
+    <EdDialog :open="open" @update:open="open = $event">
+      <EdDialogContent>
+        <EdDialogHeader>
+          <EdDialogTitle>Controlled Dialog</EdDialogTitle>
+          <EdDialogDescription>This dialog is controlled by state.</EdDialogDescription>
+        </EdDialogHeader>
+        <EdDialogFooter>
+          <EdButton @click="open = false">Close</EdButton>
+        </EdDialogFooter>
+      </EdDialogContent>
+    </EdDialog>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdButton, EdDialog, EdDialogContent, EdDialogHeader, EdDialogTitle, EdDialogDescription, EdDialogFooter } from "@fabioeducacross/ui-vue3";
+
+const open = ref(false);
+</script>`,
+        },
+    },
 };
 
 /**
@@ -194,6 +266,94 @@ export const Sizes: Story = {
             </Dialog>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@fabioeducacross/ui";
+
+<div className="flex gap-4">
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="outline">Small</Button>
+    </DialogTrigger>
+    <DialogContent size="sm">
+      <DialogHeader>
+        <DialogTitle>Small Dialog</DialogTitle>
+        <DialogDescription>This is a small dialog.</DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="outline">Large</Button>
+    </DialogTrigger>
+    <DialogContent size="lg">
+      <DialogHeader>
+        <DialogTitle>Large Dialog</DialogTitle>
+        <DialogDescription>This is a large dialog.</DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Modal -->
+<template>
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#smallModal">Small</button>
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#largeModal">Large</button>
+
+    <div class="modal fade" id="smallModal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header"><h5>Small Dialog</h5></div>
+          <div class="modal-body">This is a small dialog.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="largeModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header"><h5>Large Dialog</h5></div>
+          <div class="modal-body">This is a large dialog.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex gap-4">
+    <EdDialog>
+      <EdDialogTrigger as-child>
+        <EdButton variant="outline">Small</EdButton>
+      </EdDialogTrigger>
+      <EdDialogContent size="sm">
+        <EdDialogHeader>
+          <EdDialogTitle>Small Dialog</EdDialogTitle>
+          <EdDialogDescription>This is a small dialog.</EdDialogDescription>
+        </EdDialogHeader>
+      </EdDialogContent>
+    </EdDialog>
+
+    <EdDialog>
+      <EdDialogTrigger as-child>
+        <EdButton variant="outline">Large</EdButton>
+      </EdDialogTrigger>
+      <EdDialogContent size="lg">
+        <EdDialogHeader>
+          <EdDialogTitle>Large Dialog</EdDialogTitle>
+          <EdDialogDescription>This is a large dialog.</EdDialogDescription>
+        </EdDialogHeader>
+      </EdDialogContent>
+    </EdDialog>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdDialog, EdDialogTrigger, EdDialogContent, EdDialogHeader, EdDialogTitle, EdDialogDescription } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
         const body = within(document.body);
@@ -479,6 +639,63 @@ export const Confirmation: Story = {
             </DialogContent>
         </Dialog>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, Button } from "@fabioeducacross/ui";
+
+<Dialog>
+  <DialogTrigger asChild><Button variant="destructive">Delete Account</Button></DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Are you sure?</DialogTitle>
+      <DialogDescription>This action cannot be undone.</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose><Button variant="outline">Cancel</Button></DialogClose>
+      <Button variant="destructive">Delete Account</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete Account</button>
+  <div class="modal fade" id="confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Are you sure?</h5>
+        </div>
+        <div class="modal-body">This action cannot be undone.</div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger">Delete Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdDialog>
+    <EdDialogTrigger as-child><EdButton variant="destructive">Delete Account</EdButton></EdDialogTrigger>
+    <EdDialogContent>
+      <EdDialogHeader>
+        <EdDialogTitle>Are you sure?</EdDialogTitle>
+        <EdDialogDescription>This action cannot be undone.</EdDialogDescription>
+      </EdDialogHeader>
+      <EdDialogFooter>
+        <EdDialogClose><EdButton variant="outline">Cancel</EdButton></EdDialogClose>
+        <EdButton variant="destructive">Delete Account</EdButton>
+      </EdDialogFooter>
+    </EdDialogContent>
+  </EdDialog>
+</template>
+
+<script setup lang="ts">
+import { EdDialog, EdDialogTrigger, EdDialogContent, EdDialogHeader, EdDialogTitle, EdDialogDescription, EdDialogFooter, EdDialogClose, EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -503,6 +720,69 @@ export const KeyboardAndOverlay: Story = {
             </DialogContent>
         </Dialog>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@fabioeducacross/ui";
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Keyboard Test</DialogTitle>
+    </DialogHeader>
+    <DialogDescription>
+      Test closing with Escape key and clicking outside.
+    </DialogDescription>
+    <DialogFooter>
+      <Button>Action</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Modal -->
+<!-- Escape e overlay click são comportamentos padrão. -->
+<template>
+  <div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#keyboardModal">Open Dialog</button>
+
+    <div class="modal fade" id="keyboardModal" tabindex="-1" data-bs-backdrop="true" data-bs-keyboard="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Keyboard Test</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body"><p>Test closing with Escape key and clicking outside.</p></div>
+          <div class="modal-footer"><button type="button" class="btn btn-primary">Action</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdDialog>
+    <EdDialogTrigger as-child>
+      <EdButton>Open Dialog</EdButton>
+    </EdDialogTrigger>
+    <EdDialogContent>
+      <EdDialogHeader>
+        <EdDialogTitle>Keyboard Test</EdDialogTitle>
+      </EdDialogHeader>
+      <EdDialogDescription>Test closing with Escape key and clicking outside.</EdDialogDescription>
+      <EdDialogFooter>
+        <EdButton>Action</EdButton>
+      </EdDialogFooter>
+    </EdDialogContent>
+  </EdDialog>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdDialog, EdDialogTrigger, EdDialogContent, EdDialogHeader, EdDialogTitle, EdDialogDescription, EdDialogFooter } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
         const body = within(document.body);
@@ -589,4 +869,84 @@ export const ScrollableContent: Story = {
             </DialogContent>
         </Dialog>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button, Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@fabioeducacross/ui";
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Terms of Service</Button>
+  </DialogTrigger>
+  <DialogContent className="max-h-[80vh]">
+    <DialogHeader>
+      <DialogTitle>Terms of Service</DialogTitle>
+      <DialogDescription>Please read our terms carefully.</DialogDescription>
+    </DialogHeader>
+    <div className="overflow-y-auto max-h-[50vh] space-y-4">
+      <p>Lorem ipsum dolor sit amet...</p>
+      <p>Consectetur adipiscing elit...</p>
+    </div>
+    <DialogFooter>
+      <DialogClose>
+        <Button variant="outline">Decline</Button>
+      </DialogClose>
+      <Button>Accept</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Modal -->
+<template>
+  <div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scrollModal">Terms of Service</button>
+
+    <div class="modal fade" id="scrollModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Terms of Service</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body" style="max-height: 50vh; overflow-y: auto;">
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p>Consectetur adipiscing elit...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Decline</button>
+            <button type="button" class="btn btn-primary">Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdDialog>
+    <EdDialogTrigger as-child>
+      <EdButton>Terms of Service</EdButton>
+    </EdDialogTrigger>
+    <EdDialogContent class="max-h-[80vh]">
+      <EdDialogHeader>
+        <EdDialogTitle>Terms of Service</EdDialogTitle>
+        <EdDialogDescription>Please read our terms carefully.</EdDialogDescription>
+      </EdDialogHeader>
+      <div class="overflow-y-auto max-h-[50vh] space-y-4">
+        <p>Lorem ipsum dolor sit amet...</p>
+        <p>Consectetur adipiscing elit...</p>
+      </div>
+      <EdDialogFooter>
+        <EdDialogClose>
+          <EdButton variant="outline">Decline</EdButton>
+        </EdDialogClose>
+        <EdButton>Accept</EdButton>
+      </EdDialogFooter>
+    </EdDialogContent>
+  </EdDialog>
+</template>
+
+<script setup lang="ts">
+import { EdButton, EdDialog, EdDialogTrigger, EdDialogContent, EdDialogHeader, EdDialogTitle, EdDialogDescription, EdDialogFooter, EdDialogClose } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };

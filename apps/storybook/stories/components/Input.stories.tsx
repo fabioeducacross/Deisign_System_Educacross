@@ -111,6 +111,41 @@ export const Playground: Story = {
             </div>
         ),
     ],
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<div className="w-80">
+  <Input 
+    placeholder="Playground Input" 
+    variant="default" 
+    inputSize="default" 
+  />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div style="width: 20rem;">
+    <input type="text" 
+           class="form-control" 
+           placeholder="Playground Input">
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="w-80">
+    <EdInput 
+      placeholder="Playground Input" 
+      variant="default" 
+      input-size="default" 
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 // =============================================================================
@@ -189,6 +224,29 @@ export const Search: Story = {
         type: "search",
         placeholder: "Buscar...",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input type="search" placeholder="Buscar..." />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="search" 
+    class="form-control" 
+    placeholder="Buscar..."
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput type="search" placeholder="Buscar..." />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     decorators: [
         (Story) => (
             <div className="w-80">
@@ -258,6 +316,29 @@ export const Small: Story = {
         inputSize: "sm",
         placeholder: "Small input",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input inputSize="sm" placeholder="Small input" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control form-control-sm" 
+    placeholder="Small input"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput input-size="sm" placeholder="Small input" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     decorators: [
         (Story) => (
             <div className="w-80">
@@ -271,6 +352,29 @@ export const Large: Story = {
     args: {
         inputSize: "lg",
         placeholder: "Large input",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input inputSize="lg" placeholder="Large input" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control form-control-lg" 
+    placeholder="Large input"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput input-size="lg" placeholder="Large input" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
     decorators: [
         (Story) => (
@@ -296,6 +400,27 @@ export const Filled: Story = {
                 story: "Variante com background preenchido, ideal para formulários em fundos claros.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input variant="filled" placeholder="Filled input" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control bg-light" 
+    placeholder="Filled input"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput variant="filled" placeholder="Filled input" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
     decorators: [
         (Story) => (
@@ -311,6 +436,30 @@ export const Disabled: Story = {
         disabled: true,
         placeholder: "Disabled input",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input disabled placeholder="Disabled input" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control" 
+    placeholder="Disabled input"
+    disabled
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput disabled placeholder="Disabled input" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     decorators: [
         (Story) => (
             <div className="w-80">
@@ -323,6 +472,29 @@ export const Disabled: Story = {
 export const WithValue: Story = {
     args: {
         defaultValue: "Valor preenchido",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input defaultValue="Valor preenchido" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control" 
+    value="Valor preenchido"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput model-value="Valor preenchido" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
     decorators: [
         (Story) => (
@@ -344,6 +516,28 @@ export const Error: Story = {
                 story: "Use `error={true}` para indicar um campo inválido. Automaticamente aplica `aria-invalid`.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input error placeholder="Campo com erro" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control is-invalid" 
+    placeholder="Campo com erro"
+    aria-invalid="true"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput :error="true" placeholder="Campo com erro" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
     decorators: [
         (Story) => (
@@ -352,7 +546,7 @@ export const Error: Story = {
             </div>
         ),
     ],
-};
+}; 
 
 // =============================================================================
 // ALL SHOWCASE
@@ -366,6 +560,37 @@ export const AllSizes: Story = {
             <Input inputSize="lg" placeholder="Large" />
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-4">
+  <Input inputSize="sm" placeholder="Small" />
+  <Input inputSize="default" placeholder="Default" />
+  <Input inputSize="lg" placeholder="Large" />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3">
+    <input type="text" class="form-control form-control-sm" placeholder="Small" />
+    <input type="text" class="form-control" placeholder="Default" />
+    <input type="text" class="form-control form-control-lg" placeholder="Large" />
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-4">
+    <EdInput input-size="sm" placeholder="Small" />
+    <EdInput input-size="default" placeholder="Default" />
+    <EdInput input-size="lg" placeholder="Large" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const AllStates: Story = {
@@ -377,6 +602,40 @@ export const AllStates: Story = {
             <Input defaultValue="With value" />
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-4">
+  <Input placeholder="Normal" />
+  <Input disabled placeholder="Disabled" />
+  <Input error placeholder="Error" />
+  <Input defaultValue="With value" />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3">
+    <input type="text" class="form-control" placeholder="Normal" />
+    <input type="text" class="form-control" placeholder="Disabled" disabled />
+    <input type="text" class="form-control is-invalid" placeholder="Error" />
+    <input type="text" class="form-control" value="With value" />
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-4">
+    <EdInput placeholder="Normal" />
+    <EdInput disabled placeholder="Disabled" />
+    <EdInput :error="true" placeholder="Error" />
+    <EdInput model-value="With value" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 // =============================================================================
@@ -386,6 +645,61 @@ export const AllStates: Story = {
 export const TypeInteraction: Story = {
     args: {
         placeholder: "Type here",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+import { useState } from "react";
+
+function InputDemo() {
+  const [value, setValue] = useState("");
+  
+  return (
+    <div>
+      <Input 
+        placeholder="Type here" 
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <p>Value: {value}</p>
+    </div>
+  );
+}`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div>
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Type here"
+      v-model="value"
+    />
+    <p>Value: {{ value }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  data() { return { value: "" }; },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div>
+    <EdInput 
+      placeholder="Type here" 
+      v-model="value"
+    />
+    <p>Value: {{ value }}</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdInput } from "@fabioeducacross/ui-vue3";
+const value = ref("");
+</script>`,
+        },
     },
     decorators: [
         (Story) => (
@@ -414,6 +728,58 @@ export const FocusInteraction: Story = {
     args: {
         placeholder: "Focus me",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+function InputDemo() {
+  const handleFocus = () => console.log("Input focused");
+  const handleBlur = () => console.log("Input blurred");
+  
+  return (
+    <Input 
+      placeholder="Focus me" 
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    />
+  );
+}`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control" 
+    placeholder="Focus me"
+    @focus="handleFocus"
+    @blur="handleBlur"
+  />
+</template>
+
+<script>
+export default {
+  methods: {
+    handleFocus() { console.log("Input focused"); },
+    handleBlur() { console.log("Input blurred"); },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput 
+    placeholder="Focus me" 
+    @focus="handleFocus"
+    @blur="handleBlur"
+  />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+
+const handleFocus = () => console.log("Input focused");
+const handleBlur = () => console.log("Input blurred");
+</script>`,
+        },
+    },
     decorators: [
         (Story) => (
             <div className="w-80">
@@ -441,6 +807,30 @@ export const DisabledInteraction: Story = {
         placeholder: "Cannot type",
         disabled: true,
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input disabled placeholder="Cannot type" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control" 
+    placeholder="Cannot type"
+    disabled
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput disabled placeholder="Cannot type" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     decorators: [
         (Story) => (
             <div className="w-80">
@@ -462,6 +852,30 @@ export const ErrorStateInteraction: Story = {
         placeholder: "Invalid field",
         error: true,
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input error placeholder="Invalid field" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control is-invalid" 
+    placeholder="Invalid field"
+    aria-invalid="true"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput :error="true" placeholder="Invalid field" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     decorators: [
         (Story) => (
             <div className="w-80">
@@ -481,6 +895,29 @@ export const ErrorStateInteraction: Story = {
 export const KeyboardNavigation: Story = {
     args: {
         placeholder: "Tab to focus",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Input } from "@fabioeducacross/ui";
+
+<Input placeholder="Tab to focus" />`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <input 
+    type="text" 
+    class="form-control" 
+    placeholder="Tab to focus"
+  />
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdInput placeholder="Tab to focus" />
+</template>
+
+<script setup lang="ts">
+import { EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
     decorators: [
         (Story) => (

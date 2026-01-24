@@ -256,6 +256,120 @@ export const Variants: Story = {
             </Alert>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Alert, AlertTitle, AlertDescription } from "@fabioeducacross/ui";
+
+<div className="flex w-[450px] flex-col gap-4">
+  <Alert variant="default">
+    <AlertTitle>Default</AlertTitle>
+    <AlertDescription>
+      This is a default alert message.
+    </AlertDescription>
+  </Alert>
+  
+  <Alert variant="info">
+    <AlertTitle>Information</AlertTitle>
+    <AlertDescription>
+      This is an informational alert message.
+    </AlertDescription>
+  </Alert>
+  
+  <Alert variant="success">
+    <AlertTitle>Success</AlertTitle>
+    <AlertDescription>
+      Your changes have been saved successfully.
+    </AlertDescription>
+  </Alert>
+  
+  <Alert variant="warning">
+    <AlertTitle>Warning</AlertTitle>
+    <AlertDescription>
+      Please review your input before continuing.
+    </AlertDescription>
+  </Alert>
+  
+  <Alert variant="destructive">
+    <AlertTitle>Error</AlertTitle>
+    <AlertDescription>
+      Something went wrong. Please try again.
+    </AlertDescription>
+  </Alert>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3" style="width: 450px">
+    <div class="alert alert-secondary" role="alert">
+      <h5 class="alert-heading">Default</h5>
+      <p class="mb-0">This is a default alert message.</p>
+    </div>
+    
+    <div class="alert alert-info" role="alert">
+      <h5 class="alert-heading">Information</h5>
+      <p class="mb-0">This is an informational alert message.</p>
+    </div>
+    
+    <div class="alert alert-success" role="alert">
+      <h5 class="alert-heading">Success</h5>
+      <p class="mb-0">Your changes have been saved successfully.</p>
+    </div>
+    
+    <div class="alert alert-warning" role="alert">
+      <h5 class="alert-heading">Warning</h5>
+      <p class="mb-0">Please review your input before continuing.</p>
+    </div>
+    
+    <div class="alert alert-danger" role="alert">
+      <h5 class="alert-heading">Error</h5>
+      <p class="mb-0">Something went wrong. Please try again.</p>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex w-[450px] flex-col gap-4">
+    <EdAlert variant="default">
+      <EdAlertTitle>Default</EdAlertTitle>
+      <EdAlertDescription>
+        This is a default alert message.
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <EdAlert variant="info">
+      <EdAlertTitle>Information</EdAlertTitle>
+      <EdAlertDescription>
+        This is an informational alert message.
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <EdAlert variant="success">
+      <EdAlertTitle>Success</EdAlertTitle>
+      <EdAlertDescription>
+        Your changes have been saved successfully.
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <EdAlert variant="warning">
+      <EdAlertTitle>Warning</EdAlertTitle>
+      <EdAlertDescription>
+        Please review your input before continuing.
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <EdAlert variant="destructive">
+      <EdAlertTitle>Error</EdAlertTitle>
+      <EdAlertDescription>
+        Something went wrong. Please try again.
+      </EdAlertDescription>
+    </EdAlert>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdAlert, EdAlertTitle, EdAlertDescription } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -319,6 +433,196 @@ export const WithIcon: Story = {
             </Alert>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Alert, AlertTitle, AlertDescription } from "@fabioeducacross/ui";
+
+<div className="flex w-[450px] flex-col gap-4">
+  <Alert>
+    <svg
+      className="h-4 w-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="16" x2="12" y2="12" />
+      <line x1="12" y1="8" x2="12.01" y2="8" />
+    </svg>
+    <AlertTitle>Information</AlertTitle>
+    <AlertDescription>
+      Your session will expire in 5 minutes.
+    </AlertDescription>
+  </Alert>
+  
+  <Alert variant="success">
+    <svg
+      className="h-4 w-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+    <AlertTitle>Success</AlertTitle>
+    <AlertDescription>
+      Your profile has been updated.
+    </AlertDescription>
+  </Alert>
+  
+  <Alert variant="destructive">
+    <svg
+      className="h-4 w-4"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="15" y1="9" x2="9" y2="15" />
+      <line x1="9" y1="9" x2="15" y2="15" />
+    </svg>
+    <AlertTitle>Error</AlertTitle>
+    <AlertDescription>
+      Failed to save changes. Please try again.
+    </AlertDescription>
+  </Alert>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3" style="width: 450px">
+    <div class="alert alert-info d-flex align-items-start" role="alert">
+      <svg
+        class="flex-shrink-0 me-2"
+        style="width: 16px; height: 16px"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <div>
+        <h5 class="alert-heading mb-1">Information</h5>
+        <p class="mb-0">Your session will expire in 5 minutes.</p>
+      </div>
+    </div>
+    
+    <div class="alert alert-success d-flex align-items-start" role="alert">
+      <svg
+        class="flex-shrink-0 me-2"
+        style="width: 16px; height: 16px"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+      <div>
+        <h5 class="alert-heading mb-1">Success</h5>
+        <p class="mb-0">Your profile has been updated.</p>
+      </div>
+    </div>
+    
+    <div class="alert alert-danger d-flex align-items-start" role="alert">
+      <svg
+        class="flex-shrink-0 me-2"
+        style="width: 16px; height: 16px"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="15" y1="9" x2="9" y2="15" />
+        <line x1="9" y1="9" x2="15" y2="15" />
+      </svg>
+      <div>
+        <h5 class="alert-heading mb-1">Error</h5>
+        <p class="mb-0">Failed to save changes. Please try again.</p>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex w-[450px] flex-col gap-4">
+    <EdAlert>
+      <svg
+        class="h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="16" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12.01" y2="8" />
+      </svg>
+      <EdAlertTitle>Information</EdAlertTitle>
+      <EdAlertDescription>
+        Your session will expire in 5 minutes.
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <EdAlert variant="success">
+      <svg
+        class="h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+      <EdAlertTitle>Success</EdAlertTitle>
+      <EdAlertDescription>
+        Your profile has been updated.
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <EdAlert variant="destructive">
+      <svg
+        class="h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="15" y1="9" x2="9" y2="15" />
+        <line x1="9" y1="9" x2="15" y2="15" />
+      </svg>
+      <EdAlertTitle>Error</EdAlertTitle>
+      <EdAlertDescription>
+        Failed to save changes. Please try again.
+      </EdAlertDescription>
+    </EdAlert>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdAlert, EdAlertTitle, EdAlertDescription } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -333,6 +637,37 @@ export const WithoutTitle: Story = {
             </AlertDescription>
         </Alert>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Alert, AlertDescription } from "@fabioeducacross/ui";
+
+<Alert className="w-[450px]">
+  <AlertDescription>
+    This is an alert without a title. Sometimes you just need a simple message.
+  </AlertDescription>
+</Alert>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="alert alert-secondary" role="alert" style="width: 450px">
+    <p class="mb-0">
+      This is an alert without a title. Sometimes you just need a simple message.
+    </p>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdAlert class="w-[450px]">
+    <EdAlertDescription>
+      This is an alert without a title. Sometimes you just need a simple message.
+    </EdAlertDescription>
+  </EdAlert>
+</template>
+
+<script setup lang="ts">
+import { EdAlert, EdAlertDescription } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -360,4 +695,77 @@ export const InFormContext: Story = {
             </div>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Alert, AlertTitle, AlertDescription } from "@fabioeducacross/ui";
+
+<div className="w-[400px] space-y-4">
+  <Alert variant="warning">
+    <AlertTitle>Required fields missing</AlertTitle>
+    <AlertDescription>
+      Please fill in all required fields marked with an asterisk (*).
+    </AlertDescription>
+  </Alert>
+  
+  <div className="space-y-2">
+    <label className="text-sm font-medium">
+      Email <span className="text-destructive">*</span>
+    </label>
+    <input
+      type="email"
+      className="flex h-10 w-full rounded-md border border-destructive bg-background px-3 py-2 text-sm"
+      placeholder="Enter your email"
+    />
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div style="width: 400px">
+    <div class="alert alert-warning mb-3" role="alert">
+      <h5 class="alert-heading mb-1">Required fields missing</h5>
+      <p class="mb-0">
+        Please fill in all required fields marked with an asterisk (*).
+      </p>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">
+        Email <span class="text-danger">*</span>
+      </label>
+      <input
+        type="email"
+        class="form-control is-invalid"
+        placeholder="Enter your email"
+      />
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="w-[400px] space-y-4">
+    <EdAlert variant="warning">
+      <EdAlertTitle>Required fields missing</EdAlertTitle>
+      <EdAlertDescription>
+        Please fill in all required fields marked with an asterisk (*).
+      </EdAlertDescription>
+    </EdAlert>
+    
+    <div class="space-y-2">
+      <label class="text-sm font-medium">
+        Email <span class="text-destructive">*</span>
+      </label>
+      <input
+        type="email"
+        class="flex h-10 w-full rounded-md border border-destructive bg-background px-3 py-2 text-sm"
+        placeholder="Enter your email"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdAlert, EdAlertTitle, EdAlertDescription } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };

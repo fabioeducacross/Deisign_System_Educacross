@@ -130,6 +130,70 @@ export const SizeComparison: Story = {
             </div>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { AvatarIcon } from "@fabioeducacross/ui";
+
+<div className="flex items-center gap-8">
+  <div className="flex flex-col items-center gap-2">
+    <AvatarIcon size="sm" />
+    <p className="text-xs text-muted-foreground">Small</p>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <AvatarIcon size="default" />
+    <p className="text-xs text-muted-foreground">Default</p>
+  </div>
+  <div className="flex flex-col items-center gap-2">
+    <AvatarIcon size="lg" />
+    <p className="text-xs text-muted-foreground">Large</p>
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex align-items-center gap-4">
+    <div class="d-flex flex-column align-items-center gap-2">
+      <svg width="24" height="24" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+      <small class="text-muted">Small</small>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-2">
+      <svg width="32" height="32" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+      <small class="text-muted">Default</small>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-2">
+      <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+      <small class="text-muted">Large</small>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex items-center gap-8">
+    <div class="flex flex-col items-center gap-2">
+      <EdAvatarIcon size="sm" />
+      <p class="text-xs text-muted-foreground">Small</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <EdAvatarIcon size="default" />
+      <p class="text-xs text-muted-foreground">Default</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <EdAvatarIcon size="lg" />
+      <p class="text-xs text-muted-foreground">Large</p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdAvatarIcon } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -143,6 +207,38 @@ export const InAvatar: Story = {
             </AvatarFallback>
         </Avatar>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Avatar, AvatarFallback, AvatarIcon } from "@fabioeducacross/ui";
+
+<Avatar size="lg" className="border-2 border-[#06B6D4]">
+  <AvatarFallback className="bg-transparent flex items-center justify-center">
+    <AvatarIcon size="lg" />
+  </AvatarFallback>
+</Avatar>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex align-items-center justify-content-center rounded-circle border border-2" 
+       style="width: 80px; height: 80px; border-color: #06B6D4 !important; background-color: transparent;">
+    <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Conteúdo do AvatarIcon SVG -->
+    </svg>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdAvatar size="lg" class="border-2 border-[#06B6D4]">
+    <EdAvatarFallback class="bg-transparent flex items-center justify-center">
+      <EdAvatarIcon size="lg" />
+    </EdAvatarFallback>
+  </EdAvatar>
+</template>
+
+<script setup lang="ts">
+import { EdAvatar, EdAvatarFallback, EdAvatarIcon } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -173,4 +269,100 @@ export const InMultipleAvatars: Story = {
             </Avatar>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Avatar, AvatarFallback, AvatarIcon } from "@fabioeducacross/ui";
+
+<div className="flex items-center gap-4">
+  <Avatar size="sm" className="border-2 border-[#06B6D4]">
+    <AvatarFallback className="bg-transparent flex items-center justify-center">
+      <AvatarIcon size="sm" />
+    </AvatarFallback>
+  </Avatar>
+  
+  <Avatar size="default" className="border-2 border-[#06B6D4]">
+    <AvatarFallback className="bg-transparent flex items-center justify-center">
+      <AvatarIcon size="default" />
+    </AvatarFallback>
+  </Avatar>
+  
+  <Avatar size="lg" className="border-2 border-[#06B6D4]">
+    <AvatarFallback className="bg-transparent flex items-center justify-center">
+      <AvatarIcon size="lg" />
+    </AvatarFallback>
+  </Avatar>
+  
+  <Avatar size="xl" className="border-2 border-[#06B6D4]">
+    <AvatarFallback className="bg-transparent flex items-center justify-center">
+      <AvatarIcon size="lg" />
+    </AvatarFallback>
+  </Avatar>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex align-items-center gap-3">
+    <div class="d-flex align-items-center justify-content-center rounded-circle border border-2" 
+         style="width: 40px; height: 40px; border-color: #06B6D4 !important; background-color: transparent;">
+      <svg width="24" height="24" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+    </div>
+    
+    <div class="d-flex align-items-center justify-content-center rounded-circle border border-2" 
+         style="width: 48px; height: 48px; border-color: #06B6D4 !important; background-color: transparent;">
+      <svg width="32" height="32" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+    </div>
+    
+    <div class="d-flex align-items-center justify-content-center rounded-circle border border-2" 
+         style="width: 80px; height: 80px; border-color: #06B6D4 !important; background-color: transparent;">
+      <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+    </div>
+    
+    <div class="d-flex align-items-center justify-content-center rounded-circle border border-2" 
+         style="width: 96px; height: 96px; border-color: #06B6D4 !important; background-color: transparent;">
+      <svg width="48" height="48" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- SVG content -->
+      </svg>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex items-center gap-4">
+    <EdAvatar size="sm" class="border-2 border-[#06B6D4]">
+      <EdAvatarFallback class="bg-transparent flex items-center justify-center">
+        <EdAvatarIcon size="sm" />
+      </EdAvatarFallback>
+    </EdAvatar>
+    
+    <EdAvatar size="default" class="border-2 border-[#06B6D4]">
+      <EdAvatarFallback class="bg-transparent flex items-center justify-center">
+        <EdAvatarIcon size="default" />
+      </EdAvatarFallback>
+    </EdAvatar>
+    
+    <EdAvatar size="lg" class="border-2 border-[#06B6D4]">
+      <EdAvatarFallback class="bg-transparent flex items-center justify-center">
+        <EdAvatarIcon size="lg" />
+      </EdAvatarFallback>
+    </EdAvatar>
+    
+    <EdAvatar size="xl" class="border-2 border-[#06B6D4]">
+      <EdAvatarFallback class="bg-transparent flex items-center justify-center">
+        <EdAvatarIcon size="lg" />
+      </EdAvatarFallback>
+    </EdAvatar>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdAvatar, EdAvatarFallback, EdAvatarIcon } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
+};
 };

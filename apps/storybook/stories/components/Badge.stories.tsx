@@ -223,6 +223,94 @@ export const Variants: Story = {
             </div>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Badge } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-4">
+  <div className="space-y-2">
+    <p className="text-sm text-muted-foreground font-semibold">Variantes Sólidas</p>
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="default">Badge</Badge>
+      <Badge variant="secondary">Badge</Badge>
+      <Badge variant="destructive">Badge</Badge>
+      <Badge variant="warning">Badge</Badge>
+      <Badge variant="info">Badge</Badge>
+      <Badge variant="success">Badge</Badge>
+    </div>
+  </div>
+  <div className="space-y-2">
+    <p className="text-sm text-muted-foreground font-semibold">Variantes Suaves (Soft)</p>
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="softPrimary">Badge</Badge>
+      <Badge variant="softSecondary">Badge</Badge>
+      <Badge variant="softDestructive">Badge</Badge>
+      <Badge variant="softWarning">Badge</Badge>
+      <Badge variant="softInfo">Badge</Badge>
+      <Badge variant="softSuccess">Badge</Badge>
+    </div>
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3">
+    <div>
+      <p class="text-muted small fw-semibold">Variantes Sólidas</p>
+      <div class="d-flex flex-wrap gap-2 mt-2">
+        <span class="badge bg-primary">Badge</span>
+        <span class="badge bg-secondary">Badge</span>
+        <span class="badge bg-danger">Badge</span>
+        <span class="badge bg-warning">Badge</span>
+        <span class="badge bg-info">Badge</span>
+        <span class="badge bg-success">Badge</span>
+      </div>
+    </div>
+    <div>
+      <p class="text-muted small fw-semibold">Variantes Suaves (Soft)</p>
+      <div class="d-flex flex-wrap gap-2 mt-2">
+        <span class="badge bg-primary bg-opacity-10 text-primary">Badge</span>
+        <span class="badge bg-secondary bg-opacity-10 text-secondary">Badge</span>
+        <span class="badge bg-danger bg-opacity-10 text-danger">Badge</span>
+        <span class="badge bg-warning bg-opacity-10 text-warning">Badge</span>
+        <span class="badge bg-info bg-opacity-10 text-info">Badge</span>
+        <span class="badge bg-success bg-opacity-10 text-success">Badge</span>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-4">
+    <div class="space-y-2">
+      <p class="text-sm text-muted-foreground font-semibold">Variantes Sólidas</p>
+      <div class="flex flex-wrap gap-2">
+        <EdBadge variant="default">Badge</EdBadge>
+        <EdBadge variant="secondary">Badge</EdBadge>
+        <EdBadge variant="destructive">Badge</EdBadge>
+        <EdBadge variant="warning">Badge</EdBadge>
+        <EdBadge variant="info">Badge</EdBadge>
+        <EdBadge variant="success">Badge</EdBadge>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <p class="text-sm text-muted-foreground font-semibold">Variantes Suaves (Soft)</p>
+      <div class="flex flex-wrap gap-2">
+        <EdBadge variant="softPrimary">Badge</EdBadge>
+        <EdBadge variant="softSecondary">Badge</EdBadge>
+        <EdBadge variant="softDestructive">Badge</EdBadge>
+        <EdBadge variant="softWarning">Badge</EdBadge>
+        <EdBadge variant="softInfo">Badge</EdBadge>
+        <EdBadge variant="softSuccess">Badge</EdBadge>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdBadge } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -236,6 +324,37 @@ export const Sizes: Story = {
             <Badge size="lg">Large</Badge>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Badge } from "@fabioeducacross/ui";
+
+<div className="flex items-center gap-2">
+  <Badge size="sm">Small</Badge>
+  <Badge size="default">Default</Badge>
+  <Badge size="lg">Large</Badge>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex align-items-center gap-2">
+    <span class="badge bg-primary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Small</span>
+    <span class="badge bg-primary">Default</span>
+    <span class="badge bg-primary" style="font-size: 1rem; padding: 0.5rem 1rem;">Large</span>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex items-center gap-2">
+    <EdBadge size="sm">Small</EdBadge>
+    <EdBadge size="default">Default</EdBadge>
+    <EdBadge size="lg">Large</EdBadge>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdBadge } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -262,6 +381,76 @@ export const StatusBadges: Story = {
             </div>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Badge } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-4">
+  <div className="flex items-center gap-2">
+    <Badge variant="success">Active</Badge>
+    <span>User is currently online</span>
+  </div>
+  <div className="flex items-center gap-2">
+    <Badge variant="warning">Pending</Badge>
+    <span>Awaiting approval</span>
+  </div>
+  <div className="flex items-center gap-2">
+    <Badge variant="destructive">Error</Badge>
+    <span>Action failed</span>
+  </div>
+  <div className="flex items-center gap-2">
+    <Badge variant="secondary">Draft</Badge>
+    <span>Not yet published</span>
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3">
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-success">Active</span>
+      <span>User is currently online</span>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-warning">Pending</span>
+      <span>Awaiting approval</span>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-danger">Error</span>
+      <span>Action failed</span>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-secondary">Draft</span>
+      <span>Not yet published</span>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-2">
+      <EdBadge variant="success">Active</EdBadge>
+      <span>User is currently online</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <EdBadge variant="warning">Pending</EdBadge>
+      <span>Awaiting approval</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <EdBadge variant="destructive">Error</EdBadge>
+      <span>Action failed</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <EdBadge variant="secondary">Draft</EdBadge>
+      <span>Not yet published</span>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdBadge } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -288,6 +477,68 @@ export const WithCounts: Story = {
             </div>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Badge } from "@fabioeducacross/ui";
+
+<div className="flex gap-4">
+  <div className="relative inline-flex">
+    <span className="text-sm">Notifications</span>
+    <Badge className="absolute -right-6 -top-2" size="sm">
+      3
+    </Badge>
+  </div>
+  <div className="relative inline-flex">
+    <span className="text-sm">Messages</span>
+    <Badge
+      className="absolute -right-8 -top-2"
+      variant="destructive"
+      size="sm"
+    >
+      99+
+    </Badge>
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex gap-3">
+    <div class="position-relative d-inline-flex">
+      <span class="small">Notifications</span>
+      <span class="badge bg-primary position-absolute" style="right: -1.5rem; top: -0.5rem; font-size: 0.75rem;">3</span>
+    </div>
+    <div class="position-relative d-inline-flex">
+      <span class="small">Messages</span>
+      <span class="badge bg-danger position-absolute" style="right: -2rem; top: -0.5rem; font-size: 0.75rem;">99+</span>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex gap-4">
+    <div class="relative inline-flex">
+      <span class="text-sm">Notifications</span>
+      <EdBadge class="absolute -right-6 -top-2" size="sm">
+        3
+      </EdBadge>
+    </div>
+    <div class="relative inline-flex">
+      <span class="text-sm">Messages</span>
+      <EdBadge
+        class="absolute -right-8 -top-2"
+        variant="destructive"
+        size="sm"
+      >
+        99+
+      </EdBadge>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdBadge } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -298,6 +549,77 @@ export const InList: Story = {
         <div className="w-[300px] space-y-2">
             <div className="flex items-center justify-between rounded-lg border p-3">
                 <span>Feature Request</span>
+                <Badge variant="info">New</Badge>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border p-3">
+                <span>Bug Report</span>
+                <Badge variant="destructive">Urgent</Badge>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border p-3">
+                <span>Documentation</span>
+                <Badge variant="success">Completed</Badge>
+            </div>
+        </div>
+    ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Badge } from "@fabioeducacross/ui";
+
+<div className="w-[300px] space-y-2">
+  <div className="flex items-center justify-between rounded-lg border p-3">
+    <span>Feature Request</span>
+    <Badge variant="info">New</Badge>
+  </div>
+  <div className="flex items-center justify-between rounded-lg border p-3">
+    <span>Bug Report</span>
+    <Badge variant="destructive">Urgent</Badge>
+  </div>
+  <div className="flex items-center justify-between rounded-lg border p-3">
+    <span>Documentation</span>
+    <Badge variant="success">Completed</Badge>
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div style="width: 300px;">
+    <div class="d-flex align-items-center justify-content-between border rounded p-3 mb-2">
+      <span>Feature Request</span>
+      <span class="badge bg-info">New</span>
+    </div>
+    <div class="d-flex align-items-center justify-content-between border rounded p-3 mb-2">
+      <span>Bug Report</span>
+      <span class="badge bg-danger">Urgent</span>
+    </div>
+    <div class="d-flex align-items-center justify-content-between border rounded p-3">
+      <span>Documentation</span>
+      <span class="badge bg-success">Completed</span>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="w-[300px] space-y-2">
+    <div class="flex items-center justify-between rounded-lg border p-3">
+      <span>Feature Request</span>
+      <EdBadge variant="info">New</EdBadge>
+    </div>
+    <div class="flex items-center justify-between rounded-lg border p-3">
+      <span>Bug Report</span>
+      <EdBadge variant="destructive">Urgent</EdBadge>
+    </div>
+    <div class="flex items-center justify-between rounded-lg border p-3">
+      <span>Documentation</span>
+      <EdBadge variant="success">Completed</EdBadge>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdBadge } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
+};
                 <Badge variant="default">New</Badge>
             </div>
             <div className="flex items-center justify-between rounded-lg border p-3">

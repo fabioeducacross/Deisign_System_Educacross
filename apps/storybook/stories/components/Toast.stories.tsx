@@ -241,6 +241,91 @@ export const WithClose: Story = {
             </div>
         );
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Toast, ToastTitle, ToastDescription, Button } from "@fabioeducacross/ui";
+import { useState } from "react";
+
+const [open, setOpen] = useState(true);
+
+<div className="space-y-4">
+  {!open && (
+    <Button onClick={() => setOpen(true)}>Show Toast</Button>
+  )}
+  <Toast
+    open={open}
+    onClose={() => setOpen(false)}
+    className="relative w-[350px]"
+  >
+    <ToastTitle>Closable Toast</ToastTitle>
+    <ToastDescription>
+      Click the X or wait for it to auto-close.
+    </ToastDescription>
+  </Toast>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div>
+    <button v-if="!open" class="btn btn-primary mb-2" @click="open = true">
+      Show Toast
+    </button>
+    <div
+      v-if="open"
+      class="toast show position-relative"
+      role="alert"
+      aria-live="assertive"
+      style="width: 350px"
+    >
+      <div class="toast-header">
+        <strong class="me-auto">Closable Toast</strong>
+        <button
+          type="button"
+          class="btn-close"
+          @click="open = false"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">
+        Click the X or wait for it to auto-close.
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      open: true,
+    };
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="space-y-4">
+    <EdButton v-if="!open" @click="open = true">Show Toast</EdButton>
+    <EdToast
+      :open="open"
+      @close="open = false"
+      class="relative w-[350px]"
+    >
+      <EdToastTitle>Closable Toast</EdToastTitle>
+      <EdToastDescription>
+        Click the X or wait for it to auto-close.
+      </EdToastDescription>
+    </EdToast>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdToast, EdToastTitle, EdToastDescription, EdButton } from "@fabioeducacross/ui-vue3";
+
+const open = ref(true);
+</script>`,
+        },
+    },
 };
 
 /**
@@ -312,6 +397,146 @@ export const Interactive: Story = {
             </div>
         );
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Toast, ToastTitle, ToastDescription, ToastViewport, Button } from "@fabioeducacross/ui";
+import { useState } from "react";
+
+const [toasts, setToasts] = useState<Array<{ id: number; variant: "default" | "destructive" | "success"; title: string; description: string }>>([]);
+
+const addToast = (variant: "default" | "destructive" | "success", title: string, description: string) => {
+  const id = Date.now();
+  setToasts((prev) => [...prev, { id, variant, title, description }]);
+};
+
+const removeToast = (id: number) => {
+  setToasts((prev) => prev.filter((t) => t.id !== id));
+};
+
+<div className="space-y-4">
+  <div className="flex flex-wrap gap-2">
+    <Button onClick={() => addToast("success", "Success!", "Action completed.")}>
+      Success Toast
+    </Button>
+    <Button variant="destructive" onClick={() => addToast("destructive", "Error!", "Something went wrong.")}>
+      Error Toast
+    </Button>
+    <Button variant="outline" onClick={() => addToast("default", "Info", "Here's some information.")}>
+      Info Toast
+    </Button>
+  </div>
+  <ToastViewport className="relative flex flex-col gap-2">
+    {toasts.map((toast) => (
+      <Toast
+        key={toast.id}
+        open
+        variant={toast.variant}
+        onClose={() => removeToast(toast.id)}
+        duration={3000}
+      >
+        <ToastTitle>{toast.title}</ToastTitle>
+        <ToastDescription>{toast.description}</ToastDescription>
+      </Toast>
+    ))}
+  </ToastViewport>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div>
+    <div class="d-flex flex-wrap gap-2 mb-3">
+      <button class="btn btn-success" @click="addToast('success', 'Success!', 'Action completed.')">
+        Success Toast
+      </button>
+      <button class="btn btn-danger" @click="addToast('destructive', 'Error!', 'Something went wrong.')">
+        Error Toast
+      </button>
+      <button class="btn btn-outline-primary" @click="addToast('default', 'Info', 'Here\'s some information.')">
+        Info Toast
+      </button>
+    </div>
+    <div class="toast-container position-relative">
+      <div
+        v-for="toast in toasts"
+        :key="toast.id"
+        class="toast show mb-2"
+        :class="{ 'bg-danger text-white': toast.variant === 'destructive', 'bg-success text-white': toast.variant === 'success' }"
+        role="alert"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">{{ toast.title }}</strong>
+          <button type="button" class="btn-close" @click="removeToast(toast.id)"></button>
+        </div>
+        <div class="toast-body">{{ toast.description }}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      toasts: [],
+    };
+  },
+  methods: {
+    addToast(variant, title, description) {
+      const id = Date.now();
+      this.toasts.push({ id, variant, title, description });
+    },
+    removeToast(id) {
+      this.toasts = this.toasts.filter((t) => t.id !== id);
+    },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="space-y-4">
+    <div class="flex flex-wrap gap-2">
+      <EdButton @click="addToast('success', 'Success!', 'Action completed.')">
+        Success Toast
+      </EdButton>
+      <EdButton variant="destructive" @click="addToast('destructive', 'Error!', 'Something went wrong.')">
+        Error Toast
+      </EdButton>
+      <EdButton variant="outline" @click="addToast('default', 'Info', 'Here\'s some information.')">
+        Info Toast
+      </EdButton>
+    </div>
+    <EdToastViewport class="relative flex flex-col gap-2">
+      <EdToast
+        v-for="toast in toasts"
+        :key="toast.id"
+        :open="true"
+        :variant="toast.variant"
+        @close="removeToast(toast.id)"
+        :duration="3000"
+      >
+        <EdToastTitle>{{ toast.title }}</EdToastTitle>
+        <EdToastDescription>{{ toast.description }}</EdToastDescription>
+      </EdToast>
+    </EdToastViewport>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdToast, EdToastTitle, EdToastDescription, EdToastViewport, EdButton } from "@fabioeducacross/ui-vue3";
+
+const toasts = ref<Array<{ id: number; variant: "default" | "destructive" | "success"; title: string; description: string }>>([]);
+
+const addToast = (variant: "default" | "destructive" | "success", title: string, description: string) => {
+  const id = Date.now();
+  toasts.value.push({ id, variant, title, description });
+};
+
+const removeToast = (id: number) => {
+  toasts.value = toasts.value.filter((t) => t.id !== id);
+};
+</script>`,
+        },
+    },
 };
 
 /**
@@ -337,5 +562,86 @@ export const InViewport: Story = {
                 </ToastViewport>
             </div>
         );
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Toast, ToastTitle, ToastDescription, ToastViewport, Button } from "@fabioeducacross/ui";
+import { useState } from "react";
+
+const [open, setOpen] = useState(false);
+
+<div>
+  <Button onClick={() => setOpen(true)}>Show Toast</Button>
+  <ToastViewport>
+    <Toast
+      open={open}
+      onClose={() => setOpen(false)}
+      duration={3000}
+    >
+      <ToastTitle>Positioned Toast</ToastTitle>
+      <ToastDescription>
+        This toast appears in the viewport corner.
+      </ToastDescription>
+    </Toast>
+  </ToastViewport>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div>
+    <button class="btn btn-primary" @click="open = true">Show Toast</button>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div
+        v-if="open"
+        class="toast show"
+        role="alert"
+        aria-live="assertive"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Positioned Toast</strong>
+          <button type="button" class="btn-close" @click="open = false"></button>
+        </div>
+        <div class="toast-body">
+          This toast appears in the viewport corner.
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      open: false,
+    };
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div>
+    <EdButton @click="open = true">Show Toast</EdButton>
+    <EdToastViewport>
+      <EdToast
+        :open="open"
+        @close="open = false"
+        :duration="3000"
+      >
+        <EdToastTitle>Positioned Toast</EdToastTitle>
+        <EdToastDescription>
+          This toast appears in the viewport corner.
+        </EdToastDescription>
+      </EdToast>
+    </EdToastViewport>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdToast, EdToastTitle, EdToastDescription, EdToastViewport, EdButton } from "@fabioeducacross/ui-vue3";
+
+const open = ref(false);
+</script>`,
+        },
     },
 };

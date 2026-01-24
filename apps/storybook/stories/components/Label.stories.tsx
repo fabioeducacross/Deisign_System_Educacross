@@ -77,6 +77,25 @@ export const Playground: Story = {
         variant: "default",
         required: false,
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Label } from "@fabioeducacross/ui";
+
+<Label variant="default">Playground Label</Label>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <label class="form-label">Playground Label</label>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdLabel variant="default">Playground Label</EdLabel>
+</template>
+
+<script setup lang="ts">
+import { EdLabel } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 // =============================================================================
@@ -94,6 +113,23 @@ export const ErrorVariant: Story = {
                 story: "Use a variante `error` para indicar campos com erro de validação.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Label } from "@fabioeducacross/ui";
+
+<Label variant="error">Campo inválido</Label>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <label class="form-label text-danger">Campo inválido</label>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdLabel variant="error">Campo inválido</EdLabel>
+</template>
+
+<script setup lang="ts">
+import { EdLabel } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -107,6 +143,23 @@ export const MutedVariant: Story = {
             description: {
                 story: "Use a variante `muted` para labels de campos opcionais ou menos importantes.",
             },
+        },
+        multiFrameworkCode: {
+            react: `import { Label } from "@fabioeducacross/ui";
+
+<Label variant="muted">Campo opcional</Label>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <label class="form-label text-muted">Campo opcional</label>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdLabel variant="muted">Campo opcional</EdLabel>
+</template>
+
+<script setup lang="ts">
+import { EdLabel } from "@fabioeducacross/ui-vue3";
+</script>`,
         },
     },
 };
@@ -161,6 +214,37 @@ export const AllVariants: Story = {
             <Label variant="muted">Muted Label</Label>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Label } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-4">
+  <Label variant="default">Default Label</Label>
+  <Label variant="error">Error Label</Label>
+  <Label variant="muted">Muted Label</Label>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-3">
+    <label class="form-label">Default Label</label>
+    <label class="form-label text-danger">Error Label</label>
+    <label class="form-label text-muted">Muted Label</label>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-4">
+    <EdLabel variant="default">Default Label</EdLabel>
+    <EdLabel variant="error">Error Label</EdLabel>
+    <EdLabel variant="muted">Muted Label</EdLabel>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const WithInput: Story = {
@@ -176,6 +260,37 @@ export const WithInput: Story = {
                 story: "Sempre associe o Label ao Input usando `htmlFor` e `id` correspondentes.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Label, Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-2">
+  <Label htmlFor="email-example">Email</Label>
+  <Input id="email-example" type="email" placeholder="seu@email.com" />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-2">
+    <label for="email-example" class="form-label">Email</label>
+    <input 
+      id="email-example" 
+      type="email" 
+      class="form-control" 
+      placeholder="seu@email.com"
+    />
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-2">
+    <EdLabel html-for="email-example">Email</EdLabel>
+    <EdInput id="email-example" type="email" placeholder="seu@email.com" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel, EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -188,6 +303,46 @@ export const RequiredWithInput: Story = {
             <Input id="password-example" type="password" placeholder="••••••••" />
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Label, Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-2">
+  <Label htmlFor="password-example" required>
+    Senha
+  </Label>
+  <Input id="password-example" type="password" placeholder="••••••••" />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-2">
+    <label for="password-example" class="form-label">
+      Senha
+      <span class="text-danger ms-1">*</span>
+    </label>
+    <input 
+      id="password-example" 
+      type="password" 
+      class="form-control" 
+      placeholder="••••••••"
+    />
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-2">
+    <EdLabel html-for="password-example" :required="true">
+      Senha
+    </EdLabel>
+    <EdInput id="password-example" type="password" placeholder="••••••••" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel, EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const ErrorWithInput: Story = {
@@ -205,6 +360,52 @@ export const ErrorWithInput: Story = {
             description: {
                 story: "Combine `Label variant='error'` com `Input error={true}` para estados de erro.",
             },
+        },
+        multiFrameworkCode: {
+            react: `import { Label, Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-2">
+  <Label htmlFor="error-example" variant="error">
+    Email inválido
+  </Label>
+  <Input id="error-example" type="email" error defaultValue="invalido" />
+  <span className="text-sm text-destructive">
+    Por favor, insira um email válido.
+  </span>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-2">
+    <label for="error-example" class="form-label text-danger">
+      Email inválido
+    </label>
+    <input 
+      id="error-example" 
+      type="email" 
+      class="form-control is-invalid" 
+      value="invalido"
+    />
+    <span class="text-danger small">
+      Por favor, insira um email válido.
+    </span>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-2">
+    <EdLabel html-for="error-example" variant="error">
+      Email inválido
+    </EdLabel>
+    <EdInput id="error-example" type="email" :error="true" model-value="invalido" />
+    <span class="text-sm text-destructive">
+      Por favor, insira um email válido.
+    </span>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel, EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
         },
     },
 };
@@ -242,6 +443,72 @@ export const FormFieldPattern: Story = {
                 story: "Padrão recomendado para campos de formulário: Label + Input com associação via htmlFor/id.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Label, Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-6">
+  <div className="flex flex-col gap-2">
+    <Label htmlFor="name" required>Nome completo</Label>
+    <Input id="name" placeholder="Jane Doe" />
+  </div>
+  
+  <div className="flex flex-col gap-2">
+    <Label htmlFor="email" required>Email</Label>
+    <Input id="email" type="email" placeholder="jane@exemplo.com" />
+  </div>
+  
+  <div className="flex flex-col gap-2">
+    <Label htmlFor="bio" variant="muted">Bio (opcional)</Label>
+    <Input id="bio" placeholder="Conte um pouco sobre você" />
+  </div>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-4">
+    <div class="d-flex flex-column gap-2">
+      <label for="name" class="form-label">
+        Nome completo <span class="text-danger">*</span>
+      </label>
+      <input id="name" class="form-control" placeholder="Jane Doe" />
+    </div>
+    
+    <div class="d-flex flex-column gap-2">
+      <label for="email" class="form-label">
+        Email <span class="text-danger">*</span>
+      </label>
+      <input id="email" type="email" class="form-control" placeholder="jane@exemplo.com" />
+    </div>
+    
+    <div class="d-flex flex-column gap-2">
+      <label for="bio" class="form-label text-muted">Bio (opcional)</label>
+      <input id="bio" class="form-control" placeholder="Conte um pouco sobre você" />
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <EdLabel html-for="name" :required="true">Nome completo</EdLabel>
+      <EdInput id="name" placeholder="Jane Doe" />
+    </div>
+    
+    <div class="flex flex-col gap-2">
+      <EdLabel html-for="email" :required="true">Email</EdLabel>
+      <EdInput id="email" type="email" placeholder="jane@exemplo.com" />
+    </div>
+    
+    <div class="flex flex-col gap-2">
+      <EdLabel html-for="bio" variant="muted">Bio (opcional)</EdLabel>
+      <EdInput id="bio" placeholder="Conte um pouco sobre você" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel, EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -256,6 +523,34 @@ export const LabelClickInteraction: Story = {
             <Input id="click-test" placeholder="Input will focus" />
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Label, Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-2">
+  <Label htmlFor="click-test">Click this label</Label>
+  <Input id="click-test" placeholder="Input will focus" />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-2">
+    <label for="click-test" class="form-label">Click this label</label>
+    <input id="click-test" class="form-control" placeholder="Input will focus" />
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-2">
+    <EdLabel html-for="click-test">Click this label</EdLabel>
+    <EdInput id="click-test" placeholder="Input will focus" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel, EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const label = canvas.getByText("Click this label");
@@ -277,6 +572,28 @@ export const RequiredIndicatorInteraction: Story = {
         children: "Required field",
         required: true,
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Label } from "@fabioeducacross/ui";
+
+<Label required>Required field</Label>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <label class="form-label">
+    Required field
+    <span class="text-danger ms-1" aria-hidden="true">*</span>
+  </label>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdLabel :required="true">Required field</EdLabel>
+</template>
+
+<script setup lang="ts">
+import { EdLabel } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const asterisk = canvas.getByText("*");
@@ -296,6 +613,45 @@ export const AccessibilityTest: Story = {
             <Input id="a11y-test" placeholder="Accessible input" />
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Label, Input } from "@fabioeducacross/ui";
+
+<div className="flex flex-col gap-2">
+  <Label htmlFor="a11y-test" required>
+    Accessible Label
+  </Label>
+  <Input id="a11y-test" placeholder="Accessible input" />
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-column gap-2">
+    <label for="a11y-test" class="form-label">
+      Accessible Label
+      <span class="text-danger ms-1" aria-hidden="true">*</span>
+    </label>
+    <input 
+      id="a11y-test" 
+      class="form-control" 
+      placeholder="Accessible input"
+    />
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-col gap-2">
+    <EdLabel html-for="a11y-test" :required="true">
+      Accessible Label
+    </EdLabel>
+    <EdInput id="a11y-test" placeholder="Accessible input" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdLabel, EdInput } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const input = canvas.getByPlaceholderText("Accessible input");

@@ -74,6 +74,25 @@ export const Default: Story = {
         variant: "default",
         size: "default",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button>Button</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary">Button</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton>Button</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const Playground: Story = {
@@ -83,6 +102,31 @@ export const Playground: Story = {
         size: "default",
         loading: false,
         disabled: false,
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="default" size="default">
+  Playground Button
+</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary btn-md">
+    Playground Button
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="default" size="default">
+    Playground Button
+  </EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -152,6 +196,25 @@ export const Outline: Story = {
         children: "Outline",
         variant: "outline",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="outline">Outline</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-outline-primary">Outline</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="outline">Outline</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const Secondary: Story = {
@@ -185,12 +248,50 @@ export const Ghost: Story = {
         children: "Ghost",
         variant: "ghost",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="ghost">Ghost</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-link">Ghost</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="ghost">Ghost</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const Link: Story = {
     args: {
         children: "Link Button",
         variant: "link",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="link">Link Button</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <a href="#" class="btn btn-link">Link Button</a>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="link">Link Button</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -204,6 +305,23 @@ export const Success: Story = {
             description: {
                 story: "Use para ações de confirmação ou sucesso.",
             },
+        },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="success">Sucesso</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-success">Sucesso</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="success">Sucesso</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
         },
     },
 };
@@ -219,6 +337,23 @@ export const Warning: Story = {
                 story: "Use para ações que requerem atenção do usuário.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="warning">Atenção</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-warning">Atenção</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="warning">Atenção</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -232,6 +367,23 @@ export const Info: Story = {
             description: {
                 story: "Use para ações informativas ou neutras.",
             },
+        },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="info">Informação</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-info">Informação</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="info">Informação</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
         },
     },
 };
@@ -250,6 +402,23 @@ export const BotaoSecundario: Story = {
             description: {
                 story: "Botão-secundário: outline roxo para ações secundárias.",
             },
+        },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="secondary">Acessar aplicativo</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-outline-secondary">Acessar aplicativo</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="secondary">Acessar aplicativo</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
         },
     },
 };
@@ -274,6 +443,40 @@ export const BotaoDeAtencao: Story = {
                 story: "Botão-de-atenção: amarelo filled para alertas e sugestões importantes.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="attention">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 16v-4" />
+    <path d="M12 8h.01" />
+  </svg>
+  Sugerir missão
+</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-warning">
+    <i class="bi bi-exclamation-circle"></i>
+    Sugerir missão
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="attention">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 16v-4" />
+      <path d="M12 8h.01" />
+    </svg>
+    Sugerir missão
+  </EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -295,6 +498,36 @@ export const BotaoNegativo: Story = {
                 story: "Botão-negativo: outline para ações neutras ou de saída.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button variant="negative">
+  <svg width="20" height="20" viewBox="0 0 448 512" fill="currentColor">
+    {/* WhatsApp icon path */}
+  </svg>
+  WhatsApp
+</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-outline-dark">
+    <i class="bi bi-whatsapp"></i>
+    WhatsApp
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton variant="negative">
+    <svg width="20" height="20" viewBox="0 0 448 512" fill="currentColor">
+      <!-- WhatsApp icon path -->
+    </svg>
+    WhatsApp
+  </EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -307,12 +540,50 @@ export const Small: Story = {
         children: "Small",
         size: "sm",
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button size="sm">Small</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary btn-sm">Small</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton size="sm">Small</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 export const Large: Story = {
     args: {
         children: "Large",
         size: "lg",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button size="lg">Large</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary btn-lg">Large</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton size="lg">Large</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -343,6 +614,35 @@ export const IconSize: Story = {
                 story: "Use `size='icon'` para botões que contém apenas um ícone. Sempre adicione `aria-label` para acessibilidade.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button size="icon" aria-label="Add item">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M5 12h14" />
+    <path d="M12 5v14" />
+  </svg>
+</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary btn-icon" aria-label="Add item">
+    <i class="bi bi-plus"></i>
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton size="icon" aria-label="Add item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </svg>
+  </EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -354,6 +654,25 @@ export const Disabled: Story = {
     args: {
         children: "Disabled",
         disabled: true,
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button disabled>Disabled</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary" disabled>Disabled</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton disabled>Disabled</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -367,6 +686,26 @@ export const Loading: Story = {
             description: {
                 story: "O estado de loading mostra um spinner e desabilita o botão automaticamente.",
             },
+        },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button loading>Loading...</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary" disabled>
+    <span class="spinner-border spinner-border-sm me-2"></span>
+    Loading...
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton loading>Loading...</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
         },
     },
 };
@@ -397,6 +736,59 @@ export const AllVariants: Story = {
                 story: "Todas as variantes disponíveis lado a lado.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<div className="flex flex-wrap gap-4">
+  <Button variant="default">Default</Button>
+  <Button variant="secondary">Secundário</Button>
+  <Button variant="attention">Atenção</Button>
+  <Button variant="negative">Negativo</Button>
+  <Button variant="destructive">Destrutivo</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="link">Link</Button>
+  <Button variant="success">Sucesso</Button>
+  <Button variant="warning">Aviso</Button>
+  <Button variant="info">Info</Button>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-wrap gap-3">
+    <button class="btn btn-primary">Default</button>
+    <button class="btn btn-outline-secondary">Secundário</button>
+    <button class="btn btn-warning">Atenção</button>
+    <button class="btn btn-outline-dark">Negativo</button>
+    <button class="btn btn-danger">Destrutivo</button>
+    <button class="btn btn-outline-primary">Outline</button>
+    <button class="btn btn-link">Ghost</button>
+    <a href="#" class="btn btn-link">Link</a>
+    <button class="btn btn-success">Sucesso</button>
+    <button class="btn btn-warning">Aviso</button>
+    <button class="btn btn-info">Info</button>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-wrap gap-4">
+    <EdButton variant="default">Default</EdButton>
+    <EdButton variant="secondary">Secundário</EdButton>
+    <EdButton variant="attention">Atenção</EdButton>
+    <EdButton variant="negative">Negativo</EdButton>
+    <EdButton variant="destructive">Destrutivo</EdButton>
+    <EdButton variant="outline">Outline</EdButton>
+    <EdButton variant="ghost">Ghost</EdButton>
+    <EdButton variant="link">Link</EdButton>
+    <EdButton variant="success">Sucesso</EdButton>
+    <EdButton variant="warning">Aviso</EdButton>
+    <EdButton variant="info">Info</EdButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -420,6 +812,50 @@ export const AllSizes: Story = {
                 story: "Todos os tamanhos disponíveis lado a lado.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<div className="flex items-center gap-4">
+  <Button size="sm">Small</Button>
+  <Button size="default">Default</Button>
+  <Button size="lg">Large</Button>
+  <Button size="icon" aria-label="Add">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </svg>
+  </Button>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-primary btn-sm">Small</button>
+    <button class="btn btn-primary">Default</button>
+    <button class="btn btn-primary btn-lg">Large</button>
+    <button class="btn btn-primary btn-icon" aria-label="Add">
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex items-center gap-4">
+    <EdButton size="sm">Small</EdButton>
+    <EdButton size="default">Default</EdButton>
+    <EdButton size="lg">Large</EdButton>
+    <EdButton size="icon" aria-label="Add">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </svg>
+    </EdButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -437,6 +873,38 @@ export const AllStates: Story = {
                 story: "Estados: normal, disabled e loading.",
             },
         },
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<div className="flex flex-wrap gap-4">
+  <Button>Normal</Button>
+  <Button disabled>Disabled</Button>
+  <Button loading>Loading</Button>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div class="d-flex flex-wrap gap-3">
+    <button class="btn btn-primary">Normal</button>
+    <button class="btn btn-primary" disabled>Disabled</button>
+    <button class="btn btn-primary" disabled>
+      <span class="spinner-border spinner-border-sm me-2"></span>
+      Loading
+    </button>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div class="flex flex-wrap gap-4">
+    <EdButton>Normal</EdButton>
+    <EdButton disabled>Disabled</EdButton>
+    <EdButton loading>Loading</EdButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };
 
@@ -447,6 +915,43 @@ export const AllStates: Story = {
 export const ClickInteraction: Story = {
     args: {
         children: "Click me",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+const handleClick = () => {
+  console.log("Button clicked!");
+};
+
+<Button onClick={handleClick}>Click me</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary" @click="handleClick">Click me</button>
+</template>
+
+<script>
+export default {
+  methods: {
+    handleClick() {
+      console.log("Button clicked!");
+    },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton @click="handleClick">Click me</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+
+const handleClick = () => {
+  console.log("Button clicked!");
+};
+</script>`,
+        },
     },
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement);
@@ -469,6 +974,25 @@ export const DisabledInteraction: Story = {
         children: "Cannot click",
         disabled: true,
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button disabled>Cannot click</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary" disabled>Cannot click</button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton disabled>Cannot click</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const button = canvas.getByRole("button", { name: /cannot click/i });
@@ -483,6 +1007,28 @@ export const LoadingInteraction: Story = {
         children: "Loading",
         loading: true,
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button loading>Loading</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary" disabled aria-busy="true">
+    <span class="spinner-border spinner-border-sm me-2"></span>
+    Loading
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton loading>Loading</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const button = canvas.getByRole("button", { name: /loading/i });
@@ -496,6 +1042,39 @@ export const LoadingInteraction: Story = {
 export const KeyboardNavigation: Story = {
     args: {
         children: "Focus me",
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button>Focus me</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary" @keydown.enter="handleEnter">Focus me</button>
+</template>
+
+<script>
+export default {
+  methods: {
+    handleEnter() {
+      console.log("Enter pressed");
+    },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton @keydown.enter="handleEnter">Focus me</EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+
+const handleEnter = () => {
+  console.log("Enter pressed");
+};
+</script>`,
+        },
     },
     play: async ({ canvasElement, args }) => {
         const canvas = within(canvasElement);
@@ -529,6 +1108,42 @@ export const WithIcon: Story = {
             </>
         ),
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+  Exportar em Excel
+</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary">
+    <i class="bi bi-download me-2"></i>
+    Exportar em Excel
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+    Exportar em Excel
+  </EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -546,5 +1161,37 @@ export const WithIconRight: Story = {
                 </svg>
             </>
         ),
+    },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Button } from "@fabioeducacross/ui";
+
+<Button>
+  Próximo
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="9 18 15 12 9 6" />
+  </svg>
+</Button>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <button class="btn btn-primary">
+    Próximo
+    <i class="bi bi-chevron-right ms-2"></i>
+  </button>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdButton>
+    Próximo
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  </EdButton>
+</template>
+
+<script setup lang="ts">
+import { EdButton } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
     },
 };

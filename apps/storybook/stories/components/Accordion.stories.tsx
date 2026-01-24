@@ -352,6 +352,99 @@ export const Controlled: Story = {
             </div>
         );
     },
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { useState } from "react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@fabioeducacross/ui";
+
+function ControlledAccordion() {
+  const [value, setValue] = useState<string>("");
+
+  return (
+    <div>
+      <div className="flex gap-2">
+        <button onClick={() => setValue("item-1")}>Open 1</button>
+        <button onClick={() => setValue("item-2")}>Open 2</button>
+        <button onClick={() => setValue("")}>Close All</button>
+      </div>
+      <p>Expanded: {value || "none"}</p>
+
+      <Accordion type="single" value={value} onValueChange={(v) => setValue(v as string)}>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>First Section</AccordionTrigger>
+          <AccordionContent>This is controlled externally.</AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Second Section</AccordionTrigger>
+          <AccordionContent>Use the buttons to control.</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  );
+}`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div>
+    <div class="d-flex gap-2 mb-3">
+      <button class="btn btn-sm btn-outline-primary" @click="expandItem('item-1')">Open 1</button>
+      <button class="btn btn-sm btn-outline-primary" @click="expandItem('item-2')">Open 2</button>
+      <button class="btn btn-sm btn-outline-secondary" @click="closeAll">Close All</button>
+    </div>
+    <p class="text-muted">Expanded: {{ currentValue || 'none' }}</p>
+
+    <div class="accordion" id="controlledAccordion">
+      <div class="accordion-item" :class="{ show: currentValue === 'item-1' }">
+        <h2 class="accordion-header">
+          <button class="accordion-button" @click="expandItem('item-1')">First Section</button>
+        </h2>
+        <div class="accordion-collapse collapse" :class="{ show: currentValue === 'item-1' }">
+          <div class="accordion-body">This is controlled externally.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() { return { currentValue: '' }; },
+  methods: {
+    expandItem(item) { this.currentValue = item; },
+    closeAll() { this.currentValue = ''; },
+  },
+};
+</script>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div>
+    <div class="flex gap-2">
+      <button @click="value = 'item-1'">Open 1</button>
+      <button @click="value = 'item-2'">Open 2</button>
+      <button @click="value = ''">Close All</button>
+    </div>
+    <p>Expanded: {{ value || 'none' }}</p>
+
+    <EdAccordion type="single" :value="value" @update:value="value = $event">
+      <EdAccordionItem value="item-1">
+        <EdAccordionTrigger>First Section</EdAccordionTrigger>
+        <EdAccordionContent>This is controlled externally.</EdAccordionContent>
+      </EdAccordionItem>
+      <EdAccordionItem value="item-2">
+        <EdAccordionTrigger>Second Section</EdAccordionTrigger>
+        <EdAccordionContent>Use the buttons to control.</EdAccordionContent>
+      </EdAccordionItem>
+    </EdAccordion>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+import { EdAccordion, EdAccordionItem, EdAccordionTrigger, EdAccordionContent } from "@fabioeducacross/ui-vue3";
+
+const value = ref<string>("");
+</script>`,
+        },
+    },
 };
 
 /**
@@ -383,6 +476,68 @@ export const CardVariant: Story = {
             </AccordionItem>
         </Accordion>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@fabioeducacross/ui";
+
+<Accordion type="single" variant="card">
+  <AccordionItem value="item-1" variant="card">
+    <AccordionTrigger className="px-4">What is your refund policy?</AccordionTrigger>
+    <AccordionContent className="px-4">
+      We offer a 30-day money-back guarantee.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2" variant="card">
+    <AccordionTrigger className="px-4">How do I contact support?</AccordionTrigger>
+    <AccordionContent className="px-4">
+      Email at support@example.com or live chat 24/7.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap Cards -->
+<template>
+  <div class="d-flex flex-column gap-3">
+    <div class="card">
+      <div class="card-header">
+        <button class="btn btn-link text-start w-100" data-bs-toggle="collapse" data-bs-target="#card1">
+          What is your refund policy?
+        </button>
+      </div>
+      <div id="card1" class="collapse">
+        <div class="card-body">We offer a 30-day money-back guarantee.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <button class="btn btn-link text-start w-100" data-bs-toggle="collapse" data-bs-target="#card2">
+          How do I contact support?
+        </button>
+      </div>
+      <div id="card2" class="collapse">
+        <div class="card-body">Email at support@example.com or live chat 24/7.</div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdAccordion type="single" variant="card">
+    <EdAccordionItem value="item-1" variant="card">
+      <EdAccordionTrigger class="px-4">What is your refund policy?</EdAccordionTrigger>
+      <EdAccordionContent class="px-4">We offer a 30-day money-back guarantee.</EdAccordionContent>
+    </EdAccordionItem>
+    <EdAccordionItem value="item-2" variant="card">
+      <EdAccordionTrigger class="px-4">How do I contact support?</EdAccordionTrigger>
+      <EdAccordionContent class="px-4">Email at support@example.com or live chat 24/7.</EdAccordionContent>
+    </EdAccordionItem>
+  </EdAccordion>
+</template>
+
+<script setup lang="ts">
+import { EdAccordion, EdAccordionItem, EdAccordionTrigger, EdAccordionContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -410,6 +565,69 @@ export const NonCollapsible: Story = {
             </AccordionItem>
         </Accordion>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@fabioeducacross/ui";
+
+<Accordion type="single" defaultValue="item-1" collapsible={false}>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Always One Open</AccordionTrigger>
+    <AccordionContent>
+      At least one item must always be open.
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Cannot Close All</AccordionTrigger>
+    <AccordionContent>
+      Useful for navigation or persistent content.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<!-- Bootstrap precisa de customização para prevenir que todos fechem. -->
+<template>
+  <div class="accordion" id="noncollapsibleAccordion" data-bs-toggle="false">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#nc1">
+          Always One Open
+        </button>
+      </h2>
+      <div id="nc1" class="accordion-collapse collapse show" data-bs-parent="#noncollapsibleAccordion">
+        <div class="accordion-body">At least one item must always be open.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nc2">
+          Cannot Close All
+        </button>
+      </h2>
+      <div id="nc2" class="accordion-collapse collapse" data-bs-parent="#noncollapsibleAccordion">
+        <div class="accordion-body">Useful for navigation.</div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <EdAccordion type="single" default-value="item-1" :collapsible="false">
+    <EdAccordionItem value="item-1">
+      <EdAccordionTrigger>Always One Open</EdAccordionTrigger>
+      <EdAccordionContent>At least one item must always be open.</EdAccordionContent>
+    </EdAccordionItem>
+    <EdAccordionItem value="item-2">
+      <EdAccordionTrigger>Cannot Close All</EdAccordionTrigger>
+      <EdAccordionContent>Useful for navigation.</EdAccordionContent>
+    </EdAccordionItem>
+  </EdAccordion>
+</template>
+
+<script setup lang="ts">
+import { EdAccordion, EdAccordionItem, EdAccordionTrigger, EdAccordionContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
 
 /**
@@ -454,4 +672,85 @@ export const FAQ: Story = {
             </Accordion>
         </div>
     ),
+    parameters: {
+        multiFrameworkCode: {
+            react: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@fabioeducacross/ui";
+
+<div>
+  <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+  <Accordion type="single" defaultValue="faq-1">
+    <AccordionItem value="faq-1">
+      <AccordionTrigger>What is Educacross?</AccordionTrigger>
+      <AccordionContent>
+        Educacross is an educational platform with interactive learning.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="faq-2">
+      <AccordionTrigger>How much does it cost?</AccordionTrigger>
+      <AccordionContent>
+        Flexible pricing from free tier to enterprise plans.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="faq-3">
+      <AccordionTrigger>Is there a mobile app?</AccordionTrigger>
+      <AccordionContent>
+        Yes! Available on iOS and Android.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</div>`,
+            vue2: `<!-- Exemplo conceitual com Bootstrap -->
+<template>
+  <div>
+    <h2 class="h2 fw-bold mb-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            What is Educacross?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Educacross is an educational platform with interactive learning.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            How much does it cost?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">Flexible pricing from free tier to enterprise.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>`,
+            vue3: `<!-- Exemplo conceitual - pacote em desenvolvimento -->
+<template>
+  <div>
+    <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+    <EdAccordion type="single" default-value="faq-1">
+      <EdAccordionItem value="faq-1">
+        <EdAccordionTrigger>What is Educacross?</EdAccordionTrigger>
+        <EdAccordionContent>Educacross is an educational platform with interactive learning.</EdAccordionContent>
+      </EdAccordionItem>
+      <EdAccordionItem value="faq-2">
+        <EdAccordionTrigger>How much does it cost?</EdAccordionTrigger>
+        <EdAccordionContent>Flexible pricing from free tier to enterprise.</EdAccordionContent>
+      </EdAccordionItem>
+      <EdAccordionItem value="faq-3">
+        <EdAccordionTrigger>Is there a mobile app?</EdAccordionTrigger>
+        <EdAccordionContent>Yes! Available on iOS and Android.</EdAccordionContent>
+      </EdAccordionItem>
+    </EdAccordion>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { EdAccordion, EdAccordionItem, EdAccordionTrigger, EdAccordionContent } from "@fabioeducacross/ui-vue3";
+</script>`,
+        },
+    },
 };
