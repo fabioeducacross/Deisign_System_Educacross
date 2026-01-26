@@ -1,13 +1,19 @@
 # Storybook Console Warnings - Análise e Resolução
 
 **Data**: 26/01/2026  
-**Status**: ⚠️ AVISOS BENIGNOS - Storybook funcionando corretamente
+**Status**: ✅ RESOLVIDO - Addons do core integrados, a11y adicionado
 
 ---
 
 ## 📊 Resumo
 
-Os warnings no console do Storybook **NÃO impedem o funcionamento** da aplicação. São avisos de configuração que podem ser ignorados ou suprimidos.
+**Descoberta Principal**: No Storybook 10, a maioria dos addons foi **integrada ao core** e não existe mais como pacotes separados.
+
+### ✅ Solução Implementada
+
+- Confirmado que addons essenciais já estão no core do Storybook 10
+- Adicionado `@storybook/addon-a11y` para checagem de acessibilidade
+- Configuração atualizada com todos addons disponíveis para v10
 
 ### Warnings Identificados
 
