@@ -1,224 +1,428 @@
 /* ===============================================
    EDUCACROSS DESIGN SYSTEM - STORYBOOK CUSTOM STYLES
-   Melhorias visuais para UI moderna e profissional
+   Tema Light Vibrante e Moderno
+   Versão Storybook 10+ Compatible
    =============================================== */
 
-/* ========== SIDEBAR IMPROVEMENTS ========== */
-.sidebar-container {
-    padding: 12px 8px !important;
+/* ========== MODERN UI DESIGN SYSTEM ========== */
+:root {
+    /* Colors - Refined palette */
+    --educacross-primary: #6366F1;
+    --educacross-primary-light: #818CF8;
+    --educacross-primary-dark: #4F46E5;
+    --educacross-accent: #EC4899;
+    --educacross-success: #10B981;
+    --educacross-warning: #F59E0B;
+    
+    /* Backgrounds - Subtle gradients */
+    --educacross-bg-page: #FAFBFC;
+    --educacross-bg-card: #FFFFFF;
+    --educacross-bg-sidebar: #FFFFFF;
+    --educacross-bg-hover: #F8F9FB;
+    
+    /* Text - Clear hierarchy */
+    --educacross-text-primary: #111827;
+    --educacross-text-secondary: #6B7280;
+    --educacross-text-tertiary: #9CA3AF;
+    
+    /* Borders - Minimal and refined */
+    --educacross-border-light: #F3F4F6;
+    --educacross-border: #E5E7EB;
+    --educacross-border-medium: #D1D5DB;
+    
+    /* Shadows - Layered depth */
+    --educacross-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --educacross-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --educacross-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+    --educacross-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --educacross-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.12);
+    
+    /* Spacing - 4px base grid */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    
+    /* Border radius - Consistent rounded corners */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+    
+    /* Typography scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
 }
 
-/* Sidebar header com melhor spacing */
-.sidebar-header {
-    padding: 16px 12px !important;
-    margin-bottom: 12px;
+/* ========== CLEAN LIGHT THEME ========== */
+body,
+html,
+#storybook-root,
+#storybook-docs {
+    background: var(--educacross-bg-page) !important;
+    color: var(--educacross-text-primary) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: var(--font-size-base) !important;
+    line-height: 1.6 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
 
-/* Links de navegação mais elegantes */
-[data-parent-id] a,
-[data-nodetype="story"] a,
-[data-nodetype="component"] a {
-    border-radius: 8px !important;
-    padding: 8px 12px !important;
-    margin: 2px 0 !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+/* ========== SIDEBAR LIGHT THEME ========== */
+aside[role="navigation"],
+nav[aria-label*="sidebar" i],
+div[class*="sidebar" i],
+div[id*="sidebar" i] {
+    background: var(--educacross-bg-sidebar) !important;
+    border-right: 1px solid var(--educacross-border) !important;
+    box-shadow: 2px 0 8px rgba(115, 103, 240, 0.04) !important;
 }
 
-/* Hover states suaves */
-[data-parent-id] a:hover,
-[data-nodetype="story"] a:hover {
-    background: rgba(115, 103, 240, 0.08) !important;
-    transform: translateX(2px);
+/* Links de navegação elegantes */
+nav a,
+aside a,
+[role="tree"] a,
+[role="treeitem"] a,
+div[class*="TreeNode" i] a,
+div[class*="LeafNode" i] a {
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    margin: 3px 8px !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 500 !important;
+    color: var(--educacross-text-secondary) !important;
+    font-size: 0.95rem !important;
 }
 
-/* Selected state vibrante */
-[data-selected="true"] a {
-    background: linear-gradient(135deg, rgba(115, 103, 240, 0.12) 0%, rgba(115, 103, 240, 0.06) 100%) !important;
-    border-left: 3px solid #7367F0 !important;
-    font-weight: 600 !important;
+/* Hover vibrante */
+nav a:hover,
+aside a:hover,
+[role="treeitem"]:hover a,
+div[class*="TreeNode" i]:hover a,
+div[class*="LeafNode" i]:hover a {
+    background: linear-gradient(135deg, rgba(115, 103, 240, 0.12) 0%, rgba(156, 143, 254, 0.08) 100%) !important;
+    transform: translateX(4px);
+    box-shadow: inset 4px 0 0 var(--educacross-primary), var(--educacross-shadow-sm) !important;
+    color: var(--educacross-primary) !important;
 }
 
-/* ========== DOCS PAGE IMPROVEMENTS ========== */
-.sbdocs {
-    max-width: 1200px !important;
-    padding: 32px 48px !important;
-}
-
-/* Títulos com hierarquia visual forte */
-.sbdocs h1 {
-    font-size: 2.5rem !important;
+/* Selected state com gradiente vibrante */
+nav a[aria-current],
+aside a[aria-current],
+[role="treeitem"][aria-selected="true"] a,
+[data-selected="true"],
+[aria-selected="true"],
+div[class*="TreeNode" i][class*="selected" i] a,
+div[class*="LeafNode" i][class*="selected" i] a {
+    background: linear-gradient(135deg, rgba(115, 103, 240, 0.18) 0%, rgba(156, 143, 254, 0.12) 100%) !important;
+    border-left: 5px solid var(--educacross-primary) !important;
     font-weight: 700 !important;
-    letter-spacing: -0.02em !important;
-    margin-bottom: 24px !important;
-    background: linear-gradient(135deg, #7367F0 0%, #9388F7 100%);
+    color: var(--educacross-primary-dark) !important;
+    box-shadow: var(--educacross-shadow-md) !important;
+}
+
+/* ========== DOCS PAGE LIGHT THEME ========== */
+main[id*="storybook" i],
+div[class*="DocsContent" i],
+div[class*="sbdocs" i],
+article {
+    max-width: 1200px !important;
+    padding: 48px 64px !important;
+    margin: 0 auto !important;
+    background: var(--educacross-bg-card) !important;
+    min-height: 100vh !important;
+}
+
+/* Títulos com gradiente vibrante */
+main h1,
+article h1,
+div[class*="sbdocs" i] h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+    margin-bottom: 36px !important;
+    margin-top: 0 !important;
+    background: linear-gradient(135deg, #7367F0 0%, #9C8FFE 50%, #C7D2FE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1.15 !important;
+    text-shadow: 0 2px 4px rgba(115, 103, 240, 0.1);
 }
 
-.sbdocs h2 {
-    font-size: 1.75rem !important;
+main h2,
+article h2,
+div[class*="sbdocs" i] h2 {
+    font-size: var(--font-size-2xl) !important;
     font-weight: 600 !important;
-    margin-top: 48px !important;
-    margin-bottom: 16px !important;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #E5E7EB;
+    margin-top: var(--space-12) !important;
+    margin-bottom: var(--space-4) !important;
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--educacross-border-light);
+    color: var(--educacross-text-primary) !important;
+    letter-spacing: -0.02em !important;
 }
 
-.sbdocs h3 {
-    font-size: 1.25rem !important;
+main h3,
+article h3,
+div[class*="sbdocs" i] h3 {
+    font-size: var(--font-size-xl) !important;
     font-weight: 600 !important;
-    margin-top: 32px !important;
-    margin-bottom: 12px !important;
+    margin-top: var(--space-8) !important;
+    margin-bottom: var(--space-3) !important;
+    color: var(--educacross-text-primary) !important;
+    letter-spacing: -0.015em !important;
 }
 
-/* ========== CODE BLOCKS ========== */
-.sbdocs pre {
-    border-radius: 12px !important;
-    padding: 20px !important;
-    background: #1A1F2E !important;
-    border: 1px solid #2D3548 !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+main h4,
+article h4 {
+    font-size: var(--font-size-lg) !important;
+    font-weight: 600 !important;
+    margin-top: var(--space-6) !important;
+    margin-bottom: var(--space-2) !important;
+    color: var(--educacross-text-secondary) !important;
 }
 
-.sbdocs code {
-    font-family: "JetBrains Mono", "Fira Code", Consolas, monospace !important;
-    font-size: 0.9em !important;
+/* Clean paragraphs */
+main p,
+article p,
+div[class*="sbdocs" i] p {
+    line-height: 1.7 !important;
+    margin-bottom: var(--space-4) !important;
+    color: var(--educacross-text-secondary) !important;
+    font-size: var(--font-size-base) !important;
+    max-width: 68ch !important;
 }
 
-/* Inline code com destaque sutil */
-.sbdocs p code,
-.sbdocs li code {
-    background: rgba(115, 103, 240, 0.08) !important;
-    color: #7367F0 !important;
-    padding: 2px 8px !important;
-    border-radius: 6px !important;
-    font-weight: 500 !important;
+/* Lists */
+main ul,
+main ol,
+article ul,
+article ol {
+    margin: var(--space-4) 0 !important;
+    padding-left: var(--space-6) !important;
 }
 
-/* ========== CONTROLS PANEL ========== */
-#panel-tab-content {
-    padding: 20px !important;
+main li,
+article li {
+    line-height: 1.7 !important;
+    margin-bottom: var(--space-2) !important;
+    color: var(--educacross-text-secondary) !important;
 }
 
-/* Tabs com visual clean */
-.css-1kkd5at button {
-    border-radius: 8px 8px 0 0 !important;
-    padding: 10px 16px !important;
-    font-weight: 500 !important;
-    transition: all 0.2s ease !important;
+/* ========== CODE BLOCKS LIGHT THEME ========== */
+pre,
+div[class*="prismjs" i],
+code[class*="prism" i] {
+    border-radius: 14px !important;
+    padding: 28px !important;
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%) !important;
+    border: 2px solid var(--educacross-border) !important;
+    box-shadow: var(--educacross-shadow-md) !important;
+    margin: 28px 0 !important;
 }
 
-/* Active tab com destaque */
-.css-1kkd5at button[aria-selected="true"] {
-    background: #7367F0 !important;
-    color: white !important;
+code,
+pre code {
+    font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
+    font-size: 0.92em !important;
+    line-height: 1.7 !important;
+    color: var(--educacross-text-primary) !important;
 }
 
-/* ========== TOOLBAR IMPROVEMENTS ========== */
-#storybook-explorer-tree {
-    padding: 8px !important;
+/* Inline code com destaque roxo vibrante */
+p code:not([class*="prism" i]),
+li code:not([class*="prism" i]),
+td code:not([class*="prism" i]) {
+    background: linear-gradient(135deg, rgba(115, 103, 240, 0.15) 0%, rgba(199, 210, 254, 0.12) 100%) !important;
+    color: var(--educacross-primary-dark) !important;
+    padding: 4px 10px !important;
+    border-radius: 7px !important;
+    font-weight: 700 !important;
+    font-size: 0.92em !important;
+    border: 1px solid var(--educacross-border) !important;
+    box-shadow: 0 1px 2px rgba(115, 103, 240, 0.08) !important;
 }
 
-/* Search input elegante */
-input[type="text"][placeholder*="Find"] {
-    border-radius: 8px !important;
-    padding: 10px 14px !important;
-    border: 1px solid #E5E7EB !important;
-    transition: all 0.2s ease !important;
+/* ========== CLEAN COMPONENT PREVIEW ========== */
+div[class*="Canvas" i],
+div[id*="story" i],
+div[class*="DocsStory" i] {
+    border-radius: var(--radius-lg) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--educacross-border-light) !important;
+    box-shadow: var(--educacross-shadow-sm) !important;
+    margin: var(--space-8) 0 !important;
+    background: var(--educacross-bg-card) !important;
 }
 
-input[type="text"][placeholder*="Find"]:focus {
-    border-color: #7367F0 !important;
-    box-shadow: 0 0 0 3px rgba(115, 103, 240, 0.1) !important;
+/* Minimal toolbar */
+div[class*="toolbar" i],
+div[id*="toolbar" i] {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+    background: var(--educacross-bg-page) !important;
+    border-bottom: 1px solid var(--educacross-border-light) !important;
+    padding: var(--space-2) var(--space-3) !important;
+}
+
+/* ========== MINIMAL TABLES ========== */
+table {
+    border-radius: var(--radius-md) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--educacross-border-light) !important;
+    margin: var(--space-6) 0 !important;
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+thead th,
+th {
+    background: var(--educacross-bg-page) !important;
+    font-weight: 600 !important;
+    padding: var(--space-3) var(--space-4) !important;
+    text-align: left !important;
+    color: var(--educacross-text-primary) !important;
+    border-bottom: 1px solid var(--educacross-border) !important;
+    font-size: var(--font-size-sm) !important;
+    letter-spacing: 0.01em !important;
+}
+
+tbody td,
+td {
+    padding: var(--space-3) var(--space-4) !important;
+    border-bottom: 1px solid var(--educacross-border-light) !important;
+    color: var(--educacross-text-secondary) !important;
+    font-size: var(--font-size-sm) !important;
+}
+
+tbody tr:last-child td {
+    border-bottom: none !important;
+}
+
+tbody tr:hover {
+    background: var(--educacross-bg-hover) !important;
+}
+
+/* ========== CLEAN CONTROLS ========== */
+div[id*="panel" i],
+div[id*="control" i],
+div[role="tabpanel"] {
+    padding: var(--space-6) !important;
+}
+
+/* Minimal form controls */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    border-radius: var(--radius-md) !important;
+    padding: var(--space-2) var(--space-3) !important;
+    border: 1px solid var(--educacross-border) !important;
+    transition: all 0.15s ease !important;
+    font-size: var(--font-size-sm) !important;
+    background: var(--educacross-bg-card) !important;
+    color: var(--educacross-text-primary) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--educacross-primary) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
     outline: none !important;
 }
 
-/* ========== COMPONENT PREVIEW ========== */
-.docs-story {
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    border: 1px solid #E5E7EB !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
-    margin: 24px 0 !important;
-}
-
-/* Canvas toolbar com visual moderno */
-.os-host-overflow {
-    border-radius: 12px !important;
-}
-
-/* ========== TABLES ========== */
-.sbdocs table {
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    border: 1px solid #E5E7EB !important;
-}
-
-.sbdocs th {
-    background: #FAFAFA !important;
-    font-weight: 600 !important;
-    padding: 12px 16px !important;
-}
-
-.sbdocs td {
-    padding: 12px 16px !important;
-}
-
-/* ========== BADGES E TAGS ========== */
-.css-knql72 {
-    border-radius: 6px !important;
-    padding: 4px 10px !important;
+/* Clean buttons */
+button:not([class*="Icon" i]) {
+    border-radius: var(--radius-md) !important;
+    padding: var(--space-2) var(--space-4) !important;
     font-weight: 500 !important;
-    font-size: 0.85em !important;
+    transition: all 0.15s ease !important;
+    font-size: var(--font-size-sm) !important;
 }
 
-/* ========== DARK MODE ADJUSTMENTS ========== */
-.dark .sbdocs h2 {
-    border-bottom-color: #2D3548 !important;
+button[class*="primary" i] {
+    background: var(--educacross-primary) !important;
+    color: white !important;
+    border: none !important;
 }
 
-.dark .sbdocs pre {
-    background: #0B0F19 !important;
-    border-color: #2D3548 !important;
+button[class*="primary" i]:hover {
+    background: var(--educacross-primary-dark) !important;
+    box-shadow: var(--educacross-shadow-md) !important;
 }
 
-.dark input[type="text"][placeholder*="Find"] {
-    background: #1A1F2E !important;
-    border-color: #2D3548 !important;
-    color: #F3F4F6 !important;
+/* ========== MINIMAL SEARCH ========== */
+input[type="search"],
+input[placeholder*="Find" i],
+input[placeholder*="Search" i] {
+    border-radius: var(--radius-md) !important;
+    padding: var(--space-2) var(--space-3) !important;
+    padding-left: var(--space-8) !important;
+    border: 1px solid var(--educacross-border-light) !important;
+    background: var(--educacross-bg-card) !important;
+    transition: all 0.15s ease !important;
+    font-size: var(--font-size-sm) !important;
 }
 
-.dark .docs-story {
-    border-color: #2D3548 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+input[type="search"]:focus,
+input[placeholder*="Find" i]:focus,
+input[placeholder*="Search" i]:focus {
+    border-color: var(--educacross-primary) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12) !important;
+    outline: none !important;
 }
 
-.dark .sbdocs table {
-    border-color: #2D3548 !important;
+/* ========== MINIMAL BADGES ========== */
+span[class*="badge" i],
+span[class*="tag" i],
+div[class*="badge" i] {
+    border-radius: var(--radius-sm) !important;
+    padding: 2px var(--space-2) !important;
+    font-weight: 500 !important;
+    font-size: var(--font-size-xs) !important;
+    letter-spacing: 0.01em !important;
+    background: var(--educacross-bg-hover) !important;
+    border: 1px solid var(--educacross-border-light) !important;
+    color: var(--educacross-text-secondary) !important;
 }
 
-.dark .sbdocs th {
-    background: #1A1F2E !important;
-}
-
-/* ========== ANIMATIONS ========== */
+/* ========== SUBTLE ANIMATIONS ========== */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(8px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
-.sbdocs > * {
+/* Minimal page transitions */
+main > *,
+article > *,
+div[class*="sbdocs" i] > * {
     animation: fadeIn 0.3s ease-out;
 }
 
-/* ========== SCROLL IMPROVEMENTS ========== */
+/* ========== MINIMAL SCROLLBAR ========== */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--educacross-border-medium) transparent;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -229,19 +433,86 @@ input[type="text"][placeholder*="Find"]:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #D1D5DB;
+    background: var(--educacross-border-medium);
     border-radius: 4px;
-    transition: background 0.2s ease;
+    border: 2px solid transparent;
+    background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #9CA3AF;
+    background: var(--educacross-text-tertiary);
+    background-clip: padding-box;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-    background: #3D4556;
+::-webkit-scrollbar-corner {
+    background: transparent;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: #4B5563;
+/* ========== ACCESSIBILITY & FOCUS ========== */
+*:focus-visible {
+    outline: 2px solid var(--educacross-primary) !important;
+    outline-offset: 2px !important;
 }
+
+*:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+a {
+    color: var(--educacross-primary) !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+/* ========== LIGHT THEME ENHANCEMENTS ========== */
+main,
+article,
+aside,
+nav,
+div[id*="panel" i],
+div[class*="Panel" i] {
+    background: var(--educacross-bg-card) !important;
+}
+
+/* Toolbar e header claros */
+header,
+div[role="banner"],
+div[class*="toolbar" i] {
+    background: var(--educacross-bg-card) !important;
+    border-bottom: 1px solid var(--educacross-border) !important;
+    box-shadow: var(--educacross-shadow-sm) !important;
+}
+
+/* Canvas de preview com sombra suave */
+div[id*="storybook-preview" i],
+iframe {
+    border-radius: 14px !important;
+    box-shadow: var(--educacross-shadow-md) !important;
+    border: 2px solid var(--educacross-border) !important;
+}
+
+/* ========== UTILITY CLASSES ========== */
+.educacross-card {
+    border-radius: var(--radius-lg) !important;
+    padding: var(--space-6) !important;
+    border: 1px solid var(--educacross-border-light) !important;
+    box-shadow: var(--educacross-shadow-sm) !important;
+    background: var(--educacross-bg-card) !important;
+}
+
+.educacross-divider {
+    height: 1px !important;
+    background: var(--educacross-border-light) !important;
+    margin: var(--space-8) 0 !important;
+    border: none !important;
+}
+
+/* Modern elevation system */
+.elevation-0 { box-shadow: none !important; }
+.elevation-1 { box-shadow: var(--educacross-shadow-xs) !important; }
+.elevation-2 { box-shadow: var(--educacross-shadow-sm) !important; }
+.elevation-3 { box-shadow: var(--educacross-shadow-md) !important; }
+.elevation-4 { box-shadow: var(--educacross-shadow-lg) !important; } 
